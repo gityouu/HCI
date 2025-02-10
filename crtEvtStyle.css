@@ -84,29 +84,30 @@ body {
 
 /* Input container with warning icon */
 .input-container {
-    position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Add some space between the input fields */
 }
 
 .input-container input,
 .input-container textarea {
-    width: 100%;
     padding-right: 30px; /* Space for the warning icon */
     position: relative;
 }
 
-.input-container label {
-    width: 30%;
-    font-weight: bold;
-    margin-right: 10px;
-    position: inherit;
+.input-container input[type="date"],
+.input-container input[type="time"] {
+    width: 48%; /* Slightly less than 50% to account for gap */
+    margin: 5px 0;
 }
+
 
 /* Warning icon */
 .warning-icon {
     position: absolute;
-    right: 7px;
+    right: 26%;
     color: red;
     font-size: 18px;
     display: none; /* Hidden by default */
@@ -136,15 +137,8 @@ body {
     visibility: visible;
 }
 
-/* Red Asterisk for Required Fields */
-.asterisk {
-    color: red;
-    font-weight: bold;
-    font-size: large;
-}
-
 input, textarea {
-    width: 100%;
+    width: 50%;
     padding: 8px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -185,5 +179,14 @@ button:hover {
 
 .shake {
     animation: shake 0.3s ease-in-out;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.next-btn {
+    margin-left: auto;
 }
 
