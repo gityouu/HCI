@@ -17,6 +17,9 @@ function updateFormSteps() {
     });
 
     progressBar.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+
+    // Disable "Next" button until fields are valid
+    updateNextButtonState();
 }
 
 // Function to validate required fields with custom rules
@@ -27,8 +30,8 @@ function validateFields(stepIndex) {
     inputs.forEach(input => {
         const errorMsg = input.nextElementSibling;
 
-        // Remove existing error message if present
-        if (errorMsg && errorMsg.classList.contains("error-msg")) {
+        // Remove existing messages
+        if (errorMsg && (errorMsg.classList.contains("error-msg") || errorMsg.classList.contains("success-msg"))) {
             errorMsg.remove();
         }
 
@@ -65,19 +68,43 @@ function validateFields(stepIndex) {
                 isValid = false;
             }
         }
+
+        // Show success message if valid
+        if (isValid) {
+            showSuccess(input, "Looks good!");
+        }
     });
 
+    updateNextButtonState();
     return isValid;
 }
 
-// Function to show error message
+// Function to show error message and highlight field
 function showError(input, message) {
+    input.style.border = "2px solid red";
     const errorText = document.createElement("span");
     errorText.classList.add("error-msg");
     errorText.style.color = "red";
     errorText.style.fontSize = "14px";
     errorText.textContent = message;
     input.after(errorText);
+}
+
+// Function to show success message and highlight field
+function showSuccess(input, message) {
+    input.style.border = "2px solid green";
+    const successText = document.createElement("span");
+    successText.classList.add("success-msg");
+    successText.style.color = "green";
+    successText.style.fontSize = "14px";
+    successText.textContent = message;
+    input.after(successText);
+}
+
+// Function to update the Next button's disabled state
+function updateNextButtonState() {
+    const nextBtn = formSteps[currentStep].querySelector(".next-btn");
+    nextBtn.disabled = !validateFields(currentStep);
 }
 
 // Next button click
@@ -99,6 +126,13 @@ prevBtns.forEach((btn) => {
             currentStep--;
             updateFormSteps();
         }
+    });
+});
+
+// Real-time validation to enable Next button when valid
+document.querySelectorAll("input[required], textarea[required]").forEach(input => {
+    input.addEventListener("input", () => {
+        validateFields(currentStep);
     });
 });
 

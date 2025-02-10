@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Event</title>
     <link rel="stylesheet" href="./crtEvtStyle.css">
 </head>
 <body>
@@ -24,33 +24,44 @@
             <!-- Step 1: Basic Info -->
             <div class="form-step active">
                 <h2>Step 1: Basic Information</h2>
-                <label>Event Name:</label>
+                <label>Event Name<span class="asterisk">*</span></label>
+                <input type="text" name="eventName" required>
+                
+                <label>Organizer Name<span class="asterisk">*</span></label>
                 <input type="text" required>
-                <label>Organizer Name:</label>
-                <input type="text" required>
+                
                 <button type="button" class="next-btn">Next</button>
+                <!-- Required Fields Notice -->
+                <p class="required-info"><span class="asterisk">*</span> Fields marked with an asterisk are required.</p>
             </div>
 
             <!-- Step 2: Date & Location -->
             <div class="form-step">
                 <h2>Step 2: Date & Location</h2>
-                <label>Event Date:</label>
+                <label>Event Date <span class="asterisk">*</span></label>
                 <input type="date" required>
-                <label>Event Time:</label>
+                
+                <label>Event Time <span class="asterisk">*</span></label>
                 <input type="time" required>
-                <label>Venue:</label>
+                
+                <label>Venue <span class="asterisk">*</span></label>
                 <input type="text" required>
+                
                 <button type="button" class="prev-btn">Back</button>
                 <button type="button" class="next-btn">Next</button>
+                <!-- Required Fields Notice -->
+                <p class="required-info"><span class="asterisk">*</span> Fields marked with an asterisk are required.</p>
             </div>
 
             <!-- Step 3: Additional Details -->
             <div class="form-step">
                 <h2>Step 3: Additional Details</h2>
-                <label>Description:</label>
+                <label>Description: <span class="asterisk">*</span></label>
                 <textarea required></textarea>
-                <label>Cover Image:</label>
+                
+                <label>Cover Image</label>
                 <input type="file">
+                
                 <button type="button" class="prev-btn">Back</button>
                 <button type="button" class="next-btn">Next</button>
             </div>
@@ -61,9 +72,12 @@
                 <p>Review your details and submit your event.</p>
                 <button type="button" class="prev-btn">Back</button>
                 <button type="submit">Submit</button>
+                <!-- Required Fields Notice -->
+                <p class="required-info"><span class="asterisk">*</span> Required fields</p>
             </div>
         </form>
     </div>
-    <script src="./crtEvtSxript.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -70,6 +70,19 @@ body {
     display: block;
 }
 
+/* Required Fields Notice */
+.required-info {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Red Asterisk for Required Fields */
+.asterisk {
+    color: red;
+    font-weight: bold;
+}
+
 input, textarea {
     width: 100%;
     padding: 8px;
