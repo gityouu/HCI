@@ -16,7 +16,7 @@ function updateFormSteps() {
         step.classList.toggle("active", index <= currentStep);
     });
 
-    progressBar.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+    progressBar.style.width = `${(currentStep / (steps.length - 1)) * 50}%`;
 }
 
 // Function to check if all required fields in a step are filled

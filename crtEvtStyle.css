@@ -26,7 +26,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     position: relative;
 }
 
@@ -40,7 +40,7 @@ body {
 .steps {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 50%;
     margin-top: 10px;
 }
 
@@ -102,6 +102,7 @@ body {
     width: 48%; /* Slightly less than 50% to account for gap */
     margin: 5px 0;
 }
+
 
 
 /* Warning icon */
