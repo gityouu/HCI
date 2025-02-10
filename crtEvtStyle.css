@@ -99,7 +99,7 @@ body {
 
 .input-container input[type="date"],
 .input-container input[type="time"] {
-    width: 48%; /* Slightly less than 50% to account for gap */
+    width: 24%; /* Slightly less than 50% to account for gap */
     margin: 5px 0;
 }
 
