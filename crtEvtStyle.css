@@ -97,41 +97,6 @@ body {
     margin: 5px 0;
 }
 
-
-
-/* Warning icon */
-.warning-icon {
-    position: absolute;
-    right: 26%;
-    color: red;
-    font-size: 18px;
-    display: none; /* Hidden by default */
-    cursor: pointer;
-}
-
-.warning-icon::after {
-    content: attr(data-tooltip); /* Tooltip text from data attribute */
-    position: absolute;
-    bottom: 100%; /* Position above the icon */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #000;
-    color: #fc0606;
-    padding: 5px;
-    border-radius: 5px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s;
-    pointer-events: none; /* Prevent tooltip from interfering with cursor */
-    font-size: smaller;
-}
-
-.warning-icon:hover::after {
-    opacity: 1;
-    visibility: visible;
-}
-
 input, textarea {
     width: 50%;
     padding: 8px;

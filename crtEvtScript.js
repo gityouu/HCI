@@ -3,6 +3,7 @@ const progressBar = document.querySelector(".progress-bar");
 const formSteps = document.querySelectorAll(".form-step");
 const nextBtns = document.querySelectorAll(".next-btn");
 const prevBtns = document.querySelectorAll(".prev-btn");
+const submitBtn = document.querySelector(".submit-btn");
 
 let currentStep = 0;
 
@@ -56,6 +57,13 @@ prevBtns.forEach((btn) => {
             updateFormSteps();
         }
     });
+});
+
+// Submit button click (only allows submission when all fields are filled)
+submitBtn.addEventListener("click", () => {
+    if (areFieldsFilled(currentStep)) { // Allow submission only if fields are filled
+        alert("Form submitted successfully!");
+    }
 });
 
 // Real-time validation: Change border color dynamically
