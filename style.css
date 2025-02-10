@@ -37,9 +37,10 @@ body {
 
 /* Move text to the upper-right */
 .text {
+    font-size: x-large;
     position: absolute;
     top: 20px; /* Adjust this value to move it higher */
-    right: 210px; /* Align to the right */
+    right: 130px; /* Align to the right */
     text-align: center;
 }
 
