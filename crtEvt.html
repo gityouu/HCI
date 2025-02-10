@@ -24,46 +24,69 @@
             <!-- Step 1: Basic Info -->
             <div class="form-step active">
                 <h2>Step 1: Basic Information</h2>
-                <label>Event Name<span class="asterisk">*</span></label>
-                <input type="text" name="eventName" required>
+                <div class="input-container">
+                    <label>Event Name: <span class="asterisk">*</span></label>
+                    <input type="text" name="eventName" required>
+                    <span class="warning-icon" data-tooltip="This field is required!">⚠️</span>
+                </div>
                 
-                <label>Organizer Name<span class="asterisk">*</span></label>
-                <input type="text" required>
+                <div class="input-container">
+                    <label>Organizer Name: <span class="asterisk">*</span></label>
+                    <input type="text" required>
+                    <span class="warning-icon" data-tooltip="This field is required!">⚠️</span>
+                </div>
                 
                 <button type="button" class="next-btn">Next</button>
                 <!-- Required Fields Notice -->
-                <p class="required-info"><span class="asterisk">*</span> Fields marked with an asterisk are required.</p>
+                <p class="required-info"><span class="asterisk">*</span>Required fields</p>
             </div>
 
             <!-- Step 2: Date & Location -->
             <div class="form-step">
                 <h2>Step 2: Date & Location</h2>
-                <label>Event Date <span class="asterisk">*</span></label>
-                <input type="date" required>
+                <div class="input-container">
+                    <label>Event Date <span class="asterisk">*</span></label>
+                    <input type="date" required>
+                    <span class="warning-icon" data-tooltip="This field is required!">⚠️</span>
+                </div>
                 
-                <label>Event Time <span class="asterisk">*</span></label>
-                <input type="time" required>
+                <div class="input-container">
+                    <label>Event Time <span class="asterisk">*</span></label>
+                    <input type="time" required>
+                    <span class="warning-icon" data-tooltip="This field is required!">⚠️</span>
+                </div>
                 
-                <label>Venue <span class="asterisk">*</span></label>
-                <input type="text" required>
+                <div class="input-container">
+                    <label>Venue <span class="asterisk">*</span></label>
+                    <input type="text" required>
+                    <span class="warning-icon" data-tooltip="This field is required!">⚠️</span>
+                </div>
                 
                 <button type="button" class="prev-btn">Back</button>
                 <button type="button" class="next-btn">Next</button>
                 <!-- Required Fields Notice -->
-                <p class="required-info"><span class="asterisk">*</span> Fields marked with an asterisk are required.</p>
+                <p class="required-info"><span class="asterisk">*</span>Required fields</p>
             </div>
 
             <!-- Step 3: Additional Details -->
             <div class="form-step">
                 <h2>Step 3: Additional Details</h2>
-                <label>Description: <span class="asterisk">*</span></label>
-                <textarea required></textarea>
+                <div class="input-container">
+                    <label>Description <span class="asterisk">*</span></label>
+                    <textarea required></textarea>
+                    <span class="warning-icon" data-tooltip="This field is required!">⚠️</span>
+                </div>
                 
-                <label>Cover Image</label>
-                <input type="file">
+                <div class="input-container">
+                    <label>Cover Image<span class="asterisk">*</span></label>
+                    <input type="file" required>  
+                    <span class="warning-icon" data-tooltip="This field is required!">⚠️</span>
+                </div>
                 
                 <button type="button" class="prev-btn">Back</button>
                 <button type="button" class="next-btn">Next</button>
+                <!-- Required Fields Notice -->
+                <p class="required-info"><span class="asterisk">*</span>Required fields</p>
             </div>
 
             <!-- Step 4: Confirmation -->
@@ -72,12 +95,10 @@
                 <p>Review your details and submit your event.</p>
                 <button type="button" class="prev-btn">Back</button>
                 <button type="submit">Submit</button>
-                <!-- Required Fields Notice -->
-                <p class="required-info"><span class="asterisk">*</span> Required fields</p>
             </div>
         </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="./crtEvtScript.js"></script>
 </body>
 </html>

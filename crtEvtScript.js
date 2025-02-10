@@ -17,100 +17,34 @@ function updateFormSteps() {
     });
 
     progressBar.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
-
-    // Disable "Next" button until fields are valid
-    updateNextButtonState();
 }
 
-// Function to validate required fields with custom rules
-function validateFields(stepIndex) {
+// Function to check if all required fields in a step are filled
+function areFieldsFilled(stepIndex) {
     const inputs = formSteps[stepIndex].querySelectorAll("input[required], textarea[required]");
-    let isValid = true;
+    let allFilled = true;
 
     inputs.forEach(input => {
-        const errorMsg = input.nextElementSibling;
+        const warningIcon = input.parentElement.querySelector(".warning-icon");
 
-        // Remove existing messages
-        if (errorMsg && (errorMsg.classList.contains("error-msg") || errorMsg.classList.contains("success-msg"))) {
-            errorMsg.remove();
-        }
-
-        // General Required Field Check
         if (!input.value.trim()) {
-            showError(input, "This field is required");
-            isValid = false;
-            return;
-        }
-
-        // Custom Validations
-        if (input.type === "text" && input.name === "eventName") {
-            if (input.value.length < 3 || input.value.length > 50) {
-                showError(input, "Event Name must be between 3 and 50 characters");
-                isValid = false;
-            }
-        }
-
-        if (input.type === "email") {
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailPattern.test(input.value)) {
-                showError(input, "Enter a valid email address");
-                isValid = false;
-            }
-        }
-
-        if (input.type === "time") {
-            const now = new Date();
-            const currentTime = now.getHours() * 60 + now.getMinutes();
-            const selectedTime = parseInt(input.value.split(":")[0]) * 60 + parseInt(input.value.split(":")[1]);
-
-            if (selectedTime < currentTime) {
-                showError(input, "Event time cannot be in the past");
-                isValid = false;
-            }
-        }
-
-        // Show success message if valid
-        if (isValid) {
-            showSuccess(input, "Looks good!");
+            input.classList.add("red-border", "shake"); // Add fade-in & shake effect
+            setTimeout(() => input.classList.remove("shake"), 300); // Remove shake after animation
+            warningIcon.style.display = "inline"; // Show warning icon
+            allFilled = false;
+        } else {
+            input.classList.remove("red-border"); // Remove red border if fixed
+            warningIcon.style.display = "none"; // Hide warning icon
         }
     });
 
-    updateNextButtonState();
-    return isValid;
+    return allFilled; // Return true if all fields are filled, false otherwise
 }
 
-// Function to show error message and highlight field
-function showError(input, message) {
-    input.style.border = "2px solid red";
-    const errorText = document.createElement("span");
-    errorText.classList.add("error-msg");
-    errorText.style.color = "red";
-    errorText.style.fontSize = "14px";
-    errorText.textContent = message;
-    input.after(errorText);
-}
-
-// Function to show success message and highlight field
-function showSuccess(input, message) {
-    input.style.border = "2px solid green";
-    const successText = document.createElement("span");
-    successText.classList.add("success-msg");
-    successText.style.color = "green";
-    successText.style.fontSize = "14px";
-    successText.textContent = message;
-    input.after(successText);
-}
-
-// Function to update the Next button's disabled state
-function updateNextButtonState() {
-    const nextBtn = formSteps[currentStep].querySelector(".next-btn");
-    nextBtn.disabled = !validateFields(currentStep);
-}
-
-// Next button click
+// Next button click (only allows navigation when fields are filled)
 nextBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-        if (validateFields(currentStep)) {
+        if (areFieldsFilled(currentStep)) { // Allow navigation only if fields are filled
             if (currentStep < formSteps.length - 1) {
                 currentStep++;
                 updateFormSteps();
@@ -119,7 +53,7 @@ nextBtns.forEach((btn) => {
     });
 });
 
-// Previous button click
+// Previous button click (always allows going back)
 prevBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
         if (currentStep > 0) {
@@ -129,10 +63,18 @@ prevBtns.forEach((btn) => {
     });
 });
 
-// Real-time validation to enable Next button when valid
+// Real-time validation: Change border color dynamically
 document.querySelectorAll("input[required], textarea[required]").forEach(input => {
+    input.style.border = "2px solid black"; // Set initial border color to black
+
     input.addEventListener("input", () => {
-        validateFields(currentStep);
+        const warningIcon = input.parentElement.querySelector(".warning-icon");
+        if (input.value.trim()) {
+            input.style.border = "2px solid green"; // Green if filled
+            warningIcon.style.display = "none"; // Hide warning icon
+        } else {
+            input.style.border = "2px solid black"; // Reset to black if empty
+        }
     });
 });
 

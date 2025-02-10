@@ -18,7 +18,7 @@ body {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Progress Bar */
@@ -70,6 +70,11 @@ body {
     display: block;
 }
 
+.form-step.active h2{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 /* Required Fields Notice */
 .required-info {
     font-size: 14px;
@@ -77,10 +82,65 @@ body {
     margin-bottom: 10px;
 }
 
+/* Input container with warning icon */
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-container input,
+.input-container textarea {
+    width: 100%;
+    padding-right: 30px; /* Space for the warning icon */
+    position: relative;
+}
+
+.input-container label {
+    width: 30%;
+    font-weight: bold;
+    margin-right: 10px;
+    position: inherit;
+}
+
+/* Warning icon */
+.warning-icon {
+    position: absolute;
+    right: 7px;
+    color: red;
+    font-size: 18px;
+    display: none; /* Hidden by default */
+    cursor: pointer;
+}
+
+.warning-icon::after {
+    content: attr(data-tooltip); /* Tooltip text from data attribute */
+    position: absolute;
+    bottom: 100%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fc0606;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    pointer-events: none; /* Prevent tooltip from interfering with cursor */
+    font-size: smaller;
+}
+
+.warning-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Red Asterisk for Required Fields */
 .asterisk {
     color: red;
     font-weight: bold;
+    font-size: large;
 }
 
 input, textarea {
@@ -96,6 +156,7 @@ button {
     margin: 10px 5px;
     border: none;
     background: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -104,3 +165,25 @@ button {
 button:hover {
     background: #333;
 }
+
+/* Fade-in effect for red borders */
+@keyframes fadeRed {
+    from { border-color: black; }
+    to { border-color: red; }
+}
+
+.red-border {
+    animation: fadeRed 1.0s ease-in-out;
+}
+
+/* Shake animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25%, 75% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
