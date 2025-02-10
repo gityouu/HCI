@@ -91,12 +91,6 @@ body {
     gap: 10px; /* Add some space between the input fields */
 }
 
-.input-container input,
-.input-container textarea {
-    padding-right: 30px; /* Space for the warning icon */
-    position: relative;
-}
-
 .input-container input[type="date"],
 .input-container input[type="time"] {
     width: 24%; /* Slightly less than 50% to account for gap */
@@ -161,17 +155,12 @@ button:hover {
     background: #333;
 }
 
-/* Fade-in effect for red borders */
-@keyframes fadeRed {
-    from { border-color: black; }
-    to { border-color: red; }
-}
-
+/* Keep red border for empty fields */
 .red-border {
-    animation: fadeRed 1.0s ease-in-out;
+    border: 2px solid red;
 }
 
-/* Shake animation */
+/* Shake animation (still included) */
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25%, 75% { transform: translateX(-5px); }

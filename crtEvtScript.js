@@ -25,16 +25,11 @@ function areFieldsFilled(stepIndex) {
     let allFilled = true;
 
     inputs.forEach(input => {
-        const warningIcon = input.parentElement.querySelector(".warning-icon");
-
         if (!input.value.trim()) {
-            input.classList.add("red-border", "shake"); // Add fade-in & shake effect
+            input.style.border = "2px solid red"; // Turn red if empty
+            input.classList.add("shake"); // Add shake effect
             setTimeout(() => input.classList.remove("shake"), 300); // Remove shake after animation
-            warningIcon.style.display = "inline"; // Show warning icon
             allFilled = false;
-        } else {
-            input.classList.remove("red-border"); // Remove red border if fixed
-            warningIcon.style.display = "none"; // Hide warning icon
         }
     });
 
@@ -68,12 +63,10 @@ document.querySelectorAll("input[required], textarea[required]").forEach(input =
     input.style.border = "2px solid black"; // Set initial border color to black
 
     input.addEventListener("input", () => {
-        const warningIcon = input.parentElement.querySelector(".warning-icon");
         if (input.value.trim()) {
             input.style.border = "2px solid green"; // Green if filled
-            warningIcon.style.display = "none"; // Hide warning icon
         } else {
-            input.style.border = "2px solid black"; // Reset to black if empty
+            input.style.border = "2px solid red"; // Keep red if empty
         }
     });
 });
