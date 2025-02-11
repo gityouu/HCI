@@ -64,13 +64,13 @@
             <div class="form-step">
                 <h2>Step 2: Date & Location</h2>
                 <div class="input-container">
-                    <input type="date" name="eventDateFrom" placeholder="Event Date From" required>
-                    <input type="date" name="eventDateTo" placeholder="Event Date To" required>
+                    <input type="datetime-local" id="eventDate" name="eventDateFrom" placeholder="Event Date From" required>
+                    <!-- <input type="date" name="eventDateTo" placeholder="Event Date To" required> -->
                 </div>
                 
                 <div class="input-container">
-                    <input type="time" name="eventTimeFrom" placeholder="Event Time From" required>
-                    <input type="time" name="eventTimeTo" placeholder="Event Time To" required>
+                    <input type="datetime-local" id="eventEndDate" name="eventTimeTo" placeholder="Event Date To" required>
+                    <!-- <input type="time" name="eventTimeTo" placeholder="Event Time To" required> -->
                 </div>
                 
                 <div class="input-container">
@@ -115,6 +115,21 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <!-- Modal Popup -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Event Details</h2>
+            <p><strong>Event Name:</strong> <span id="modalEventName"></span></p>
+            <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+            <p><strong>Venue/Location:</strong> <span id="modalVenue"></span></p>
+            <p><strong>Event Date From:</strong> <span id="modalEventDateFrom"></span></p>
+            <p><strong>Event Date To:</strong> <span id="modalEventDateTo"></span></p>
+            <p><strong>Uploaded Image:</strong> <img id="modalImage" src="" alt="Event Image" style="max-width: 100%;"></p>
+            <button id="modalOkBtn">OK</button>
+        </div>
     </div>
 
     <script src="./crtEvtScript.js"></script>

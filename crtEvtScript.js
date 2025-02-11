@@ -7,7 +7,22 @@ const submitBtn = document.querySelector(".submit-btn");
 const paidEventCheckbox = document.getElementById('paidEvent');
 const priceContainer = document.getElementById('priceContainer');
 const priceInput = document.getElementById('eventPrice');
+const eventDate = document.getElementById('eventDate');
+const eventEndDate = document.getElementById('eventEndDate');
 const termsCheckbox = document.getElementById('termsCheckbox');
+const eventNameInput = document.querySelector('input[name="eventName"]');
+const descriptionInput = document.querySelector('textarea[placeholder="Description"]');
+const venueInput = document.querySelector('input[placeholder="Venue/Location"]');
+const imageInput = document.querySelector('input[type="file"]');
+const modal = document.getElementById('eventModal');
+const modalEventName = document.getElementById('modalEventName');
+const modalDescription = document.getElementById('modalDescription');
+const modalVenue = document.getElementById('modalVenue');
+const modalEventDateFrom = document.getElementById('modalEventDateFrom');
+const modalEventDateTo = document.getElementById('modalEventDateTo');
+const modalImage = document.getElementById('modalImage');
+const modalOkBtn = document.getElementById('modalOkBtn');
+const closeBtn = document.querySelector('.close-btn');
 
 let currentStep = 0;
 
@@ -26,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
             priceInput.removeAttribute('required'); // Remove required attribute
         }
     });
+
+    // Remove all past days from the date inputs
+    let today = new Date().toISOString().slice(0, 16);
+    eventDate.setAttribute("min", today);
+    eventEndDate.setAttribute("min", today); // Apply the same logic to the end date input
 });
 
 // Function to update form step visibility
@@ -84,14 +104,34 @@ prevBtns.forEach((btn) => {
 submitBtn.addEventListener("click", (event) => {
     if (!termsCheckbox.checked) {
         event.preventDefault(); // Prevent form submission
-        termsCheckbox.classList.add("shake"); // Add shake effect
-        setTimeout(() => termsCheckbox.classList.remove("shake"), 300); // Remove shake after animation
-    } else {
+        termsLabel.classList.add("shake"); // Add shake effect
+        setTimeout(() => termsLabel.classList.remove("shake"), 300); // Remove shake after animation
+    }
         if (areFieldsFilled(currentStep)) { // Allow submission only if fields are filled
-            alert("Form submitted successfully!");
+            // Display the modal with event details
+            modalEventName.textContent = eventNameInput.value;
+            modalDescription.textContent = descriptionInput.value;
+            modalVenue.textContent = venueInput.value;
+            modalEventDateFrom.textContent = eventDate.value;
+            modalEventDateTo.textContent = eventEndDate.value;
+
+            // Display the uploaded image
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    modalImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                modalImage.src = '';
+            }
+
+            modal.style.display = 'block';
+            event.preventDefault(); // Prevent form submission
         }
     }
-});
+);
 
 // Real-time validation: Change border color dynamically
 document.querySelectorAll("input[required], textarea[required]").forEach(input => {
@@ -115,6 +155,15 @@ priceInput.addEventListener("input", () => {
     } else {
         priceInput.style.border = "2px solid red"; // Keep red if empty
     }
+});
+
+// Close the modal when the close button or OK button is clicked
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+modalOkBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
 });
 
 // Initial form state
