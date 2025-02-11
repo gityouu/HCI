@@ -172,7 +172,7 @@ input, textarea {
     width: 18px;
     height: 18px;
     margin-right: 8px;
-    accent-color: #000; /* Black checkbox */
+    accent-color: green; /* green checkbox */
     cursor: pointer;
 }
 
@@ -187,6 +187,13 @@ input, textarea {
     padding: 10px;
     border: 2px solid black;
     border-radius: 5px;
+}
+
+.input-container .terms {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 /* animation for price input */

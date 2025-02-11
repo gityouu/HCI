@@ -6,7 +6,8 @@ const prevBtns = document.querySelectorAll(".prev-btn");
 const submitBtn = document.querySelector(".submit-btn");
 const paidEventCheckbox = document.getElementById('paidEvent');
 const priceContainer = document.getElementById('priceContainer');
-const priceInput = document.getElementById('eventPrice'); // Add this line to get the price input element
+const priceInput = document.getElementById('eventPrice');
+const termsCheckbox = document.getElementById('termsCheckbox');
 
 let currentStep = 0;
 
@@ -80,9 +81,15 @@ prevBtns.forEach((btn) => {
 });
 
 // Submit button click (only allows submission when all fields are filled)
-submitBtn.addEventListener("click", () => {
-    if (areFieldsFilled(currentStep)) { // Allow submission only if fields are filled
-        alert("Form submitted successfully!");
+submitBtn.addEventListener("click", (event) => {
+    if (!termsCheckbox.checked) {
+        event.preventDefault(); // Prevent form submission
+        termsCheckbox.classList.add("shake"); // Add shake effect
+        setTimeout(() => termsCheckbox.classList.remove("shake"), 300); // Remove shake after animation
+    } else {
+        if (areFieldsFilled(currentStep)) { // Allow submission only if fields are filled
+            alert("Form submitted successfully!");
+        }
     }
 });
 
