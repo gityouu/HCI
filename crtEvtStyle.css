@@ -23,6 +23,7 @@ body {
     position: absolute; /* Position at the top */
     top: 0;
     left: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transform: translateX(-50%); /* Center it */
     width: 50%; /* Match the width of the main section */
     border-radius: 10px;
