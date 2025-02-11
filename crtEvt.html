@@ -13,7 +13,7 @@
         <nav class="nav-bar">
             <div class="nav-links">
                 <a href="./index.html">Home <i class='bx bxs-home-circle'></i></a>
-                <a href="">Upcoming Events <i class='bx bxs-upvote'></i></a>
+                <a href="./regEvt.html">Upcoming Events <i class='bx bxs-upvote'></i></a>
                 <a href="">About Us <i class='bx bxs-user-account'></i></a>
             </div>
         </nav>
@@ -41,6 +41,18 @@
                 
                 <div class="input-container">
                     <input type="text" placeholder="Organizer Name" required>
+                </div>
+
+                <!-- Checkbox for Paid Event -->
+                <div class="input-container">
+                    <label>
+                        <input type="checkbox" id="paidEvent"> <span> Is this a paid event? </span>
+                    </label>
+                </div>
+
+                <!-- Price Input (Initially Hidden) -->
+                <div class="paid-container" id="priceContainer">
+                    <input type="number" id="eventPrice" placeholder="Enter price" min="0">
                 </div>
                 
                 <div class="button-container">

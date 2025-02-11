@@ -13,19 +13,19 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Navbar styling */
+/* Navbar */
 .header {
-    background-color: #000; /* Dark background */
+    background-color: #000; 
     padding: 15px 0;
     display: flex;
-    justify-content: center; /* Center horizontally */
+    justify-content: center;
     align-items: center;
     position: absolute; /* Position at the top */
     top: 0;
     left: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transform: translateX(-50%); /* Center it */
-    width: 50%; /* Match the width of the main section */
+    width: 50%; /* Match the width of the main conatainer */
     border-radius: 10px;
 }
 
@@ -123,6 +123,10 @@ body {
     display: none;
 }
 
+.form-step p{
+    text-align: center;
+}
+
 .form-step.active {
     display: block;
 }
@@ -130,13 +134,6 @@ body {
 .form-step.active h2{
     margin-bottom: 10px;
     text-align: center;
-}
-
-/* Required Fields Notice */
-.required-info {
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 10px;
 }
 
 /* Input container with warning icon */
@@ -160,6 +157,46 @@ input, textarea {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Checkbox container */
+.input-container label {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Checkbox styling */
+.input-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    accent-color: #000; /* Black checkbox */
+    cursor: pointer;
+}
+
+.paid-container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.paid-container input {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+/* animation for price input */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.show {
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 button {
