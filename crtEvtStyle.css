@@ -258,11 +258,13 @@ button:hover {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 1% auto; /* 5% from the top and centered */
+    background-color: #fff; /* White background */
+    margin: 1% auto; /* Centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
@@ -270,6 +272,7 @@ button:hover {
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Box shadow */
     text-align: center; /* Center text */
+    position: relative; /* For positioning the close button */
 }
 
 .modal-image {
@@ -281,7 +284,9 @@ button:hover {
 
 .close-btn {
     color: #aaa;
-    float: right;
+    position: absolute; /* Position relative to modal content */
+    top: 10px;
+    right: 10px;
     font-size: 28px;
     font-weight: bold;
 }
@@ -291,5 +296,27 @@ button:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0; /* Remove top margin */
+}
+
+.modal-content p {
+    margin: 10px 0; /* Add margin to paragraphs */
+}
+
+#modalOkBtn {
+    margin-top: 20px; /* Add margin to the OK button */
+    padding: 10px 20px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#modalOkBtn:hover {
+    background-color: #333;
 }
 
