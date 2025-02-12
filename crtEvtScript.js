@@ -1,3 +1,4 @@
+//variable declarations
 const steps = document.querySelectorAll(".step");
 const progressBar = document.querySelector(".progress-bar");
 const formSteps = document.querySelectorAll(".form-step");
