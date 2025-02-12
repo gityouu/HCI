@@ -14,7 +14,7 @@ const termsLabel = termsCheckbox.parentElement;
 const eventNameInput = document.querySelector('input[name="eventName"]');
 const descriptionInput = document.querySelector('textarea[placeholder="Description"]');
 const venueInput = document.querySelector('input[placeholder="Venue/Location"]');
-const imageInput = document.querySelector('input[type="file"]');
+const imageInput = document.getElementById('imageInput');
 const modal = document.getElementById('eventModal');
 const modalEventName = document.getElementById('modalEventName');
 const modalDescription = document.getElementById('modalDescription');
@@ -157,6 +157,19 @@ priceInput.addEventListener("input", () => {
         priceInput.style.border = "2px solid green"; // Green if filled
     } else {
         priceInput.style.border = "2px solid red"; // Keep red if empty
+    }
+});
+
+// Image input validation
+imageInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const fileType = file.type;
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!validImageTypes.includes(fileType)) {
+            alert('Please upload a valid image file (JPEG, PNG, GIF).');
+            this.value = ''; // Clear the input
+        }
     }
 });
 
