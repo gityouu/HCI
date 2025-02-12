@@ -10,6 +10,7 @@ const priceInput = document.getElementById('eventPrice');
 const eventDate = document.getElementById('eventDate');
 const eventEndDate = document.getElementById('eventEndDate');
 const termsCheckbox = document.getElementById('termsCheckbox');
+const termsLabel = termsCheckbox.parentElement;
 const eventNameInput = document.querySelector('input[name="eventName"]');
 const descriptionInput = document.querySelector('textarea[placeholder="Description"]');
 const venueInput = document.querySelector('input[placeholder="Venue/Location"]');
@@ -104,9 +105,11 @@ prevBtns.forEach((btn) => {
 submitBtn.addEventListener("click", (event) => {
     if (!termsCheckbox.checked) {
         event.preventDefault(); // Prevent form submission
-        termsLabel.classList.add("shake"); // Add shake effect
-        setTimeout(() => termsLabel.classList.remove("shake"), 300); // Remove shake after animation
-    }
+        termsCheckbox.classList.add("shake"); // Add shake effect
+        setTimeout(() => {
+            termsCheckbox.classList.remove("shake");
+        }, 300); // Remove shake after animation
+    } else {
         if (areFieldsFilled(currentStep)) { // Allow submission only if fields are filled
             // Display the modal with event details
             modalEventName.textContent = eventNameInput.value;
@@ -131,7 +134,7 @@ submitBtn.addEventListener("click", (event) => {
             event.preventDefault(); // Prevent form submission
         }
     }
-);
+});
 
 // Real-time validation: Change border color dynamically
 document.querySelectorAll("input[required], textarea[required]").forEach(input => {

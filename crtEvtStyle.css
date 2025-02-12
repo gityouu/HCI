@@ -262,10 +262,21 @@ button:hover {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 1% auto; /* 5% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Maximum width */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Box shadow */
+    text-align: center; /* Center text */
+}
+
+.modal-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+    margin-bottom: 20px; /* Space below the image */
 }
 
 .close-btn {
