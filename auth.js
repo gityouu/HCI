@@ -1,22 +1,44 @@
-function signUp() {
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyD7ki8anhI7dJaDYAH_qPqscI5zg56C4ZE",
+    authDomain: "hcii-eb2c9.firebaseapp.com",
+    projectId: "hcii-eb2c9",
+    storageBucket: "hcii-eb2c9.firebasestorage.app",
+    messagingSenderId: "292510882725",
+    appId: "1:292510882725:web:d9dd306aca2bed236a264c",
+    measurementId: "G-FP25ZSWPHW"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Signup Function (Exported)
+export function signUp() {
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            alert("Signup Successful! Redirecting...");
-            window.location.href = "./login.html"; // Redirect to login page
+            alert("Signup Successful!");
+            window.location.href = "login.html";
         })
         .catch((error) => {
             alert(error.message);
         });
 }
 
-function login() {
+
+export function login() {
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             alert("Login Successful! Redirecting...");
             window.location.href = "./index.html"; // Redirect to homepage
@@ -26,19 +48,24 @@ function login() {
         });
 }
 
-function logout() {
-    firebase.auth().signOut().then(() => {
-        alert("Logged out successfully!");
-        window.location.href = "./login.html";
-    }).catch((error) => {
-        alert(error.message);
-    });
+export function logout() {
+    const auth = getAuth();
+
+    signOut(auth)
+        .then(() => {
+            alert("Logged out successfully!");
+            window.location.href = "./login.html";
+        }).catch((error) => {
+            alert(error.message);
+        });
 }
 
-function resetPassword() {
+export function resetPassword() {
     const email = document.getElementById("resetEmail").value;
 
-    firebase.auth().sendPasswordResetEmail(email)
+    const auth = getAuth();
+
+    sendPasswordResetEmail(auth, email)
         .then(() => {
             alert("Password reset email sent! Check your inbox.");
         })
