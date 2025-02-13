@@ -185,3 +185,10 @@ modalOkBtn.addEventListener('click', () => {
 
 // Initial form state
 updateFormSteps();
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+        alert("You need to log in first!");
+        window.location.href = "./login.html";
+    }
+});
