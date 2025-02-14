@@ -297,6 +297,28 @@ body.dark-mode .password-container i:hover {
     color: aliceblue;
 }
 
+/* Input Wrapper */
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Ensure wrapper takes full width if desired */
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding-right: 30px; /* Add space so text doesn't overlap the asterisk */
+}
+
+.asterisk-inside {
+    position: absolute;
+    right: 10px;       /* Position 10px from the right edge */
+    top: 50%;          /* Vertically center */
+    transform: translateY(-50%);
+    color: red;
+    pointer-events: none; /* Allow clicks to pass through to the input */
+    font-size: 1.2rem;  /* Adjust font-size as needed */
+}
+
 /* Required field styles */
 .required-info {
     font-size: 0.9rem;
@@ -311,4 +333,18 @@ body.dark-mode .password-container i:hover {
 /* Dark Mode Overrides for Required Info */
 body.dark-mode .required-info {
     color: aliceblue;
+}
+
+body.dark-mode .input-wrapper input {
+    background-color: #222;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark-mode .required-asterisk {
+    color: #ff6666;
+}
+
+body.dark-mode .asterisk-inside {
+    color: #ff6666; /* a lighter red or any color that works in dark mode */
 }

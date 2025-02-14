@@ -66,9 +66,13 @@
       <span id="closeLogin" class="close">&times;</span>
       <h2>Login</h2>
       <p class="required-info">Fields marked with <span class="required-asterisk">*</span> are required.</p>
-      <input type="email" id="loginEmail" placeholder="Email *" required>
-      <div class="password-container">
-        <input type="password" id="loginPassword" placeholder="Password *" required>
+      <div class="input-wrapper">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <span class="asterisk-inside">*</span>
+      </div>
+      <div class="password-container input-wrapper">
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <span class="asterisk-inside">*</span>
         <i class='bx bx-hide' id="toggleLoginPassword"></i>
       </div>
       <button id="login">Login</button>
@@ -82,9 +86,13 @@
       <span id="closeSignup" class="close">&times;</span>
       <h2>Sign Up</h2>
       <p class="required-info">Fields marked with <span class="required-asterisk">*</span> are required.</p>
-      <input type="email" id="signupEmail" placeholder="Email *" required>
-      <div class="password-container">
-        <input type="password" id="signupPassword" placeholder="Password *" required>
+      <div class="input-wrapper">
+        <input type="email" id="signupEmail" placeholder="Email" required>
+        <span class="asterisk-inside">*</span>
+      </div>
+      <div class="password-container input-wrapper">
+        <input type="password" id="signupPassword" placeholder="Password" required>
+        <span class="asterisk-inside">*</span>
         <i class='bx bx-hide' id="toggleSignupPassword"></i>
       </div>
       <button id="signup">Sign Up</button>
@@ -97,7 +105,10 @@
       <span id="closeReset" class="close">&times;</span>
       <h2>Reset Password</h2>
       <p class="required-info">Fields marked with <span class="required-asterisk">*</span> are required.</p>
-      <input type="email" id="resetEmail" placeholder="Email *" required>
+      <div class="input-wrapper">
+        <input type="email" id="resetEmail" placeholder="Email" required>
+        <span class="asterisk-inside">*</span>
+      </div>
       <button id="resetButton">Reset Password</button>
       <p>Remembered your password? <a href="#" id="openLoginFromReset">Login</a></p>
     </div>
