@@ -1,4 +1,3 @@
-/* Reset and global styles */
 * {
     margin: 0;
     padding: 0;
@@ -7,123 +6,169 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
 }
 
-/* Navbar styling */
+/* Dark Mode */
+    body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* HEADER */
 .header {
-    background-color: #000; /* Dark background */
-    padding: 15px 0;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;
-    position: absolute; /* Position at the top */
+    position: fixed;         /* Make it fixed at the top */
     top: 0;
     left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: aliceblue;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transform: translateX(-50%); /* Center it */
-    width: 66%; /* Match the width of the main section */
-    border-radius: 10px;
+    z-index: 1000;           /* Ensure it stays on top */
 }
 
-/* Navbar links */
+/* Navbar Layout */
 .nav-bar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* links on left, actions on right */
     align-items: center;
-    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
 }
 
 .nav-links a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-size: 18px;
-    margin: 0 15px;
-    padding: 10px 15px;
-    border-radius: 5px;
+    margin-right: 15px;
     transition: background 0.3s, color 0.3s;
+    padding: 8px 12px;
+    border-radius: 5px;
 }
 
 .nav-links a:hover {
-    background: white;
+    background-color: #444;
+    color: #ccc;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-actions button {
+    background-color: aliceblue;
     color: #000;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        width: 100%;
-        border-radius: 0;
-        padding: 10px;
-    }
-
-    .nav-bar {
-        flex-direction: column;
-    }
-
-    .nav-links a {
-        display: block;
-        margin: 10px 0;
-    }
-}
-
-/* Main section */
-.main {
-    display: flex;
-    align-items: flex-start; /* Align items to the top */
-    justify-content: space-between; /* Distribute elements */
-    width: 80%;
-    max-width: 900px;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    position: relative;
-}
-
-/* Logo styling */
-.logo img {
-    max-width: 300px; /* Reduce image size */
-    height: auto;
-    border-radius: 10px;
-}
-
-/* Move text to the upper-right */
-.text {
-    font-size: x-large;
-    position: absolute;
-    top: 20px; /* Adjust this value to move it higher */
-    right: 130px; /* Align to the right */
-    text-align: center;
-}
-
-/* Button container */
-.btns {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 180px; /* Push buttons down */
-    width: 100%;
-}
-
-/* Button styling */
-button {
-    padding: 12px 20px;
-    font-size: 16px;
-    background-color: #000;
-    color: white;
-    border: none;
+    border: 1px solid #444;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s;
 }
 
-button:hover {
+.nav-actions button:hover {
+    background-color: #444;
+    color: #ccc;
+}
+
+/* Dark Mode Overrides for Header & Nav */
+body.dark-mode .header {
+    background-color: #222;
+}
+body.dark-mode .nav-links a {
+    color: #ccc;
+}
+body.dark-mode .nav-links a:hover {
     background-color: #333;
+    color: #fff;
+}
+body.dark-mode .nav-actions button {
+    background-color: #333;
+    color: aliceblue;
+}
+
+/* PARALLAX HERO SECTION */
+.parallax-section {
+    position: relative;
+    height: 100vh; /* Full screen height */
+    background-image: url("./images/charlesdeluvio-ew3sC-F6d_c-unsplash (1).jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Overlay for text contrast */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Parallax Content (Hero Text & Buttons) */
+.parallax-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2); /* Optional tinted background */
+    max-width: 600px;
+}
+
+.parallax-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.parallax-content p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.hero-btn {
+    background-color: aliceblue;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+/* Dark Mode for Parallax Section */
+body.dark-mode .parallax-section {
+/* For mobile fallback if fixed background isn't supported */
+    background-color: #1e1e1e;
+}
+body.dark-mode .overlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+body.dark-mode .parallax-content {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .hero-btn {
+    background-color: #333;
+    color: aliceblue;
+}
+body.dark-mode .hero-btn:hover {
+    background-color: #444;
 }

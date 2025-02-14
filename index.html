@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script type="module">
-        import { logout } from './auth.js';
-        document.getElementById("logout").addEventListener("click", logout);
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Just Events</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="./dark-mode.js"></script>
+  <script type="module">
+    import { logout } from './auth.js';
+    document.addEventListener("DOMContentLoaded", () => {
+      const logoutButton = document.getElementById("logout");
+      if (logoutButton) {
+        logoutButton.addEventListener("click", logout);
+      }
+    });
+  </script>
 </head>
 <body>
-    <section class="header">
-        <nav class="nav-bar">
-            <div class="nav-links">
-                <a href="./index.html">Home <i class='bx bxs-home-circle'></i></a>
-                <a href="./regEvt.html">Upcoming Events <i class='bx bxs-upvote'></i></a>
-                <a href="">About Us <i class='bx bxs-user-account'></i></a>
-                <button id="logout">Logout</button>
-            </div>
-        </nav>
-    </section>
-    <section class="main">
-        <div class="logo">
-            <img src="./images/charlesdeluvio-ew3sC-F6d_c-unsplash (1).jpg" alt="logo">
-        </div>
-        <div class="text">
-            <h1>Just Events</h1>
-            <p>Plan your professional events with us.</p>
-        </div>
-        <div class="btns">
-            <h3>Choose an Action</h3>
-            <a href="/regEvt.html"><button>Register for an Event</button></a>
-            <a href="/crtEvt.html"><button>Create an Event</button></a>
-        </div>
-    </section>
+  <header class="header">
+    <nav class="nav-bar">
+      <div class="nav-links">
+        <a href="./login.html">Home <i class='bx bxs-home-circle'></i></a>
+        <a href="./login.html">Upcoming Events <i class='bx bxs-upvote'></i></a>
+        <a href="#">About Us <i class='bx bxs-user-account'></i></a>
+      </div>
+      <div class="nav-actions">
+        <!-- <button id="logout">Logout</button> -->
+        <button id="darkModeToggle">
+          <i class='bx bx-moon'></i> Dark Mode
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main class="parallax-section">
+    <div class="overlay"></div>
+    <div class="parallax-content">
+      <h1>Just Events</h1>
+      <p>Plan your professional events with us.</p>
+      <div class="hero-buttons">
+        <a href="./regEvt.html" class="hero-btn">Register for an Event</a>
+        <a href="./crtEvt.html" class="hero-btn">Create an Event</a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
