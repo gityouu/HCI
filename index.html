@@ -7,26 +7,32 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
+  <!-- scripts -->
   <script type="module" src="./dark-mode.js"></script>
+  <script type="module" src="./triggers.js"></script>
   <script type="module">
-    import { logout } from './auth.js';
+    import { login } from './auth.js';
     document.addEventListener("DOMContentLoaded", () => {
-      const logoutButton = document.getElementById("logout");
-      if (logoutButton) {
-        logoutButton.addEventListener("click", logout);
-      }
+        const loginButton = document.getElementById("loginButton");
+        if (loginButton) {
+            loginButton.addEventListener("click", login);
+        }  
     });
   </script>
+  <script type="module" src="./auth.js"></script>
+  
 </head>
 <body>
   <header class="header">
     <nav class="nav-bar">
       <div class="nav-links">
-        <a href="./login.html">Home <i class='bx bxs-home-circle'></i></a>
-        <a href="./login.html">Upcoming Events <i class='bx bxs-upvote'></i></a>
-        <a href="#">About Us <i class='bx bxs-user-account'></i></a>
+        <!-- All links now have "login-trigger" to show the modal -->
+        <a href="#" class="login-trigger">Home <i class='bx bxs-home-circle'></i></a>
+        <a href="#" class="login-trigger">Upcoming Events <i class='bx bxs-upvote'></i></a>
+        <a href="#" class="">About Us <i class='bx bxs-user-account'></i></a>
       </div>
       <div class="nav-actions">
+        <!-- Optional: If you need a logout button for logged-in users, uncomment -->
         <!-- <button id="logout">Logout</button> -->
         <button id="darkModeToggle">
           <i class='bx bx-moon'></i> Dark Mode
@@ -34,16 +40,33 @@
       </div>
     </nav>
   </header>
+  <!-- PARALLAX HERO SECTION -->
   <main class="parallax-section">
     <div class="overlay"></div>
     <div class="parallax-content">
       <h1>Just Events</h1>
       <p>Plan your professional events with us.</p>
       <div class="hero-buttons">
-        <a href="./regEvt.html" class="hero-btn">Register for an Event</a>
-        <a href="./crtEvt.html" class="hero-btn">Create an Event</a>
+        <!-- Hero buttons trigger login modal -->
+        <a href="#" class="hero-btn login-trigger">Register for an Event</a>
+        <a href="#" class="hero-btn login-trigger">Create an Event</a>
       </div>
     </div>
   </main>
+  <!-- MODAL LOGIN FORM -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Login</h2>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <div class="password-container">
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <i class='bx bx-hide' id="togglePassword"></i>
+      </div>
+      <button id="loginButton" class="loginButton">Login</button>
+      <p><a href="./reset.html">Forgot Password?</a></p>
+      <p>Don't have an account? <a href="./signup.html">Sign up</a></p>
+    </div>
+  </div>
 </body>
 </html>

@@ -40,7 +40,7 @@ export function login() {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             alert("Login Successful! Redirecting...");
-            window.location.href = "./index.html"; // Redirect to homepage
+            window.location.href = "./crtEvt.html"; // Redirect to homepage
         })
         .catch((error) => {
             alert(error.message);
