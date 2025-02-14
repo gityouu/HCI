@@ -12,9 +12,9 @@ body {
 }
 
 /* Dark Mode */
-    body.dark-mode {
+body.dark-mode {
     background-color: #121212;
-    color: #e0e0e0;
+    color: aliceblue;
 }
 
 /* HEADER */
@@ -209,7 +209,7 @@ body.dark-mode .hero-btn:hover {
 
 .modal .modal-content a {
     text-decoration: underline;
-    color: aliceblue;
+    color: black;
 }
 
 .modal-content button {
@@ -244,6 +244,11 @@ body.dark-mode .modal-content input {
     background-color: #222;
     color: aliceblue;
     border: 1px solid #555;
+}
+
+body.dark-mode .modal .modal-content a {
+    text-decoration: underline;
+    color: aliceblue;
 }
 
 body.dark-mode .modal-content button {
@@ -289,5 +294,21 @@ body.dark-mode .password-container i {
 }
 
 body.dark-mode .password-container i:hover {
+    color: aliceblue;
+}
+
+/* Required field styles */
+.required-info {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.required-asterisk {
+    color: red;
+}
+
+/* Dark Mode Overrides for Required Info */
+body.dark-mode .required-info {
     color: aliceblue;
 }

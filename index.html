@@ -4,35 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Just Events</title>
-  <!-- Boxicons & Fonts -->
+  <!-- Boxicons & Fonts & styles & logic-->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
-  <!-- Your CSS -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Dark Mode Script -->
+  <script type="module" src="./auth.js"></script>
   <script type="module" src="./dark-mode.js"></script>
   <script type="module" src="./triggers.js"></script>
-  <!-- Auth Script for Logout (if needed) -->
+  <!-- Auth Script -->
   <script type="module">
-    import { login } from './auth.js';
+    import { login, signUp, resetPassword } from './auth.js';
+
     document.addEventListener("DOMContentLoaded", () => {
         const logoutButton = document.getElementById("login");
+        const signupButton =  document.getElementById("signup");
+        const resetButton = document.getElementById("resetPassword");
         if (logoutButton) {
             logoutButton.addEventListener("click", login);
         }
-    });
-
-    import { signUp } from './auth.js';
-    document.addEventListener("DOMContentLoaded", () => {
-        const signupButton =  document.getElementById("signup");
         if (signupButton) {
             signupButton.addEventListener("click", signUp);
         }
-    });
+        if (resetButton) {
+            resetButton.addEventListener("click", resetPassword);
+        }
+    });  
   </script>
 </head>
 <body>
-  <!-- HEADER -->
   <header class="header">
     <nav class="nav-bar">
       <div class="nav-links">
@@ -66,10 +65,14 @@
     <div class="modal-content">
       <span id="closeLogin" class="close">&times;</span>
       <h2>Login</h2>
-      <input type="email" id="loginEmail" placeholder="Email" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
+      <p class="required-info">Fields marked with <span class="required-asterisk">*</span> are required.</p>
+      <input type="email" id="loginEmail" placeholder="Email *" required>
+      <div class="password-container">
+        <input type="password" id="loginPassword" placeholder="Password *" required>
+        <i class='bx bx-hide' id="toggleLoginPassword"></i>
+      </div>
       <button id="login">Login</button>
-      <p><a href="./reset.html">Forgot Password?</a></p>
+      <p><a href="#" id="openReset">Forgot Password?</a></p>
       <p>Don't have an account? <a href="#" id="openSignup">Sign up</a></p>
     </div>
   </div>
@@ -78,14 +81,26 @@
     <div class="modal-content">
       <span id="closeSignup" class="close">&times;</span>
       <h2>Sign Up</h2>
-      <input type="email" id="signupEmail" placeholder="Email" required>
-      <input type="password" id="signupPassword" placeholder="Password" required>
+      <p class="required-info">Fields marked with <span class="required-asterisk">*</span> are required.</p>
+      <input type="email" id="signupEmail" placeholder="Email *" required>
+      <div class="password-container">
+        <input type="password" id="signupPassword" placeholder="Password *" required>
+        <i class='bx bx-hide' id="toggleSignupPassword"></i>
+      </div>
       <button id="signup">Sign Up</button>
       <p>Already have an account? <a href="#" id="openLogin">Login</a></p>
     </div>
   </div>
-
-  <!-- Include auth.js for login/signup functionality -->
-  <script type="module" src="./auth.js"></script>
+  <!-- RESET PASSWORD MODAL -->
+  <div id="resetModal" class="modal">
+    <div class="modal-content">
+      <span id="closeReset" class="close">&times;</span>
+      <h2>Reset Password</h2>
+      <p class="required-info">Fields marked with <span class="required-asterisk">*</span> are required.</p>
+      <input type="email" id="resetEmail" placeholder="Email *" required>
+      <button id="resetButton">Reset Password</button>
+      <p>Remembered your password? <a href="#" id="openLoginFromReset">Login</a></p>
+    </div>
+  </div>
 </body>
 </html>

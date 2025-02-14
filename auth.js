@@ -16,15 +16,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Signup Function (Exported)
+// exports into index.html
 export function signUp() {
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            alert("Signup Successful!");
-            window.location.href = "login.html";
+            alert("Signup Successful! Please log in.");
+            // Hide signup modal and show login modal
+            document.getElementById('signupModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'block';
         })
         .catch((error) => {
             alert(error.message);
@@ -34,8 +36,6 @@ export function signUp() {
 export function login() {
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
-
-    const auth = getAuth();
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -48,8 +48,6 @@ export function login() {
 }
 
 export function logout() {
-    const auth = getAuth();
-
     signOut(auth)
         .then(() => {
             alert("Logged out successfully!");
@@ -61,8 +59,6 @@ export function logout() {
 
 export function resetPassword() {
     const email = document.getElementById("resetEmail").value;
-
-    const auth = getAuth();
 
     sendPasswordResetEmail(auth, email)
         .then(() => {
