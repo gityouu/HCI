@@ -4,35 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Just Events</title>
+  <!-- Boxicons & Fonts -->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
+  <!-- Your CSS -->
   <link rel="stylesheet" href="style.css" />
-  <!-- scripts -->
+  <!-- Dark Mode Script -->
   <script type="module" src="./dark-mode.js"></script>
   <script type="module" src="./triggers.js"></script>
+  <!-- Auth Script for Logout (if needed) -->
   <script type="module">
     import { login } from './auth.js';
     document.addEventListener("DOMContentLoaded", () => {
-        const loginButton = document.getElementById("loginButton");
-        if (loginButton) {
-            loginButton.addEventListener("click", login);
-        }  
+        const logoutButton = document.getElementById("login");
+        if (logoutButton) {
+            logoutButton.addEventListener("click", login);
+        }
+    });
+
+    import { signUp } from './auth.js';
+    document.addEventListener("DOMContentLoaded", () => {
+        const signupButton =  document.getElementById("signup");
+        if (signupButton) {
+            signupButton.addEventListener("click", signUp);
+        }
     });
   </script>
-  <script type="module" src="./auth.js"></script>
-  
 </head>
 <body>
+  <!-- HEADER -->
   <header class="header">
     <nav class="nav-bar">
       <div class="nav-links">
-        <!-- All links now have "login-trigger" to show the modal -->
         <a href="#" class="login-trigger">Home <i class='bx bxs-home-circle'></i></a>
         <a href="#" class="login-trigger">Upcoming Events <i class='bx bxs-upvote'></i></a>
         <a href="#" class="">About Us <i class='bx bxs-user-account'></i></a>
       </div>
       <div class="nav-actions">
-        <!-- Optional: If you need a logout button for logged-in users, uncomment -->
+        <!-- Uncomment Logout if needed -->
         <!-- <button id="logout">Logout</button> -->
         <button id="darkModeToggle">
           <i class='bx bx-moon'></i> Dark Mode
@@ -47,26 +56,36 @@
       <h1>Just Events</h1>
       <p>Plan your professional events with us.</p>
       <div class="hero-buttons">
-        <!-- Hero buttons trigger login modal -->
         <a href="#" class="hero-btn login-trigger">Register for an Event</a>
         <a href="#" class="hero-btn login-trigger">Create an Event</a>
       </div>
     </div>
   </main>
-  <!-- MODAL LOGIN FORM -->
+  <!-- LOGIN MODAL -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
-      <span id="closeModal" class="close">&times;</span>
+      <span id="closeLogin" class="close">&times;</span>
       <h2>Login</h2>
       <input type="email" id="loginEmail" placeholder="Email" required>
-      <div class="password-container">
-        <input type="password" id="loginPassword" placeholder="Password" required>
-        <i class='bx bx-hide' id="togglePassword"></i>
-      </div>
-      <button id="loginButton" class="loginButton">Login</button>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button id="login">Login</button>
       <p><a href="./reset.html">Forgot Password?</a></p>
-      <p>Don't have an account? <a href="./signup.html">Sign up</a></p>
+      <p>Don't have an account? <a href="#" id="openSignup">Sign up</a></p>
     </div>
   </div>
+  <!-- SIGNUP MODAL -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span id="closeSignup" class="close">&times;</span>
+      <h2>Sign Up</h2>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <button id="signup">Sign Up</button>
+      <p>Already have an account? <a href="#" id="openLogin">Login</a></p>
+    </div>
+  </div>
+
+  <!-- Include auth.js for login/signup functionality -->
+  <script type="module" src="./auth.js"></script>
 </body>
 </html>
