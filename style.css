@@ -272,13 +272,13 @@ body.dark-mode .close {
 
 .password-container input {
     width: 100%;
-    padding-right: 40px; /* Add space for the eye icon */
+    padding-right: 50px; /* Increase padding to accommodate both the eye icon and asterisk */
 }
 
 .password-container i {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 30px; /* Adjust position to avoid overlapping with the asterisk */
     transform: translateY(-50%);
     cursor: pointer;
     color: #ccc;
@@ -306,7 +306,7 @@ body.dark-mode .password-container i:hover {
 
 .input-wrapper input {
     width: 100%;
-    padding-right: 30px; /* Add space so text doesn't overlap the asterisk */
+    padding-right: 50px; /* Increase padding to accommodate both the eye icon and asterisk */
 }
 
 .asterisk-inside {
