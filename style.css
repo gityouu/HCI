@@ -307,6 +307,16 @@ body.dark-mode .password-container i:hover {
 .input-wrapper input {
     width: 100%;
     padding-right: 50px; /* Increase padding to accommodate both the eye icon and asterisk */
+    border: 1px solid #ccc; /* Initial border color */
+    transition: border-color 0.3s;
+}
+
+.input-wrapper input.error {
+    border-color: red;
+}
+
+.input-wrapper input.success {
+    border-color: green;
 }
 
 .asterisk-inside {
@@ -341,10 +351,31 @@ body.dark-mode .input-wrapper input {
     border: 1px solid #555;
 }
 
+body.dark-mode .input-wrapper input.error {
+    border-color: #ff6666;
+}
+
+body.dark-mode .input-wrapper input.success {
+    border-color: #66ff66;
+}
+
 body.dark-mode .required-asterisk {
     color: #ff6666;
 }
 
 body.dark-mode .asterisk-inside {
     color: #ff6666; /* a lighter red or any color that works in dark mode */
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.5s;
 }

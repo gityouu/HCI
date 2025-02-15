@@ -91,3 +91,51 @@ window.addEventListener('click', (e) => {
     resetModal.style.display = 'none';
   }
 });
+
+// Validation and shake animation
+const validateInput = (input) => {
+  if (input.value.trim() === "") {
+    input.classList.add("error", "shake");
+    setTimeout(() => {
+      input.classList.remove("shake");
+    }, 500);
+    return false;
+  } else {
+    input.classList.remove("error");
+    input.classList.add("success");
+    return true;
+  }
+};
+
+const clearValidation = (input) => {
+  input.classList.remove("error", "success");
+};
+
+// Attach validation to login, signup, and reset buttons
+document.getElementById("login").addEventListener("click", () => {
+  const email = document.getElementById("loginEmail");
+  const password = document.getElementById("loginPassword");
+  validateInput(email);
+  validateInput(password);
+});
+
+document.getElementById("signup").addEventListener("click", () => {
+  const email = document.getElementById("signupEmail");
+  const password = document.getElementById("signupPassword");
+  validateInput(email);
+  validateInput(password);
+});
+
+document.getElementById("resetButton").addEventListener("click", () => {
+  const email = document.getElementById("resetEmail");
+  validateInput(email);
+});
+
+// Clear validation when input is empty
+document.querySelectorAll("input").forEach(input => {
+  input.addEventListener("input", () => {
+    if (input.value.trim() === "") {
+      clearValidation(input);
+    }
+  });
+});
