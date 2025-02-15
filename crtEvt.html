@@ -72,9 +72,11 @@
           <h2>Step 1: Basic Information</h2>
           <div class="input-container">
             <input type="text" name="eventName" placeholder="Event Name" required>
+            <span class="asterisk-inside">*</span>
           </div>
           <div class="input-container">
             <input type="text" placeholder="Organizer Name" required>
+            <span class="asterisk-inside">*</span>
           </div>
           <!-- Checkbox for Paid Event -->
           <div class="input-container">
@@ -85,6 +87,7 @@
           <!-- Price Input (Initially Hidden) -->
           <div class="paid-container" id="priceContainer">
             <input type="number" id="eventPrice" placeholder="Enter price" min="0">
+            <span class="asterisk-inside">*</span>
           </div>
           <div class="button-container">
             <button type="button" class="next-btn">Next</button>
@@ -96,12 +99,15 @@
           <h2>Step 2: Date & Location</h2>
           <div class="input-container">
             <input type="datetime-local" id="eventDate" name="eventDateFrom" required>
+            <span class="asterisk-inside">*</span>
           </div>
           <div class="input-container">
             <input type="datetime-local" id="eventEndDate" name="eventTimeTo" required>
+            <span class="asterisk-inside">*</span>
           </div>
           <div class="input-container">
             <input type="text" placeholder="Venue/Location" required>
+            <span class="asterisk-inside">*</span>
           </div>
           <div class="button-container">
             <button type="button" class="prev-btn">Back</button>
@@ -114,10 +120,12 @@
           <h2>Step 3: Additional Details</h2>
           <div class="input-container">
             <textarea placeholder="Description" required></textarea>
+            <span class="asterisk-inside">*</span>
           </div>
           <!-- Image Input -->
           <div class="input-container">
             <input type="file" id="imageInput" accept="image/*" required>
+            <span class="asterisk-inside">*</span>
           </div>
           <div class="button-container">
             <button type="button" class="prev-btn">Back</button>

@@ -198,6 +198,7 @@ body.dark-mode .step.active{
 }
 
 .input-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -390,7 +391,30 @@ body.dark-mode .modal-content {
     border: 1px solid #444;
 }
 
-.required-asterisk {
+/* Wrapper for inputs where an asterisk is needed */
+.input-wrapper {
+    position: relative;
+    width: 50%;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Ensure input takes full width */
+  .input-wrapper input {
+    width: 100%;
+    padding-right: 35px; /* Make space for the asterisk */
+  }
+  
+  /* Position the asterisk inside the input */
+  .asterisk-inside {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     color: red;
-    margin-left: 5px;
-}
+    pointer-events: none;
+    font-size: 1.2rem;
+  }
+  
