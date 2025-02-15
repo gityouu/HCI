@@ -204,10 +204,22 @@ body.dark-mode .step.active{
     gap: 10px;
 }
 
+/* Checkbox container */
 .input-container label {
+    /* font-size: 18px; */
     display: flex;
     align-items: center;
-    width: 50%;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+/* Checkbox styling */
+.input-container input[type="checkbox"] {
+    width: 15px;
+    height: 15px;   
+    margin-right: 8px;
+    accent-color: #333; /* Black checkbox */
+    cursor: pointer;
 }
 
 input, textarea {
@@ -376,4 +388,9 @@ body.dark-mode .modal-content {
     background-color: #333;
     color: #e0e0e0;
     border: 1px solid #444;
+}
+
+.required-asterisk {
+    color: red;
+    margin-left: 5px;
 }
