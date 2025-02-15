@@ -51,7 +51,7 @@ body.dark-mode {
 
 .nav-links a:hover {
     background-color: #444;
-    color: #ccc;
+    color: aliceblue;
 }
 
 .nav-actions {
@@ -67,6 +67,7 @@ body.dark-mode {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .nav-actions button:hover {
@@ -187,7 +188,7 @@ body.dark-mode .hero-btn:hover {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: aliceblue;
     margin: 10% auto; /* Centered vertically and horizontally */
     padding: 20px;
     border-radius: 10px;
@@ -201,9 +202,10 @@ body.dark-mode .hero-btn:hover {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    background-color: #fff;
+    background-color: aliceblue;
     color: #333;
     border: 1px solid #ccc;
+    outline: none;
     border-radius: 5px;
 }
 
@@ -243,6 +245,7 @@ body.dark-mode .modal-content {
 body.dark-mode .modal-content input {
     background-color: #222;
     color: aliceblue;
+    outline: none;
     border: 1px solid #555;
 }
 
@@ -254,6 +257,7 @@ body.dark-mode .modal .modal-content a {
 body.dark-mode .modal-content button {
     background-color: #555;
     color: aliceblue;
+    border: 1px solid #555;
 }
 
 body.dark-mode .modal-content button:hover {

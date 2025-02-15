@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (paidEventCheckbox.checked) {
             priceContainer.style.display = 'block';
             priceContainer.style.display = 'flex';
+            priceInput.style.border = "1px solid #555"
             priceInput.setAttribute('required', 'required'); // Make price input required
         } else {
             priceContainer.style.display = 'none';
@@ -70,7 +71,7 @@ function areFieldsFilled(stepIndex) {
 
     inputs.forEach(input => {
         if (!input.value.trim()) {
-            input.style.border = "2px solid red"; // Turn red if empty
+            input.style.border = "1px solid #ff6666"; // Turn red if empty
             input.classList.add("shake"); // Add shake effect
             setTimeout(() => input.classList.remove("shake"), 300); // Remove shake after animation
             allFilled = false;
@@ -139,13 +140,13 @@ submitBtn.addEventListener("click", (event) => {
 
 // Real-time validation: Change border color dynamically
 document.querySelectorAll("input[required], textarea[required]").forEach(input => {
-    input.style.border = "2px solid black"; // Set initial border color to black
+    input.style.border = "1px solid #555"; // Set initial border color to black
 
     input.addEventListener("input", () => {
         if (input.value.trim()) {
-            input.style.border = "2px solid green"; // Green if filled
+            input.style.border = "1px solid green"; // Green if filled
         } else {
-            input.style.border = "2px solid red"; // Keep red if empty
+            input.style.border = "1px solid #ff6666"; // Keep red if empty
         }
     });
 });
@@ -155,9 +156,9 @@ priceInput.style.border = "2px solid black"; // Set initial border color to blac
 
 priceInput.addEventListener("input", () => {
     if (priceInput.value.trim()) {
-        priceInput.style.border = "2px solid green"; // Green if filled
+        priceInput.style.border = "1px solid green"; // Green if filled
     } else {
-        priceInput.style.border = "2px solid red"; // Keep red if empty
+        priceInput.style.border = "1px solid #ff6666"; // Keep red if empty
     }
 });
 
@@ -186,9 +187,4 @@ modalOkBtn.addEventListener('click', () => {
 // Initial form state
 updateFormSteps();
 
-firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-        alert("You need to log in first!");
-        window.location.href = "./login.html";
-    }
-});
+

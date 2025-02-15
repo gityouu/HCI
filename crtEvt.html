@@ -1,138 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Event</title>
-    <link rel="stylesheet" href="./crtEvtStyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Event</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Main CSS (merged with dark mode) -->
+  <link rel="stylesheet" href="./crtEvtStyle.css">
+  <!-- Dark Mode Toggle Script (same approach as index.html) -->
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      // Load saved preference
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+        darkModeToggle.innerHTML = "<i class='bx bx-sun'></i> Light Mode";
+      }
+
+      darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("darkMode", "enabled");
+          darkModeToggle.innerHTML = "<i class='bx bx-sun'></i> Light Mode";
+        } else {
+          localStorage.setItem("darkMode", "disabled");
+          darkModeToggle.innerHTML = "<i class='bx bx-moon'></i> Dark Mode";
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-    <section class="header">
-        <nav class="nav-bar">
-            <div class="nav-links">
-                <a href="./index.html">Home <i class='bx bxs-home-circle'></i></a>
-                <a href="./regEvt.html">Upcoming Events <i class='bx bxs-upvote'></i></a>
-                <a href="">About Us <i class='bx bxs-user-account'></i></a>
-            </div>
-        </nav>
-    </section>
-    <div class="container">
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-            <div class="steps">
-                <div class="step active">1</div>
-                <div class="step">2</div>
-                <div class="step">3</div>
-                <div class="step">4</div>
-            </div>
+  <!-- HEADER (fixed, with dark mode toggle) -->
+  <header class="header">
+    <nav class="nav-bar">
+      <div class="nav-links">
+        <a href="./index.html">Home <i class='bx bxs-home-circle'></i></a>
+        <a href="./regEvt.html">Upcoming Events <i class='bx bxs-upvote'></i></a>
+        <a href="#">About Us <i class='bx bxs-user-account'></i></a>
+      </div>
+      <div class="nav-actions">
+        <button id="darkModeToggle">
+          <i class='bx bx-moon'></i> Dark Mode
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PARALLAX HERO SECTION -->
+  <main class="parallax-section">
+    <div class="overlay"></div>
+    <!-- The form container with a white background, same as your homepage style -->
+    <div class="parallax-content form-container">
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="steps">
+          <div class="step active">1</div>
+          <div class="step">2</div>
+          <div class="step">3</div>
+          <div class="step">4</div>
+        </div>
+      </div>
+
+      <!-- Multi-Step Form -->
+      <form id="eventForm">
+        <!-- Step 1: Basic Info -->
+        <div class="form-step active">
+          <h2>Step 1: Basic Information</h2>
+          <div class="input-container">
+            <input type="text" name="eventName" placeholder="Event Name" required>
+          </div>
+          <div class="input-container">
+            <input type="text" placeholder="Organizer Name" required>
+          </div>
+          <!-- Checkbox for Paid Event -->
+          <div class="input-container">
+            <label>
+              <input type="checkbox" id="paidEvent"> <span> Is this a paid event? </span>
+            </label>
+          </div>
+          <!-- Price Input (Initially Hidden) -->
+          <div class="paid-container" id="priceContainer">
+            <input type="number" id="eventPrice" placeholder="Enter price" min="0">
+          </div>
+          <div class="button-container">
+            <button type="button" class="next-btn">Next</button>
+          </div>
         </div>
 
-        <!-- Multi-Step Form -->
-        <form id="eventForm">
-            <!-- Step 1: Basic Info -->
-            <div class="form-step active">
-                <h2>Step 1: Basic Information</h2>
-                <div class="input-container">
-                    <input type="text" name="eventName" placeholder="Event Name" required>
-                </div>
-                
-                <div class="input-container">
-                    <input type="text" placeholder="Organizer Name" required>
-                </div>
-
-                <!-- Checkbox for Paid Event -->
-                <div class="input-container">
-                    <label>
-                        <input type="checkbox" id="paidEvent"> <span> Is this a paid event? </span>
-                    </label>
-                </div>
-
-                <!-- Price Input (Initially Hidden) -->
-                <div class="paid-container" id="priceContainer">
-                    <input type="number" id="eventPrice" placeholder="Enter price" min="0">
-                </div>
-                
-                <div class="button-container">
-                    <button type="button" class="next-btn">Next</button>
-                </div>
-            </div>
-
-            <!-- Step 2: Date & Location -->
-            <div class="form-step">
-                <h2>Step 2: Date & Location</h2>
-                <div class="input-container">
-                    <input type="datetime-local" id="eventDate" name="eventDateFrom" placeholder="Event Date From" required>
-                    <!-- <input type="date" name="eventDateTo" placeholder="Event Date To" required> -->
-                </div>
-                
-                <div class="input-container">
-                    <input type="datetime-local" id="eventEndDate" name="eventTimeTo" placeholder="Event Date To" required>
-                    <!-- <input type="time" name="eventTimeTo" placeholder="Event Time To" required> -->
-                </div>
-                
-                <div class="input-container">
-                    <input type="text" placeholder="Venue/Location" required>
-                </div>
-                
-                <div class="button-container">
-                    <button type="button" class="prev-btn">Back</button>
-                    <button type="button" class="next-btn">Next</button>
-                </div>
-            </div>
-
-            <!-- Step 3: Additional Details -->
-            <div class="form-step">
-                <h2>Step 3: Additional Details</h2>
-                <div class="input-container">
-                    <textarea placeholder="Description" required></textarea>
-                </div>
-                
-                <!-- Image Input -->
-                <div class="input-container">
-                    <input type="file" id="imageInput" accept="image/*" required>
-                </div>
-                
-                <div class="button-container">
-                    <button type="button" class="prev-btn">Back</button>
-                    <button type="button" class="next-btn">Next</button>
-                </div>
-            </div>
-
-            <!-- Step 4: Confirm & Submit -->
-            <div class="form-step">
-                <h2>Step 4: Confirm & Submit</h2>
-                <p>Review your details and submit your event.</p>
-                <div class="input-container">
-                    <label class="terms">
-                        <input type="checkbox" id="termsCheckbox" required> <span> I agree to the terms and conditions </span>
-                    </label>
-                </div>
-                <div class="button-container">
-                    <button type="button" class="prev-btn">Back</button>
-                    <button type="submit" class="submit-btn">Submit</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!-- Modal Popup -->
-    <div id="eventModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <img id="modalImage" src="" alt="Event Image" class="modal-image">
-            <h2>Event Details</h2>
-            <p><strong>Event Name:</strong> <span id="modalEventName"></span></p>
-            <p><strong>Description:</strong> <span id="modalDescription"></span></p>
-            <p><strong>Venue/Location:</strong> <span id="modalVenue"></span></p>
-            <p><strong>Event Date From:</strong> <span id="modalEventDateFrom"></span></p>
-            <p><strong>Event Date To:</strong> <span id="modalEventDateTo"></span></p>
-            <button id="modalOkBtn">OK</button>
+        <!-- Step 2: Date & Location -->
+        <div class="form-step">
+          <h2>Step 2: Date & Location</h2>
+          <div class="input-container">
+            <input type="datetime-local" id="eventDate" name="eventDateFrom" required>
+          </div>
+          <div class="input-container">
+            <input type="datetime-local" id="eventEndDate" name="eventTimeTo" required>
+          </div>
+          <div class="input-container">
+            <input type="text" placeholder="Venue/Location" required>
+          </div>
+          <div class="button-container">
+            <button type="button" class="prev-btn">Back</button>
+            <button type="button" class="next-btn">Next</button>
+          </div>
         </div>
-    </div>
 
-    <script src="./crtEvtScript.js"></script>
+        <!-- Step 3: Additional Details -->
+        <div class="form-step">
+          <h2>Step 3: Additional Details</h2>
+          <div class="input-container">
+            <textarea placeholder="Description" required></textarea>
+          </div>
+          <!-- Image Input -->
+          <div class="input-container">
+            <input type="file" id="imageInput" accept="image/*" required>
+          </div>
+          <div class="button-container">
+            <button type="button" class="prev-btn">Back</button>
+            <button type="button" class="next-btn">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Confirm & Submit -->
+        <div class="form-step">
+          <h2>Step 4: Confirm & Submit</h2>
+          <p>Review your details and submit your event.</p>
+          <div class="input-container">
+            <label class="terms">
+              <input type="checkbox" id="termsCheckbox" required> 
+              <span> I agree to the terms and conditions </span>
+            </label>
+          </div>
+          <div class="button-container">
+            <button type="button" class="prev-btn">Back</button>
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Modal Popup -->
+  <div id="eventModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img id="modalImage" src="" alt="Event Image" class="modal-image">
+      <h2>Event Details</h2>
+      <p><strong>Event Name:</strong> <span id="modalEventName"></span></p>
+      <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+      <p><strong>Venue/Location:</strong> <span id="modalVenue"></span></p>
+      <p><strong>Event Date From:</strong> <span id="modalEventDateFrom"></span></p>
+      <p><strong>Event Date To:</strong> <span id="modalEventDateTo"></span></p>
+      <button id="modalOkBtn">OK</button>
+    </div>
+  </div>
+
+  <!-- Your Script -->
+  <script src="./crtEvtScript.js"></script>
 </body>
 </html>
