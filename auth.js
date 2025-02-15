@@ -16,55 +16,117 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// exports into index.html
 export function signUp() {
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
+    const email = document.getElementById("signupEmail");
+    const password = document.getElementById("signupPassword");
 
-    createUserWithEmailAndPassword(auth, email, password)
+    if (!validateInput(email) || !validateInput(password)) {
+        return;
+    }
+
+    createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
-            alert("Signup Successful! Please log in.");
+            email.classList.add("success");
+            password.classList.add("success");
             // Hide signup modal and show login modal
             document.getElementById('signupModal').style.display = 'none';
             document.getElementById('loginModal').style.display = 'block';
+            showNotification("Signup Successful! Please log in.", "success");
         })
         .catch((error) => {
-            alert(error.message);
+            email.classList.add("error", "shake");
+            password.classList.add("error", "shake");
+            setTimeout(() => {
+                email.classList.remove("shake");
+                password.classList.remove("shake");
+            }, 500);
+            showNotification("Enter valid credentials", "error");
         });
 }
 
 export function login() {
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+    const email = document.getElementById("loginEmail");
+    const password = document.getElementById("loginPassword");
 
-    signInWithEmailAndPassword(auth, email, password)
+    if (!validateInput(email) || !validateInput(password)) {
+        return;
+    }
+
+    signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
-            alert("Login Successful! Redirecting...");
-            window.location.href = "./crtEvt.html"; // Redirect to homepage
+            email.classList.add("success");
+            password.classList.add("success");
+            showNotification("Login Successful! Redirecting...", "success");
+            setTimeout(() => {
+                window.location.href = "./crtEvt.html"; // Redirect to homepage
+            }, 1000);
         })
         .catch((error) => {
-            alert(error.message);
+            email.classList.add("error", "shake");
+            password.classList.add("error", "shake");
+            setTimeout(() => {
+                email.classList.remove("shake");
+                password.classList.remove("shake");
+            }, 500);
+            showNotification("Enter valid credentials", "error");
         });
 }
 
-export function logout() {
-    signOut(auth)
-        .then(() => {
-            alert("Logged out successfully!");
-            window.location.href = "./login.html";
-        }).catch((error) => {
-            alert(error.message);
-        });
-}
+// export function logout() {
+//     signOut(auth)
+//         .then(() => {
+//             alert("Logged out successfully!");
+//             window.location.href = "./login.html";
+//         }).catch((error) => {
+//             alert(error.message);
+//         });
+// }
 
 export function resetPassword() {
-    const email = document.getElementById("resetEmail").value;
+    const email = document.getElementById("resetEmail");
 
-    sendPasswordResetEmail(auth, email)
+    if (!validateInput(email)) {
+        return;
+    }
+
+    sendPasswordResetEmail(auth, email.value)
         .then(() => {
-            alert("Password reset email sent! Check your inbox.");
+            email.classList.add("success");
+            showNotification("Password reset email sent! Check your inbox.", "success");
+            setTimeout(() => {
+                document.getElementById('resetModal').style.display = 'none';
+                document.getElementById('loginModal').style.display = 'block';
+            }, 1000);
         })
         .catch((error) => {
-            alert(error.message);
+            email.classList.add("error", "shake");
+            setTimeout(() => {
+                email.classList.remove("shake");
+            }, 500);
+            showNotification("Enter valid credentials", "error");
         });
+}
+
+function showNotification(message, type) {
+    const notification = document.createElement("div");
+    notification.className = `notification ${type}`;
+    notification.innerText = message;
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+function validateInput(input) {
+    if (input.value.trim() === "") {
+        input.classList.add("error", "shake");
+        setTimeout(() => {
+            input.classList.remove("shake");
+        }, 500);
+        return false;
+    } else {
+        input.classList.remove("error");
+        input.classList.add("success");
+        return true;
+    }
 }

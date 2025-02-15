@@ -16,11 +16,11 @@
     import { login, signUp, resetPassword } from './auth.js';
 
     document.addEventListener("DOMContentLoaded", () => {
-        const logoutButton = document.getElementById("login");
-        const signupButton =  document.getElementById("signup");
-        const resetButton = document.getElementById("resetPassword");
-        if (logoutButton) {
-            logoutButton.addEventListener("click", login);
+        const loginButton = document.getElementById("login");
+        const signupButton = document.getElementById("signup");
+        const resetButton = document.getElementById("resetButton");
+        if (loginButton) {
+            loginButton.addEventListener("click", login);
         }
         if (signupButton) {
             signupButton.addEventListener("click", signUp);
@@ -28,14 +28,14 @@
         if (resetButton) {
             resetButton.addEventListener("click", resetPassword);
         }
-    });  
+    });
   </script>
 </head>
 <body>
   <header class="header">
     <nav class="nav-bar">
       <div class="nav-links">
-        <a href="#" class="login-trigger">Home <i class='bx bxs-home-circle'></i></a>
+        <a href="./index.html" class="">Home <i class='bx bxs-home-circle'></i></a>
         <a href="#" class="login-trigger">Upcoming Events <i class='bx bxs-upvote'></i></a>
         <a href="#" class="">About Us <i class='bx bxs-user-account'></i></a>
       </div>

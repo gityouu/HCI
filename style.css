@@ -379,3 +379,31 @@ body.dark-mode .asterisk-inside {
 .shake {
   animation: shake 0.5s;
 }
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeInOut 3s forwards;
+}
+
+.notification.success {
+    background-color: #4caf50; /* Green */
+}
+
+.notification.error {
+    background-color: #f44336; /* Red */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
