@@ -9,28 +9,8 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- Main CSS (merged with dark mode) -->
   <link rel="stylesheet" href="./crtEvtStyle.css">
-  <!-- Dark Mode Toggle Script (same approach as index.html) -->
-  <script type="module">
-    document.addEventListener("DOMContentLoaded", () => {
-      const darkModeToggle = document.getElementById("darkModeToggle");
-      // Load saved preference
-      if (localStorage.getItem("darkMode") === "enabled") {
-        document.body.classList.add("dark-mode");
-        darkModeToggle.innerHTML = "<i class='bx bx-sun'></i> Light Mode";
-      }
-
-      darkModeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-        if (document.body.classList.contains("dark-mode")) {
-          localStorage.setItem("darkMode", "enabled");
-          darkModeToggle.innerHTML = "<i class='bx bx-sun'></i> Light Mode";
-        } else {
-          localStorage.setItem("darkMode", "disabled");
-          darkModeToggle.innerHTML = "<i class='bx bx-moon'></i> Dark Mode";
-        }
-      });
-    });
-  </script>
+  <script type="module" src="./dark-mode.js"></script>
+  <script type="module" src="./crtEvtScript.js"></script>
 </head>
 <body>
   <!-- HEADER (fixed, with dark mode toggle) -->
@@ -72,22 +52,19 @@
           <h2>Step 1: Basic Information</h2>
           <div class="input-container">
             <input type="text" name="eventName" placeholder="Event Name" required>
-            <span class="asterisk-inside">*</span>
           </div>
           <div class="input-container">
             <input type="text" placeholder="Organizer Name" required>
-            <span class="asterisk-inside">*</span>
           </div>
           <!-- Checkbox for Paid Event -->
           <div class="input-container">
             <label>
-                <input type="checkbox" id="paidEvent"> Is this a paid event?
+                <input type="checkbox" id="paidEvent"> <span class="paid-instruction">Is this a paid event?</span>
             </label>
         </div>
           <!-- Price Input (Initially Hidden) -->
           <div class="paid-container" id="priceContainer">
             <input type="number" id="eventPrice" placeholder="Enter price" min="0">
-            <span class="asterisk-inside">*</span>
           </div>
           <div class="button-container">
             <button type="button" class="next-btn">Next</button>
@@ -99,15 +76,12 @@
           <h2>Step 2: Date & Location</h2>
           <div class="input-container">
             <input type="datetime-local" id="eventDate" name="eventDateFrom" required>
-            <span class="asterisk-inside">*</span>
           </div>
           <div class="input-container">
             <input type="datetime-local" id="eventEndDate" name="eventTimeTo" required>
-            <span class="asterisk-inside">*</span>
           </div>
           <div class="input-container">
             <input type="text" placeholder="Venue/Location" required>
-            <span class="asterisk-inside">*</span>
           </div>
           <div class="button-container">
             <button type="button" class="prev-btn">Back</button>
@@ -120,12 +94,10 @@
           <h2>Step 3: Additional Details</h2>
           <div class="input-container">
             <textarea placeholder="Description" required></textarea>
-            <span class="asterisk-inside">*</span>
           </div>
           <!-- Image Input -->
           <div class="input-container">
             <input type="file" id="imageInput" accept="image/*" required>
-            <span class="asterisk-inside">*</span>
           </div>
           <div class="button-container">
             <button type="button" class="prev-btn">Back</button>
@@ -166,8 +138,5 @@
       <button id="modalOkBtn">OK</button>
     </div>
   </div>
-
-  <!-- Your Script -->
-  <script src="./crtEvtScript.js"></script>
 </body>
 </html>

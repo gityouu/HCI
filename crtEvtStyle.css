@@ -147,6 +147,15 @@ body.dark-mode .parallax-content.form-container {
     height: 5px;
     background: #333;
     transition: 0.4s;
+    border-radius: 5px;
+}
+
+body.dark-mode .progress-bar {
+    width: 0%;
+    height: 5px;
+    background: aliceblue;
+    transition: 0.4s;
+    border-radius: 5px;
 }
 
 .steps {
@@ -188,6 +197,17 @@ body.dark-mode .step.active{
     margin-top: 20px;
 }
 
+.form-step p {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #333;
+}
+
+body.dark-mode .form-step p{
+    color: aliceblue;
+}
+
 .form-step.active {
     display: block;
 }
@@ -202,7 +222,15 @@ body.dark-mode .step.active{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 10px; 
+}
+
+.input-container .terms span{
+    color: #333;
+}
+
+body.dark-mode .input-container .terms span{
+    color: aliceblue;
 }
 
 /* Checkbox container */
@@ -212,6 +240,10 @@ body.dark-mode .step.active{
     align-items: center;
     cursor: pointer;
     color: aliceblue;
+}
+
+.input-container label .paid-instruction{
+    color: #333;
 }
 
 /* Checkbox styling */
@@ -243,6 +275,10 @@ body.dark-mode textarea {
     color: aliceblue;
     outline: none;
     border: 1px solid #555;
+}
+
+body.dark-mode .input-container label .paid-instruction{
+    color: aliceblue;
 }
 
 /* Checkbox Styles */
@@ -390,31 +426,3 @@ body.dark-mode .modal-content {
     color: #e0e0e0;
     border: 1px solid #444;
 }
-
-/* Wrapper for inputs where an asterisk is needed */
-.input-wrapper {
-    position: relative;
-    width: 50%;
-    margin: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Ensure input takes full width */
-  .input-wrapper input {
-    width: 100%;
-    padding-right: 35px; /* Make space for the asterisk */
-  }
-  
-  /* Position the asterisk inside the input */
-  .asterisk-inside {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: red;
-    pointer-events: none;
-    font-size: 1.2rem;
-  }
-  
