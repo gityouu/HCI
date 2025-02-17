@@ -128,11 +128,6 @@ body.dark-mode .nav-actions button {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.event-card:hover {
-  transform: translateY(-5px);
 }
 
 .event-card img {
