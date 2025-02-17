@@ -426,3 +426,64 @@ body.dark-mode .modal-content {
     color: #e0e0e0;
     border: 1px solid #444;
 }
+
+/* Footer Section */
+.footer-sec {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-div {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-links a {
+    display: inline-block;
+    color: aliceblue;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-links a:hover {
+    transform: translateY(-5px);
+}
+
+/* Assign custom colors per link using nth-child() */
+/* Social Links (Twitter, Instagram, Snapchat) */
+.footer-links a:nth-child(1):hover {
+    color: #1DA1F2; /* Twitter Blue */
+}
+.footer-links a:nth-child(2):hover {
+    color: #E1306C; /* Instagram Pink */
+}
+.footer-links a:nth-child(3):hover {
+    color: #FFFC00; /* Snapchat Yellow */
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+.footer-nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+body.dark-mode .footer-sec{
+    background: #000;
+}

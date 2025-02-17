@@ -497,15 +497,9 @@ body.dark-mode .info-sec{
 }
 
 .footer-nav a {
-    color: #fff;
+    color: aliceblue;
     margin: 0 10px;
     text-decoration: none;
-    transition: transform 0.3s, color 0.3s;
-}
-
-.footer-nav a:hover {
-    transform: translateY(-5px);
-    color: #ccc;
 }
 
 body.dark-mode .footer-sec{
