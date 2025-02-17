@@ -1,3 +1,22 @@
+// Import Firestore functions from Firebase v11
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+
+// Your Firebase configuration 
+const firebaseConfig = {
+    apiKey: "AIzaSyD7ki8anhI7dJaDYAH_qPqscI5zg56C4ZE",
+    authDomain: "hcii-eb2c9.firebaseapp.com",
+    projectId: "hcii-eb2c9",
+    storageBucket: "hcii-eb2c9.firebasestorage.app",
+    messagingSenderId: "292510882725",
+    appId: "1:292510882725:web:d9dd306aca2bed236a264c",
+    measurementId: "G-FP25ZSWPHW"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 //variable declarations
 const steps = document.querySelectorAll(".step");
 const progressBar = document.querySelector(".progress-bar");
@@ -180,11 +199,31 @@ closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
-modalOkBtn.addEventListener('click', () => {
+modalOkBtn.addEventListener('click', async () => {
+    // Gather event data from the form fields
+    const eventData = {
+        eventName: eventNameInput.value,
+        organizer: document.querySelector('input[placeholder="Organizer Name"]').value,
+        eventDate: eventDate.value,
+        eventEndDate: eventEndDate.value,
+        venue: venueInput.value,
+        description: descriptionInput.value,
+        price: paidEventCheckbox.checked ? priceInput.value : "Free",
+        createdAt: new Date()
+    };
+
+    try {
+        // Save the event data to Firestore in the "events" collection
+        const docRef = await addDoc(collection(db, "events"), eventData);
+        alert("Event created successfully! Document ID: " + docRef.id);
+    } catch (e) {
+        alert("Error creating event: " + e.message);
+        return;
+    }
+    
+    // Close the modal after saving the event
     modal.style.display = 'none';
 });
 
 // Initial form state
 updateFormSteps();
-
-
