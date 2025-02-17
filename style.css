@@ -411,3 +411,32 @@ body.dark-mode .asterisk-inside {
     90% { opacity: 1; }
     100% { opacity: 0; }
 }
+
+/* Info Section */
+.info-sec {
+    padding: 40px 20px;
+    background-color: aliceblue;
+    color: #333;
+    text-align: center;
+}
+
+.info-div {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.info-div h1{
+    font-weight: bolder;
+    font-size: 3rem;
+}
+
+.info-msg {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .info-sec{
+    background-color: #333;
+    color: aliceblue;
+}
