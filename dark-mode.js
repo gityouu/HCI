@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (document.body.classList.contains("dark-mode")) {
             localStorage.setItem("darkMode", "enabled");
-            darkModeToggle.innerHTML = "<i class='bx bx-sun'></i> Light Mode";
+            darkModeToggle.innerHTML = "<i class='bx bx-sun'></i>";
         } else {
             localStorage.setItem("darkMode", "disabled");
-            darkModeToggle.innerHTML = "<i class='bx bx-moon'></i> Dark Mode";
+            darkModeToggle.innerHTML = "<i class='bx bx-moon'></i>";
         }
     });
 });
