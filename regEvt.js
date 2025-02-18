@@ -12,35 +12,55 @@ const firebaseConfig = {
     measurementId: "G-FP25ZSWPHW"
 };
 
+// initialize firebase and firestore
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Reference to the events collection
 const eventsCol = collection(db, "events");
 
-// Create a query to order events (for example, by date)
+// Create a query to order events by date (ascending)
 const eventsQuery = query(eventsCol, orderBy("eventDate", "asc"));
+
+// Get container elements for upcoming and previous events
+const upcomingEventsContainer = document.getElementById("upcoming-events");
+const previousEventsContainer = document.getElementById("previous-events");
 
 // Listen to realtime updates
 onSnapshot(eventsQuery, (snapshot) => {
-  const eventsGrid = document.querySelector(".events-grid");
-  eventsGrid.innerHTML = ""; // Clear previous content
+  // Clear previous content
+  upcomingEventsContainer.innerHTML = "";
+  previousEventsContainer.innerHTML = "";
+
+  const now = new Date();
+  const threeDaysMs = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
 
   snapshot.forEach((doc) => {
     const event = doc.data();
-    // Create an event card (customize HTML as needed)
+    const eventDateObj = new Date(event.eventDate);
+
+    // Create an event card
     const card = document.createElement("div");
     card.classList.add("event-card");
     card.innerHTML = `
-      <img src="path/to/default-event-image.jpg" alt="${event.eventName}">
+      <img src="${event.imageURL ? event.imageURL : './images/odiseo-castrejon-1CsaVdwfIew-unsplash.jpg'}" alt="${event.eventName}">
       <div class="event-info">
         <h3>${event.eventName}</h3>
-        <p>Date: ${new Date(event.eventDate).toLocaleDateString()}</p>
+        <p>Date: ${eventDateObj.toLocaleDateString()}</p>
         <p>Location: ${event.venue}</p>
-        <p>Price: ${event.price ? "$" + event.price : "Free"}</p>
+        <p>Price: ${event.price && event.price !== "Free" ? "$" + event.price : "Free"}</p>
         <a href="#" class="details-btn">View Details</a>
       </div>
     `;
-    eventsGrid.appendChild(card);
+
+    // If the event date is in the future, add to upcoming events.
+    if (eventDateObj > now) {
+      upcomingEventsContainer.appendChild(card);
+    } 
+    // If the event is in the past but not older than 3 days, add to previous events.
+    else if ((now - eventDateObj) <= threeDaysMs) {
+      previousEventsContainer.appendChild(card);
+    }
+    // Otherwise, events older than 3 days are not displayed.
   });
 });
