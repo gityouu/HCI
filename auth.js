@@ -16,6 +16,38 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+let targetPage = "regEvt.html"; // Default target page
+
+// Function to handle login
+export function login() {
+    const email = document.getElementById("loginEmail");
+    const password = document.getElementById("loginPassword");
+
+    if (!validateInput(email) || !validateInput(password)) {
+        return;
+    }
+
+    signInWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+            email.classList.add("success");
+            password.classList.add("success");
+            showNotification("Login Successful! Redirecting...", "success");
+            setTimeout(() => {
+                window.location.href = targetPage; // Redirect to the target page
+            }, 1000);
+        })
+        .catch((error) => {
+            email.classList.add("error", "shake");
+            password.classList.add("error", "shake");
+            setTimeout(() => {
+                email.classList.remove("shake");
+                password.classList.remove("shake");
+            }, 500);
+            showNotification("Enter valid credentials", "error");
+        });
+}
+
+// Function to handle sign up
 export function signUp() {
     const email = document.getElementById("signupEmail");
     const password = document.getElementById("signupPassword");
@@ -44,44 +76,7 @@ export function signUp() {
         });
 }
 
-export function login() {
-    const email = document.getElementById("loginEmail");
-    const password = document.getElementById("loginPassword");
-
-    if (!validateInput(email) || !validateInput(password)) {
-        return;
-    }
-
-    signInWithEmailAndPassword(auth, email.value, password.value)
-        .then((userCredential) => {
-            email.classList.add("success");
-            password.classList.add("success");
-            showNotification("Login Successful! Redirecting...", "success");
-            setTimeout(() => {
-                window.location.href = "./crtEvt.html"; // Redirect to homepage
-            }, 1000);
-        })
-        .catch((error) => {
-            email.classList.add("error", "shake");
-            password.classList.add("error", "shake");
-            setTimeout(() => {
-                email.classList.remove("shake");
-                password.classList.remove("shake");
-            }, 500);
-            showNotification("Enter valid credentials", "error");
-        });
-}
-
-// export function logout() {
-//     signOut(auth)
-//         .then(() => {
-//             alert("Logged out successfully!");
-//             window.location.href = "./login.html";
-//         }).catch((error) => {
-//             alert(error.message);
-//         });
-// }
-
+// Function to handle password reset
 export function resetPassword() {
     const email = document.getElementById("resetEmail");
 
@@ -107,6 +102,7 @@ export function resetPassword() {
         });
 }
 
+// Function to show notifications
 function showNotification(message, type) {
     const notification = document.createElement("div");
     notification.className = `notification ${type}`;
@@ -117,6 +113,7 @@ function showNotification(message, type) {
     }, 3000);
 }
 
+// Function to validate input fields
 function validateInput(input) {
     if (input.value.trim() === "") {
         input.classList.add("error", "shake");

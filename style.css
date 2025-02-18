@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -202,7 +202,7 @@ body.dark-mode .hero-btn:hover {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    background-color: aliceblue;
+    background-color: #faf8f8;
     color: #333;
     border: 1px solid #ccc;
     outline: none;
@@ -431,7 +431,7 @@ body.dark-mode .asterisk-inside {
 }
 
 .info-msg {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 20px;
 }
