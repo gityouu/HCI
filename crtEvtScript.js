@@ -216,6 +216,7 @@ modalOkBtn.addEventListener('click', async () => {
         // Save the event data to Firestore in the "events" collection
         const docRef = await addDoc(collection(db, "events"), eventData);
         alert("Event created successfully! Document ID: " + docRef.id);
+        window.location.href = "./dashboard.html"
     } catch (e) {
         alert("Error creating event: " + e.message);
         return;
