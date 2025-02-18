@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
 </head>
 <body>
-    <header>
-        <h1>Dashboard</h1>
+    <header class="header">
+        <nav class="nav-bar">
+          <div class="nav-links">
+            <a href="./index.html" class="">Home <i class='bx bxs-home-circle'></i></a>
+            <a href="./index.html#About" class="">About Us <i class='bx bxs-user-account'></i></a>
+          </div>
+          <div class="nav-actions">
+            <button id="logout">Logout</button>
+            <button id="darkModeToggle">
+              <i class='bx bx-moon'></i>
+            </button>
+          </div>
+        </nav>
     </header>
-    <main>
-        <!-- Main content goes here -->
-         <h1>Welcome to my Dashboard</h1>
-    </main>
-    <footer>
-        <p>&copy; 2023 Your Company</p>
-    </footer>
 </body>
 </html>

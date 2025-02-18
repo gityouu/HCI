@@ -3,13 +3,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebas
 
 // Your Firebase configuration 
 const firebaseConfig = {
-    apiKey: "AIzaSyD7ki8anhI7dJaDYAH_qPqscI5zg56C4ZE",
-    authDomain: "hcii-eb2c9.firebaseapp.com",
-    projectId: "hcii-eb2c9",
-    storageBucket: "hcii-eb2c9.firebasestorage.app",
-    messagingSenderId: "292510882725",
-    appId: "1:292510882725:web:d9dd306aca2bed236a264c",
-    measurementId: "G-FP25ZSWPHW"
+  apiKey: "AIzaSyD7ki8anhI7dJaDYAH_qPqscI5zg56C4ZE",
+  authDomain: "hcii-eb2c9.firebaseapp.com",
+  projectId: "hcii-eb2c9",
+  storageBucket: "hcii-eb2c9.firebasestorage.app",
+  messagingSenderId: "292510882725",
+  appId: "1:292510882725:web:d9dd306aca2bed236a264c",
+  measurementId: "G-FP25ZSWPHW"
 };
 
 // initialize firebase and firestore
@@ -35,6 +35,9 @@ onSnapshot(eventsQuery, (snapshot) => {
   const now = new Date();
   const threeDaysMs = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
 
+  let hasUpcomingEvents = false;
+  let hasPreviousEvents = false;
+
   snapshot.forEach((doc) => {
     const event = doc.data();
     const eventDateObj = new Date(event.eventDate);
@@ -56,11 +59,35 @@ onSnapshot(eventsQuery, (snapshot) => {
     // If the event date is in the future, add to upcoming events.
     if (eventDateObj > now) {
       upcomingEventsContainer.appendChild(card);
+      hasUpcomingEvents = true;
     } 
     // If the event is in the past but not older than 3 days, add to previous events.
     else if ((now - eventDateObj) <= threeDaysMs) {
       previousEventsContainer.appendChild(card);
+      hasPreviousEvents = true;
     }
     // Otherwise, events older than 3 days are not displayed.
   });
+
+  // Display message if there are no upcoming events
+  if (!hasUpcomingEvents) {
+    const noUpcomingEventsMessage = document.createElement("p");
+    noUpcomingEventsMessage.textContent = "No upcoming events...";
+    noUpcomingEventsMessage.style.textAlign = "center";
+    noUpcomingEventsMessage.style.marginTop = "20px";
+    noUpcomingEventsMessage.style.marginBottom = "20px";
+    noUpcomingEventsMessage.style.fontSize = "1.3rem";
+    upcomingEventsContainer.appendChild(noUpcomingEventsMessage);
+  }
+
+  // Display message if there are no previous events
+  if (!hasPreviousEvents) {
+    const noPreviousEventsMessage = document.createElement("p");
+    noPreviousEventsMessage.textContent = "No previous events...";
+    noPreviousEventsMessage.style.textAlign = "center";
+    noPreviousEventsMessage.style.marginTop = "20px";
+    noPreviousEventsMessage.style.marginBottom = "20px";
+    noPreviousEventsMessage.style.fontSize = "1.3rem";
+    previousEventsContainer.appendChild(noPreviousEventsMessage);
+  }
 });
