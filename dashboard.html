@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="dashboard.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
+    <script type="module" src="./dark-mode.js"></script>
+    <script type="module" src="./auth.js"></script>
+    <script type="module">
+        import { logout } from "./auth.js";
+
+        document.addEventListener('DOMContentLoaded',() => {
+            const logoutButton = document.getElementById('logout');
+            if(logoutButton){
+                logoutButton.addEventListener('click', logout);
+            }
+        })
+    </script>
 </head>
 <body>
     <header class="header">

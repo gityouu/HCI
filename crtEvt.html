@@ -18,7 +18,6 @@
     <nav class="nav-bar">
       <div class="nav-links">
         <a href="./index.html">Home <i class='bx bxs-home-circle'></i></a>
-        <!-- <a href="./regEvt.html">Upcoming Events <i class='bx bxs-upvote'></i></a> -->
         <a href="./index.html#About">About Us <i class='bx bxs-user-account'></i></a>
       </div>
       <div class="nav-actions">
@@ -62,7 +61,11 @@
         </div>
           <!-- Price Input (Initially Hidden) -->
           <div class="paid-container" id="priceContainer">
-            <input type="number" id="eventPrice" placeholder="Enter price" min="0">
+            <input type="number" id="eventPrice" placeholder="Price" min="0">
+          </div>
+          <!-- Expected Number of Attendees (Initially Hidden) -->
+          <div class="paid-container" id="attendeesContainer">
+            <input type="number" id="expectedAttendees" placeholder="Expected number of attendees" min="1">
           </div>
           <div class="button-container">
             <button type="button" class="next-btn">Next</button>

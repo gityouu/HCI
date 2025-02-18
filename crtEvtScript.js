@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-//variable declarations
+// Variable declarations
 const steps = document.querySelectorAll(".step");
 const progressBar = document.querySelector(".progress-bar");
 const formSteps = document.querySelectorAll(".form-step");
@@ -26,6 +26,7 @@ const prevBtns = document.querySelectorAll(".prev-btn");
 const submitBtn = document.querySelector(".submit-btn");
 const paidEventCheckbox = document.getElementById('paidEvent');
 const priceContainer = document.getElementById('priceContainer');
+const attendeesContainer = document.getElementById('attendeesContainer');
 const priceInput = document.getElementById('eventPrice');
 const eventDate = document.getElementById('eventDate');
 const eventEndDate = document.getElementById('eventEndDate');
@@ -48,19 +49,25 @@ const closeBtn = document.querySelector('.close-btn');
 let currentStep = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Initially hide the price input
+    // Initially hide the price and attendees input
     priceContainer.style.display = 'none';
+    attendeesContainer.style.display = 'none';
 
     // Add event listener to the checkbox
     paidEventCheckbox.addEventListener('change', function () {
         if (paidEventCheckbox.checked) {
             priceContainer.style.display = 'block';
+            attendeesContainer.style.display = 'block';
             priceContainer.style.display = 'flex';
+            attendeesContainer.style.display = 'flex';
             priceInput.style.border = "1px solid #555"
             priceInput.setAttribute('required', 'required'); // Make price input required
+            attendeesContainer.setAttribute('required', 'required'); // Make attendees input required
         } else {
             priceContainer.style.display = 'none';
+            attendeesContainer.style.display = 'none';
             priceInput.removeAttribute('required'); // Remove required attribute
+            attendeesContainer.removeAttribute('required'); // Remove required attribute
         }
     });
 
@@ -209,6 +216,7 @@ modalOkBtn.addEventListener('click', async () => {
         venue: venueInput.value,
         description: descriptionInput.value,
         price: paidEventCheckbox.checked ? priceInput.value : "Free",
+        expectedAttendees: paidEventCheckbox.checked ? document.getElementById('expectedAttendees').value : null,
         createdAt: new Date()
     };
 
