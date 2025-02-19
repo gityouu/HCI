@@ -77,6 +77,13 @@ body.dark-mode {
     color: aliceblue;
 }
 
+.nav-actions i{
+    color: #333;
+    font-size: 1.5rem;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
 /* Dark Mode Overrides for Header & Nav */
 body.dark-mode .header {
     background-color: #222;
@@ -93,6 +100,10 @@ body.dark-mode .nav-links a:hover {
 
 body.dark-mode .nav-actions button {
     background-color: #333;
+    color: aliceblue;
+}
+
+body.dark-mode .nav-actions i{
     color: aliceblue;
 }
 

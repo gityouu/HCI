@@ -58,20 +58,14 @@ body.dark-mode {
   gap: 10px;
 }
 
-.nav-actions button {
-  background-color: aliceblue;
-  color: #000;
-  border: 1px solid #444;
-  padding: 8px 12px;
-  border-radius: 5px;
+.nav-actions i {
+  color: #333;
   cursor: pointer;
-  transition: background 0.3s;
-  box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
 }
 
-.nav-actions button:hover {
-  background-color: #444;
-  color: #ccc;
+.nav-actions i:hover {
+  color: #333;
 }
 
 /* Dark Mode Overrides for Header & Nav */
@@ -87,6 +81,10 @@ body.dark-mode .nav-links a:hover {
 }
 body.dark-mode .nav-actions button {
   background-color: #333;
+  color: aliceblue;
+}
+
+body.dark-mode .nav-actions i{
   color: aliceblue;
 }
 
