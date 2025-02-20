@@ -24,13 +24,7 @@ body.dark-mode {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    /* background: linear-gradient(
-    to right,
-    #ff7e5f 0%,
-    #feb47b 25%,
-    #86a8e7 75%,
-    #7f7fd5 100%
-    ); */
+    background: linear-gradient(to right, #fff, #ccc);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;           /* Ensure it stays on top */
 }
@@ -101,7 +95,7 @@ body.dark-mode .nav-actions i{
 .parallax-section {
     position: relative;
     height: 100vh; /* Full screen height */
-    background-color: #a5b1c2;
+    background-image: url(./images/charlesdeluvio-ew3sC-F6d_c-unsplash\ \(1\).jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

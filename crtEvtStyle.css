@@ -24,7 +24,7 @@ body.dark-mode {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    background-color: aliceblue;
+    background: linear-gradient(to right, #fff, #ccc);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;           /* Ensure it stays on top */
 }
@@ -106,7 +106,7 @@ body.dark-mode .nav-actions i {
 .parallax-content.form-container {
     position: relative;
     z-index: 2;
-    background: aliceblue;
+    background: linear-gradient(to right, #fff, #ccc);
     color: #333;
     width: 50%;
     max-width: 900px;
