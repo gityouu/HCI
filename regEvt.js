@@ -67,6 +67,22 @@ onSnapshot(eventsQuery, (snapshot) => {
       hasPreviousEvents = true;
     }
     // Otherwise, events older than 3 days are not displayed.
+
+    // Attach event listener to the "View Details" button
+    const detailsBtn = card.querySelector(".details-btn");
+    detailsBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const eventId = detailsBtn.getAttribute("data-event-id");
+      const eventPrice = detailsBtn.getAttribute("data-event-price");
+      const eventDate = new Date(detailsBtn.getAttribute("data-event-date"));
+
+      // If the event is in the past, registration is closed.
+      if (eventDate < now) {
+        alert("Registration for this event is closed.");
+      } else {
+        openRegisterModal(eventId, eventPrice);
+      }
+    });
   });
 
   // Display message if there are no upcoming events
@@ -90,42 +106,44 @@ onSnapshot(eventsQuery, (snapshot) => {
     noPreviousEventsMessage.style.marginBottom = "20px";
     previousEventsContainer.appendChild(noPreviousEventsMessage);
   }
+});
 
-  // Add event listeners to "View Details" buttons
-  document.querySelectorAll('.details-btn').forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const eventId = button.getAttribute('data-event-id');
-      const eventPrice = button.getAttribute('data-event-price');
-      const eventDate = new Date(button.getAttribute('data-event-date'));
-
-      // Check if the event is in the previous events section
-      if (eventDate < now) {
-        alert("Registration for this event is closed.");
-      } else {
-        openRegisterModal(eventId, eventPrice);
-      }
+// Attach close event listener for the register modal (once)
+document.addEventListener("DOMContentLoaded", () => {
+  const registerModal = document.getElementById("registerModal");
+  const closeRegisterBtn = document.querySelector("#registerModal .close-btn");
+  if (closeRegisterBtn) {
+    closeRegisterBtn.addEventListener("click", () => {
+      registerModal.style.display = "none";
     });
+  }
+
+  // Also close modal when clicking outside modal content
+  window.addEventListener("click", (e) => {
+    if (e.target === registerModal) {
+      registerModal.style.display = "none";
+    }
   });
 });
 
 // Function to open the registration modal
 function openRegisterModal(eventId, eventPrice) {
-  const registerModal = document.getElementById('registerModal');
+  const registerModal = document.getElementById("registerModal");
 
-  // Close the modal when the close button is clicked
-  document.querySelector('.close-btn').addEventListener('click', () => {
-    registerModal.style.display = 'none';
-  });
+  registerModal.style.display = "block";
 
-  // Handle form submission
-  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+  // Attach form submission event listener
+  const registerForm = document.getElementById("registerForm");
+  // Remove previous listeners to avoid duplicates
+  registerForm.replaceWith(registerForm.cloneNode(true));
+  const newRegisterForm = document.getElementById("registerForm");
+
+  newRegisterForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const userName = document.getElementById('userName').value;
-    const userEmail = document.getElementById('userEmail').value;
-    const userPhone = document.getElementById('userPhone').value;
-    const uniqueNumber = generateUniqueNumber();
+    const userName = document.getElementById("userName").value;
+    const userEmail = document.getElementById("userEmail").value;
+    const userPhone = document.getElementById("userPhone").value;
 
     const registrationData = {
       eventId,
@@ -139,7 +157,7 @@ function openRegisterModal(eventId, eventPrice) {
     try {
       await addDoc(collection(db, "registrations"), registrationData);
       alert(`Registration successful! Your unique number is: ${uniqueNumber}`);
-      registerModal.style.display = 'none';
+      registerModal.style.display = "none";
     } catch (error) {
       console.error("Error registering for event: ", error);
       alert("Error registering for event. Please try again.");
@@ -149,5 +167,5 @@ function openRegisterModal(eventId, eventPrice) {
 
 // Function to generate a unique number
 function generateUniqueNumber() {
-  return 'UN' + Math.floor(Math.random() * 1000000);
+  return "UN" + Math.floor(Math.random() * 1000000);
 }
