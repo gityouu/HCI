@@ -104,10 +104,9 @@ body.dark-mode .nav-actions i{
 .events-page hr {
   width: 50%;
   border: 0;
-  height: 5px;
+  height: 2px;
   background: linear-gradient(to right, #333, #ccc, #333);
   margin: 20px auto;
-  border-radius: 5px;
 }
 
 .events-grid {
@@ -253,6 +252,69 @@ body.dark-mode .details-btn:hover {
   text-decoration: none;
 }
 
-body.dark-mode .footer-sec{
+body.dark-mode .footer-sec {
   background: #000;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #555;
 }

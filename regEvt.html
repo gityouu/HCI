@@ -22,11 +22,10 @@
         <a href="./index.html#About">About Us <i class='bx bxs-user-account'></i></a>
       </div>
       <div class="nav-actions">
-          <i class='bx bx-moon' id="darkModeToggle"></i>
+        <i class='bx bx-moon' id="darkModeToggle"></i>
       </div>
     </nav>
   </header>
-
   <!-- MAIN SECTION: Upcoming Events -->
   <main class="events-page">
     <h1 class="coming-events">Upcoming Events on our platform...</h1>
@@ -41,8 +40,8 @@
       <!-- Automatic event addup -->
     </section>
   </main>
-   <!-- FOOTER SECTION -->
-   <section class="footer-sec">
+  <!-- FOOTER SECTION -->
+  <section class="footer-sec">
     <div class="footer-div">
       <footer class="footer-items">
         <div class="footer-links">
@@ -58,10 +57,31 @@
         <div class="footer-nav">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <!-- <a href="#">Contact Us</a> -->
         </div>
       </footer>
     </div>
   </section>
+  <!-- Event Registration Modal -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Register for Event</h2>
+      <form id="registerForm">
+        <div class="input-container">
+          <input type="text" id="userName" placeholder="Your Name" required>
+        </div>
+        <div class="input-container">
+          <input type="email" id="userEmail" placeholder="Your Email" required>
+        </div>
+        <div class="input-container">
+          <input type="text" id="userPhone" placeholder="Your Phone Number" required>
+        </div>
+        <div class="input-container" id="uniqueNumberContainer" style="display: none;">
+          <input type="text" id="uniqueNumber" placeholder="Unique Number" readonly>
+        </div>
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
