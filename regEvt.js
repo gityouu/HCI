@@ -145,18 +145,21 @@ function openRegisterModal(eventId, eventPrice) {
     const userEmail = document.getElementById("userEmail").value;
     const userPhone = document.getElementById("userPhone").value;
 
+    // Generate a unique number only if the event is paid
+    const uniqueNumber = eventPrice && eventPrice !== "Free" ? generateUniqueNumber() : null;
+
     const registrationData = {
       eventId,
       userName,
       userEmail,
       userPhone,
-      uniqueNumber: uniqueNumber || null,
+      uniqueNumber,
       registeredAt: new Date()
     };
 
     try {
       await addDoc(collection(db, "registrations"), registrationData);
-      alert(`Registration successful! Your unique number is: ${uniqueNumber}`);
+      alert(`Registration successful!${uniqueNumber ? ` Your unique number is: ${uniqueNumber}` : ''}`);
       registerModal.style.display = "none";
     } catch (error) {
       console.error("Error registering for event: ", error);
