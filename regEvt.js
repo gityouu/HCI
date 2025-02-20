@@ -98,33 +98,20 @@ onSnapshot(eventsQuery, (snapshot) => {
       const eventId = button.getAttribute('data-event-id');
       const eventPrice = button.getAttribute('data-event-price');
       const eventDate = new Date(button.getAttribute('data-event-date'));
-      const now = new Date();
-  
-      // If the event date is in the past, registration is closed.
+
+      // Check if the event is in the previous events section
       if (eventDate < now) {
         alert("Registration for this event is closed.");
       } else {
         openRegisterModal(eventId, eventPrice);
       }
     });
-  });  
+  });
 });
 
 // Function to open the registration modal
 function openRegisterModal(eventId, eventPrice) {
   const registerModal = document.getElementById('registerModal');
-  const uniqueNumberContainer = document.getElementById('uniqueNumberContainer');
-  const uniqueNumberInput = document.getElementById('uniqueNumber');
-
-  // Show unique number input if the event is paid
-  if (eventPrice && eventPrice !== "Free") {
-    uniqueNumberContainer.style.display = 'block';
-    uniqueNumberInput.value = generateUniqueNumber();
-  } else {
-    uniqueNumberContainer.style.display = 'none';
-  }
-
-  registerModal.style.display = 'block';
 
   // Close the modal when the close button is clicked
   document.querySelector('.close-btn').addEventListener('click', () => {
@@ -138,7 +125,7 @@ function openRegisterModal(eventId, eventPrice) {
     const userName = document.getElementById('userName').value;
     const userEmail = document.getElementById('userEmail').value;
     const userPhone = document.getElementById('userPhone').value;
-    const uniqueNumber = uniqueNumberInput.value;
+    const uniqueNumber = generateUniqueNumber();
 
     const registrationData = {
       eventId,
@@ -151,7 +138,7 @@ function openRegisterModal(eventId, eventPrice) {
 
     try {
       await addDoc(collection(db, "registrations"), registrationData);
-      alert("Registration successful!");
+      alert(`Registration successful! Your unique number is: ${uniqueNumber}`);
       registerModal.style.display = 'none';
     } catch (error) {
       console.error("Error registering for event: ", error);
