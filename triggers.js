@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       // Get the redirection target from data attribute; default to "./regEvt.html"
       const redirectTarget = trigger.getAttribute("data-redirect") || "./regEvt.html";
-      // Set expiration time to 30 minutes from now (in milliseconds)
+      // Set expiration time to 15 seconds from now (in milliseconds)
       const expires = Date.now() + 15 * 1000;
       // Store as a JSON string
       localStorage.setItem("redirectAfterLogin", JSON.stringify({ redirect: redirectTarget, expires }));

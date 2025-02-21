@@ -270,6 +270,10 @@ body.dark-mode .footer-sec {
     margin-bottom: 10px;
 }
 
+body.dark-mode .required-info{
+    color: #fff;
+}
+
 .input-wrapper {
     position: relative;
     margin-bottom: 15px;
@@ -287,6 +291,10 @@ body.dark-mode .footer-sec {
     position: absolute;
     right: 10px; top: 50%;
     transform: translateY(-50%);
+    color: red;
+}
+
+.required-asterisk{
     color: red;
 }
 
@@ -311,6 +319,12 @@ body.dark-mode .footer-sec {
     cursor: pointer;
     width: 100%;
     transition: background 0.3s;
+    margin-bottom: 10px;
+}
+
+.modal-content a{
+    text-decoration: none;
+    color: blue;
 }
 
 .modal-content button:hover {
