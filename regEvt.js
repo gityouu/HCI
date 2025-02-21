@@ -48,10 +48,12 @@ onSnapshot(eventsQuery, (snapshot) => {
     card.innerHTML = `
       <img src="${event.imageDataUrl ? event.imageDataUrl : './images/odiseo-castrejon-1CsaVdwfIew-unsplash.jpg'}" alt="${event.eventName}">
       <div class="event-info">
-        <h3>${event.eventName}</h3>
-        <p>Date: ${eventDateObj.toLocaleDateString()}</p>
-        <p>Location: ${event.venue}</p>
-        <p>Price: ${event.price && event.price !== "Free" ? "$" + event.price : "Free"}</p>
+        <div class="text-content">
+          <h3>${event.eventName}</h3>
+          <p>Date: ${eventDateObj.toLocaleDateString()}</p>
+          <p>Location: ${event.venue}</p>
+          <p>Price: ${event.price && event.price !== "Free" ? "$" + event.price : "Free"}</p>
+        </div>
         <a href="#" class="details-btn" data-event-id="${doc.id}" data-event-price="${event.price}" data-event-date="${event.eventDate}">Register Here</a>
       </div>
       <div class="event-description">
