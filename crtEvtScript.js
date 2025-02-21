@@ -47,6 +47,7 @@ const modalOkBtn = document.getElementById('modalOkBtn');
 const closeBtn = document.querySelector('.close-btn');
 
 let currentStep = 0;
+let imageDataUrl = '';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Initially hide the price and attendees input
@@ -152,10 +153,12 @@ submitBtn.addEventListener("click", (event) => {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     modalImage.src = e.target.result;
+                    imageDataUrl = e.target.result; // Store the image data URL
                 };
                 reader.readAsDataURL(file);
             } else {
                 modalImage.src = '';
+                imageDataUrl = ''; // Clear the image data URL
             }
 
             modal.style.display = 'block';
@@ -217,7 +220,8 @@ modalOkBtn.addEventListener('click', async () => {
         description: descriptionInput.value,
         price: paidEventCheckbox.checked ? priceInput.value : "Free",
         expectedAttendees: paidEventCheckbox.checked ? document.getElementById('expectedAttendees').value : null,
-        createdAt: new Date()
+        createdAt: new Date(),
+        imageDataUrl: imageDataUrl // Include the image data URL
     };
 
     try {

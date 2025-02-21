@@ -112,7 +112,8 @@ body.dark-mode .nav-actions i{
 .events-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Three columns per row */
-  gap: 20px;
+  row-gap: 30px;
+  justify-content: center; /* Center the grid container */
 }
 
 @media (max-width: 768px) {
@@ -128,10 +129,19 @@ body.dark-mode .nav-actions i{
 }
 
 .event-card {
+  position: relative;
   background: white;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  width: 90%; /* Reduce the width of the event cards */
+  max-width: 300px; /* Set a maximum width for the event cards */
+  margin: 0 auto; /* Center the event cards */
+}
+
+.event-card:hover {
+  transform: scale(1.05);
 }
 
 .event-card img {
@@ -142,6 +152,9 @@ body.dark-mode .nav-actions i{
 
 .event-info {
   padding: 15px;
+  position: relative;
+  z-index: 2; /* Ensure event-info stays above the overlay */
+  transition: opacity 0.3s;
 }
 
 .event-info h3 {
@@ -164,10 +177,49 @@ body.dark-mode .nav-actions i{
   text-decoration: none;
   border-radius: 5px;
   transition: background 0.3s;
+  position: relative;
+  z-index: 3; /* Ensure button stays above the overlay */
 }
 
 .details-btn:hover {
   background: #333;
+}
+
+.event-description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding: 20px;
+  text-align: center;
+  z-index: 1; /* Ensure overlay stays below the button */
+}
+
+.event-card:hover .event-description {
+  opacity: 1;
+}
+
+.event-card:hover .event-info {
+  opacity: 0;
+}
+
+.event-description h3{
+  padding-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.event-description p{
+  padding-bottom: 10px;
+  font-size: 1.1rem;
 }
 
 /* Dark Mode Overrides for Events Page */
@@ -193,6 +245,11 @@ body.dark-mode .details-btn {
 
 body.dark-mode .details-btn:hover {
   background: #666;
+}
+
+body.dark-mode .event-description {
+  background: rgba(255, 255, 255, 0.8);
+  color: #000;
 }
 
 /* Footer Section */
@@ -258,6 +315,8 @@ body.dark-mode .footer-sec {
 
 /* Modal Styles */
 .modal {
+  justify-content: center;
+  align-items: center;
   display: none;
   position: fixed;
   z-index: 1000;
@@ -280,6 +339,11 @@ body.dark-mode .footer-sec {
   position: relative;
 }
 
+.modal-content h2{
+  text-align: center;
+  padding-bottom: 10px;
+}
+
 .close-btn {
   color: #aaa;
   float: right;
@@ -295,7 +359,11 @@ body.dark-mode .footer-sec {
 }
 
 .input-container {
+  margin-left: 30px;
+  margin-right: 30px;
   margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .input-container input {
@@ -303,6 +371,7 @@ body.dark-mode .footer-sec {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  outline: none;
 }
 
 .submit-btn {
@@ -313,6 +382,7 @@ body.dark-mode .footer-sec {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
 }
 
 .submit-btn:hover {
