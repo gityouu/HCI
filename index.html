@@ -32,50 +32,52 @@
   </script>
 </head>
 <body>
+  <!-- HEADER -->
   <header class="header">
     <nav class="nav-bar">
+      <div class="nav-logo">
+        <a href="./index.html">
+          <img src="./images/Adobe Express - file.png" alt="Just Events Logo" class="logo">
+        </a>
+      </div>
       <div class="nav-links">
-        <a href="./index.html" class="">Home <i class='bx bxs-home-circle'></i></a>
-        <a href="#" class="login-trigger">Upcoming Events <i class='bx bxs-upvote'></i></a>
-        <a href="#About" class="">About Us <i class='bx bxs-user-account'></i></a>
+        <a href="./index.html" style="color: white !important;">Home <!--<i class='bx bxs-home-circle'></i></a>-->
+        <a href="./index.html#About">About Us <!--<i class='bx bxs-user-account'></i></a>-->
+      </div>
+      <!-- New CTA Buttons in the Navbar -->
+      <div class="nav-buttons">
+        <a href="#" class="hero-btn login-trigger" data-redirect="./regEvt.html">Register Event</a>
+        <a href="#" class="hero-btn login-trigger" data-redirect="./crtEvt.html">Create Event</a>
       </div>
       <div class="nav-actions">
         <i class='bx bx-moon' id="darkModeToggle"></i>
       </div>
     </nav>
-  </header>
-  <!-- PARALLAX HERO SECTION -->
-  <main class="parallax-section">
-    <div class="overlay"></div>
-    <div class="parallax-content">
-      <h1>Just Events</h1>
-      <p>Plan your professional events with us.</p>
-      <div class="hero-buttons">
-        <a href="#" class="hero-btn login-trigger" data-redirect="./regEvt.html">Register for an Event</a>
-        <a href="#" class="hero-btn login-trigger" data-redirect="./crtEvt.html">Create an Event</a>
-      </div>
-    </div>
-  </main>
-  <!---ABOUT SECTION-->
-  <section class="info-sec">
-    <div class="info-div">
-      <h1 id="About">About Us</h1>
-      <p class="info-msg">At <span class="bold-text">Just Events</span>, we believe that every occasion—big or 
-      small—deserves to be unforgettable. Our mission is to connect people with the perfect venues, resources, 
-      and experiences so they can focus on what truly matters: creating lasting memories. 
-      From intimate workshops to large-scale conferences, we help streamline the planning 
-      process with user-friendly tools and expert guidance every step of the way.
-
-      With a dedicated team of event enthusiasts, cutting-edge technology, and a commitment to exceptional service, 
-      Just Events aims to make event creation simpler, more accessible, and undeniably fun. 
-      Whether you’re a seasoned organizer or hosting your first gathering, our platform empowers you to design, promote, 
-      and manage your events effortlessly. Join us, and let’s make your next event a remarkable success!</p>
+  </header>  
+  <!-- ABOUT SECTION -->
+  <section class="about-section" id="About">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        At <span class="bold-text">Just Events</span>, we believe that every occasion—big or 
+        small—deserves to be unforgettable. Our mission is to connect people with the perfect venues, 
+        resources, and experiences so they can focus on what truly matters: creating lasting memories. 
+        From intimate workshops to large-scale conferences, we help streamline the planning process 
+        with user-friendly tools and expert guidance every step of the way.
+      </p>
+      <p>
+        With a dedicated team of event enthusiasts, cutting-edge technology, and a commitment to 
+        exceptional service, Just Events aims to make event creation simpler, more accessible, and 
+        undeniably fun. Whether you’re a seasoned organizer or hosting your first gathering, our platform 
+        empowers you to design, promote, and manage your events effortlessly. Join us, and let’s make your 
+        next event a remarkable success!
+      </p>
     </div>
   </section>
   <!-- FOOTER SECTION -->
-  <section class="footer-sec">
+  <footer class="footer-sec">
     <div class="footer-div">
-      <footer class="footer-items">
+      <div class="footer-items">
         <div class="footer-links">
           <a href=""><i class='bx bxl-twitter'></i></a>
           <a href=""><i class='bx bxl-instagram'></i></a>
@@ -90,9 +92,9 @@
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
         </div>
-      </footer>
+      </div>
     </div>
-  </section>
+  </footer>
   <!-- LOGIN MODAL -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
