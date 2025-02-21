@@ -212,12 +212,12 @@ body.dark-mode .nav-actions i{
   opacity: 0;
 }
 
-.event-description h3{
+.event-description h3 {
   padding-bottom: 15px;
   font-size: 1.5rem;
 }
 
-.event-description p{
+.event-description p {
   padding-bottom: 10px;
   font-size: 1.1rem;
 }
