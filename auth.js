@@ -3,18 +3,28 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebas
 
 // Firebase configuration
 const firebaseConfig = {
-apiKey: "AIzaSyD7ki8anhI7dJaDYAH_qPqscI5zg56C4ZE",
-authDomain: "hcii-eb2c9.firebaseapp.com",
-projectId: "hcii-eb2c9",
-storageBucket: "hcii-eb2c9.firebasestorage.app",
-messagingSenderId: "292510882725",
-appId: "1:292510882725:web:d9dd306aca2bed236a264c",
-measurementId: "G-FP25ZSWPHW"
+  apiKey: "AIzaSyD7ki8anhI7dJaDYAH_qPqscI5zg56C4ZE",
+  authDomain: "hcii-eb2c9.firebaseapp.com",
+  projectId: "hcii-eb2c9",
+  storageBucket: "hcii-eb2c9.firebasestorage.app",
+  messagingSenderId: "292510882725",
+  appId: "1:292510882725:web:d9dd306aca2bed236a264c",
+  measurementId: "G-FP25ZSWPHW"
 };
 
 // Initialize Firebase and get authentication instance
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+// Function to show the loading spinner
+function showLoadingSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'flex';
+}
+
+// Function to hide the loading spinner
+function hideLoadingSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'none';
+}
 
 // Function to handle login
 export function login() {
@@ -24,6 +34,8 @@ export function login() {
   if (!validateInput(emailElem) || !validateInput(passwordElem)) {
     return;
   }
+
+  showLoadingSpinner(); // Show loading spinner
 
   signInWithEmailAndPassword(auth, emailElem.value, passwordElem.value)
     .then((userCredential) => {
@@ -61,9 +73,11 @@ export function login() {
         passwordElem.classList.remove("shake");
       }, 500);
       showNotification("Enter valid credentials", "error");
+    })
+    .finally(() => {
+      hideLoadingSpinner(); // Hide loading spinner
     });
 }
-  
 
 // Function to handle sign up
 export function signUp() {
@@ -71,26 +85,31 @@ export function signUp() {
   const passwordElem = document.getElementById("signupPassword");
 
   if (!validateInput(emailElem) || !validateInput(passwordElem)) {
-      return;
+    return;
   }
+
+  showLoadingSpinner(); // Show loading spinner
 
   createUserWithEmailAndPassword(auth, emailElem.value, passwordElem.value)
     .then((userCredential) => {
-        emailElem.classList.add("success");
-        passwordElem.classList.add("success");
-        // Hide signup modal and show login modal (assuming modals exist)
-        document.getElementById('signupModal').style.display = 'none';
-        document.getElementById('loginModal').style.display = 'block';
-        showNotification("Signup Successful! Please log in.", "success");
+      emailElem.classList.add("success");
+      passwordElem.classList.add("success");
+      // Hide signup modal and show login modal (assuming modals exist)
+      document.getElementById('signupModal').style.display = 'none';
+      document.getElementById('loginModal').style.display = 'block';
+      showNotification("Signup Successful! Please log in.", "success");
     })
     .catch((error) => {
-        emailElem.classList.add("error", "shake");
-        passwordElem.classList.add("error", "shake");
-        setTimeout(() => {
-            emailElem.classList.remove("shake");
-            passwordElem.classList.remove("shake");
-    }, 500);
-        showNotification("Enter valid credentials", "error");
+      emailElem.classList.add("error", "shake");
+      passwordElem.classList.add("error", "shake");
+      setTimeout(() => {
+        emailElem.classList.remove("shake");
+        passwordElem.classList.remove("shake");
+      }, 500);
+      showNotification("Enter valid credentials", "error");
+    })
+    .finally(() => {
+      hideLoadingSpinner(); // Hide loading spinner
     });
 }
 
@@ -99,29 +118,36 @@ export function resetPassword() {
   const emailElem = document.getElementById("resetEmail");
 
   if (!validateInput(emailElem)) {
-      return;
+    return;
   }
+
+  showLoadingSpinner(); // Show loading spinner
 
   sendPasswordResetEmail(auth, emailElem.value)
     .then(() => {
-    emailElem.classList.add("success");
-    showNotification("Password reset email sent! Check your inbox.", "success");
-    setTimeout(() => {
+      emailElem.classList.add("success");
+      showNotification("Password reset email sent! Check your inbox.", "success");
+      setTimeout(() => {
         document.getElementById('resetModal').style.display = 'none';
         document.getElementById('loginModal').style.display = 'block';
-    }, 1000);
+      }, 1000);
     })
     .catch((error) => {
-    emailElem.classList.add("error", "shake");
-    setTimeout(() => {
+      emailElem.classList.add("error", "shake");
+      setTimeout(() => {
         emailElem.classList.remove("shake");
-    }, 500);
-    showNotification("Enter valid credentials", "error");
+      }, 500);
+      showNotification("Enter valid credentials", "error");
+    })
+    .finally(() => {
+      hideLoadingSpinner(); // Hide loading spinner
     });
 }
 
 // Function to handle logout
 export function logout() {
+  showLoadingSpinner(); // Show loading spinner
+
   signOut(auth)
     .then(() => {
       showNotification("Logout Successful!", "success");
@@ -131,6 +157,9 @@ export function logout() {
     })
     .catch((error) => {
       showNotification("Error during logout. Please try again.", "error");
+    })
+    .finally(() => {
+      hideLoadingSpinner(); // Hide loading spinner
     });
 }
 
@@ -141,21 +170,21 @@ function showNotification(message, type) {
   notification.innerText = message;
   document.body.appendChild(notification);
   setTimeout(() => {
-      notification.remove();
+    notification.remove();
   }, 3000);
 }
 
 // Helper function to validate input fields
 function validateInput(input) {
   if (input.value.trim() === "") {
-      input.classList.add("error", "shake");
-      setTimeout(() => {
+    input.classList.add("error", "shake");
+    setTimeout(() => {
       input.classList.remove("shake");
-      }, 500);
-      return false;
+    }, 500);
+    return false;
   } else {
-      input.classList.remove("error");
-      input.classList.add("success");
-      return true;
+    input.classList.remove("error");
+    input.classList.add("success");
+    return true;
   }
 }

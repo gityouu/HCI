@@ -26,92 +26,109 @@ const eventsQuery = query(eventsCol, orderBy("eventDate", "asc"));
 const upcomingEventsContainer = document.getElementById("upcoming-events");
 const previousEventsContainer = document.getElementById("previous-events");
 
+// Function to show the loading spinner
+function showLoadingSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'flex';
+}
+
+// Function to hide the loading spinner
+function hideLoadingSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'none';
+}
+
 // Listen to realtime updates
-onSnapshot(eventsQuery, (snapshot) => {
-  // Clear previous content
-  upcomingEventsContainer.innerHTML = "";
-  previousEventsContainer.innerHTML = "";
+onSnapshot(eventsQuery, async (snapshot) => {
+  try {
+    showLoadingSpinner(); // Show loading spinner
 
-  const now = new Date();
-  const threeDaysMs = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
+    // Clear previous content
+    upcomingEventsContainer.innerHTML = "";
+    previousEventsContainer.innerHTML = "";
 
-  let hasUpcomingEvents = false;
-  let hasPreviousEvents = false;
+    const now = new Date();
+    const threeDaysMs = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
 
-  snapshot.forEach((doc) => {
-    const event = doc.data();
-    const eventDateObj = new Date(event.eventDate);
+    let hasUpcomingEvents = false;
+    let hasPreviousEvents = false;
 
-    // Create an event card
-    const card = document.createElement("div");
-    card.classList.add("event-card");
-    card.innerHTML = `
-      <img src="${event.imageDataUrl ? event.imageDataUrl : './images/odiseo-castrejon-1CsaVdwfIew-unsplash.jpg'}" alt="${event.eventName}">
-      <div class="event-info">
-        <div class="text-content">
-          <h3>${event.eventName}</h3>
-          <p>Date: ${eventDateObj.toLocaleDateString()}</p>
-          <p>Location: ${event.venue}</p>
-          <p>Price: ${event.price && event.price !== "Free" ? "$" + event.price : "Free"}</p>
+    snapshot.forEach((doc) => {
+      const event = doc.data();
+      const eventDateObj = new Date(event.eventDate);
+
+      // Create an event card
+      const card = document.createElement("div");
+      card.classList.add("event-card");
+      card.innerHTML = `
+        <img src="${event.imageDataUrl ? event.imageDataUrl : './images/odiseo-castrejon-1CsaVdwfIew-unsplash.jpg'}" alt="${event.eventName}">
+        <div class="event-info">
+          <div class="text-content">
+            <h3>${event.eventName}</h3>
+            <p>Date: ${eventDateObj.toLocaleDateString()}</p>
+            <p>Location: ${event.venue}</p>
+            <p>Price: ${event.price && event.price !== "Free" ? "$" + event.price : "Free"}</p>
+          </div>
+          <a href="#" class="details-btn" data-event-id="${doc.id}" data-event-price="${event.price}" data-event-date="${event.eventDate}">Register Here</a>
         </div>
-        <a href="#" class="details-btn" data-event-id="${doc.id}" data-event-price="${event.price}" data-event-date="${event.eventDate}">Register Here</a>
-      </div>
-      <div class="event-description">
-        <h3>${event.eventName}</h3>
-        <p>${event.description}</p>
-        <p>Date: ${eventDateObj.toLocaleDateString()}</p>
-      </div>
-    `;
+        <div class="event-description">
+          <h3>${event.eventName}</h3>
+          <p>${event.description}</p>
+          <p>Date: ${eventDateObj.toLocaleDateString()}</p>
+        </div>
+      `;
 
-    // If the event date is in the future, add to upcoming events.
-    if (eventDateObj > now) {
-      upcomingEventsContainer.appendChild(card);
-      hasUpcomingEvents = true;
-    } 
-    // If the event is in the past but not older than 3 days, add to previous events.
-    else if ((now - eventDateObj) <= threeDaysMs) {
-      previousEventsContainer.appendChild(card);
-      hasPreviousEvents = true;
-    }
-    // Otherwise, events older than 3 days are not displayed.
-
-    // Attach event listener to the "Register Details" button
-    const registerBtn = card.querySelector(".details-btn");
-    registerBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const eventId = registerBtn.getAttribute("data-event-id");
-      const eventPrice = registerBtn.getAttribute("data-event-price");
-      const eventDate = new Date(registerBtn.getAttribute("data-event-date"));
-
-      // If the event is in the past, registration is closed.
-      if (eventDate < now) {
-        alert("Registration for this event is closed.");
-      } else {
-        openRegisterModal(eventId, eventPrice);
+      // If the event date is in the future, add to upcoming events.
+      if (eventDateObj > now) {
+        upcomingEventsContainer.appendChild(card);
+        hasUpcomingEvents = true;
+      } 
+      // If the event is in the past but not older than 3 days, add to previous events.
+      else if ((now - eventDateObj) <= threeDaysMs) {
+        previousEventsContainer.appendChild(card);
+        hasPreviousEvents = true;
       }
+
+      // Attach event listener to the "Register Details" button
+      const registerBtn = card.querySelector(".details-btn");
+      registerBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const eventId = registerBtn.getAttribute("data-event-id");
+        const eventPrice = registerBtn.getAttribute("data-event-price");
+        const eventDate = new Date(registerBtn.getAttribute("data-event-date"));
+
+        // If the event is in the past, registration is closed.
+        if (eventDate < now) {
+          alert("Registration for this event is closed.");
+        } else {
+          openRegisterModal(eventId, eventPrice);
+        }
+      });
     });
-  });
 
-  // Display message if there are no upcoming events
-  if (!hasUpcomingEvents) {
-    const noUpcomingEventsMessage = document.createElement("p");
-    noUpcomingEventsMessage.textContent = "No upcoming events...";
-    noUpcomingEventsMessage.style.textAlign = "center";
-    noUpcomingEventsMessage.style.marginTop = "20px";
-    noUpcomingEventsMessage.style.marginBottom = "20px";
-    noUpcomingEventsMessage.style.fontSize = "1.3rem";
-    upcomingEventsContainer.appendChild(noUpcomingEventsMessage);
-  }
+    // Display message if there are no upcoming events
+    if (!hasUpcomingEvents) {
+      const noUpcomingEventsMessage = document.createElement("p");
+      noUpcomingEventsMessage.textContent = "No upcoming events...";
+      noUpcomingEventsMessage.style.textAlign = "center";
+      noUpcomingEventsMessage.style.marginTop = "20px";
+      noUpcomingEventsMessage.style.marginBottom = "20px";
+      noUpcomingEventsMessage.style.fontSize = "1.3rem";
+      upcomingEventsContainer.appendChild(noUpcomingEventsMessage);
+    }
 
-  // Display message if there are no previous events
-  if (!hasPreviousEvents) {
-    const noPreviousEventsMessage = document.createElement("p");
-    noPreviousEventsMessage.textContent = "No previous events...";
-    noPreviousEventsMessage.style.textAlign = "center";
-    noPreviousEventsMessage.style.marginTop = "20px";
-    noPreviousEventsMessage.style.fontSize = "1.3rem";
-    noPreviousEventsMessage.style.marginBottom = "20px";
-    previousEventsContainer.appendChild(noPreviousEventsMessage);
+    // Display message if there are no previous events
+    if (!hasPreviousEvents) {
+      const noPreviousEventsMessage = document.createElement("p");
+      noPreviousEventsMessage.textContent = "No previous events...";
+      noPreviousEventsMessage.style.textAlign = "center";
+      noPreviousEventsMessage.style.marginTop = "20px";
+      noPreviousEventsMessage.style.fontSize = "1.3rem";
+      noPreviousEventsMessage.style.marginBottom = "20px";
+      previousEventsContainer.appendChild(noPreviousEventsMessage);
+    }
+  } catch (error) {
+    console.error("Error fetching events: ", error);
+  } finally {
+    hideLoadingSpinner(); // Hide loading spinner
   }
 });
 
@@ -164,6 +181,8 @@ function openRegisterModal(eventId, eventPrice) {
       registeredAt: new Date()
     };
 
+    showLoadingSpinner(); // Show loading spinner
+
     try {
       await addDoc(collection(db, "registrations"), registrationData);
       alert(`Registration successful!${uniqueNumber ? ` Your unique number is: ${uniqueNumber}` : ''}`);
@@ -171,6 +190,8 @@ function openRegisterModal(eventId, eventPrice) {
     } catch (error) {
       console.error("Error registering for event: ", error);
       alert("Error registering for event. Please try again.");
+    } finally {
+      hideLoadingSpinner(); // Hide loading spinner
     }
   });
 }

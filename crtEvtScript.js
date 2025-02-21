@@ -17,6 +17,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Function to show the loading spinner
+function showLoadingSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'flex';
+}
+
+// Function to hide the loading spinner
+function hideLoadingSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'none';
+}
+
 // Variable declarations
 const steps = document.querySelectorAll(".step");
 const progressBar = document.querySelector(".progress-bar");
@@ -224,6 +234,8 @@ modalOkBtn.addEventListener('click', async () => {
         imageDataUrl: imageDataUrl // Include the image data URL
     };
 
+    showLoadingSpinner(); // Show loading spinner
+
     try {
         // Save the event data to Firestore in the "events" collection
         const docRef = await addDoc(collection(db, "events"), eventData);
@@ -232,6 +244,8 @@ modalOkBtn.addEventListener('click', async () => {
     } catch (e) {
         alert("Error creating event: " + e.message);
         return;
+    } finally {
+        hideLoadingSpinner(); // Hide loading spinner
     }
     
     // Close the modal after saving the event
