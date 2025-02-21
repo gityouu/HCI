@@ -23,8 +23,8 @@ body.dark-mode {
     transform: translateX(-50%);
     width: 100%;
     z-index: 1000;
-    background: #111111; /* black header color */
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    background: #f1ebeb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
 }
 
 /* NAV BAR */
@@ -42,7 +42,7 @@ body.dark-mode {
 /* LOGO */
 .nav-logo img.logo {
     height: 50px; /* Adjust as needed */
-    width: auto;
+    width: 100px;
 }
 
 /* NAV LINKS */
@@ -52,14 +52,14 @@ body.dark-mode {
 }
 
 .nav-links a {
-    color: #afa9a9;
+    color: #555;
     text-decoration: none;
     font-size: 1.2rem;
     transition: color 0.3s, transform 0.3s;
 }
 
 .nav-links a:hover {
-    color: #fff;
+    color: #111;
 }
 
 /* NAV ACTIONS */
@@ -74,7 +74,7 @@ body.dark-mode {
 }
 
 .nav-buttons .hero-btn {
-    background-color: goldenrod;
+    background-color: rgb(248, 218, 142);
     color: #000;
     padding: 8px 12px;
     border-radius: 5px;
@@ -86,18 +86,18 @@ body.dark-mode {
 }
 
 .nav-buttons .hero-btn:hover {
-    background-color: gold;
+    background-color: goldenrod;
 }
 
 .nav-actions i {
-    color: #fff;
+    color: #555;
     font-size: 1.5rem;
     cursor: pointer;
     transition: transform 0.3s;
 }
 
 .nav-actions i:hover {
-    color: #ccc;
+    color: #111;
     transform: translateY(-1px);
 }
 
@@ -107,7 +107,7 @@ body.dark-mode .header {
 }
 
 body.dark-mode .nav-links a {
-    color: #ccc;
+    color: #ccc !important;
 }
 
 body.dark-mode .nav-links a:hover {
@@ -225,7 +225,7 @@ body.dark-mode .about-section {
 
 /* Dark Mode Overrides for Footer */
 body.dark-mode .footer-sec {
-    background: #000;
+    background: #111;
 }
 
 /* MODAL STYLES (LOGIN, SIGNUP, RESET) */
@@ -373,12 +373,13 @@ body.dark-mode .modal-content button:hover {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .nav-bar {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     .nav-links {
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
     }
 
