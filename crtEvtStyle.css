@@ -70,18 +70,24 @@ body.dark-mode .nav-actions i {
     color: #fff;
 }
 
-/* Container for form in the hero section */
+.main-content {
+    min-height: calc(100vh - 80px); /* fill remaining viewport below header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* some horizontal padding if needed */
+  }
+
+
 .form-container {
     background: #ccc;
     color: #333;
     width: 50%;
-    max-width: 900px;
+    max-width: 600px; /* optional max width for smaller screens */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    margin-top: 70px;
-    align-items: center;
-    justify-content: center;
+    margin: 0 auto; /* center horizontally if smaller than 50% */
 }
 
 body.dark-mode .form-container {
