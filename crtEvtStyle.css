@@ -5,18 +5,18 @@
     font-family: Arial, Helvetica, sans-serif;
   }
   
-  body {
+body {
     transition: background-color 0.3s, color 0.3s;
-  }
+}
   
   /* Dark Mode */
-  body.dark-mode {
+body.dark-mode {
     background-color: #121212;
     color: white;
-  }
+}
   
   /* HEADER */
-  .header {
+.header {
     position: fixed;
     top: 0;
     left: 50%;
@@ -24,11 +24,10 @@
     width: 100%;
     z-index: 1000;
     background: #f1ebeb;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-  }
+}
   
   /* NAV BAR */
-  .nav-bar {
+.nav-bar {
     display: flex;
     align-items: center;
     max-width: 1000px;
@@ -36,134 +35,56 @@
     width: 100%;
     color: #fbfbfb;
     justify-content: space-between;
-    padding: 10px 20px;
-  }
+}
   
   /* LOGO */
-  .nav-logo img.logo {
+.nav-logo img.logo {
     height: 50px; /* Adjust as needed */
     width: 100px;
-  }
-  
-  /* NAV LINKS */
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    color: #555;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: color 0.3s, transform 0.3s;
-  }
-  
-  .nav-links a:hover {
-    color: #111;
-  }
+}
   
   /* NAV ACTIONS */
-  .nav-actions {
+.nav-actions {
     display: flex;
-  }
+}
   
-  /* NAV BUTTONS in Navbar */
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
   
-  .nav-buttons .hero-btn {
-    background-color: rgb(248, 218, 142);
-    color: #000;
-    padding: 8px 12px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: background 0.3s, transform 0.3s;
-    outline: none;
-    border: none;
-  }
-  
-  .nav-buttons .hero-btn:hover {
-    background-color: goldenrod;
-  }
-  
-  .nav-actions i {
+.nav-actions i {
     color: #555;
     font-size: 1.5rem;
     cursor: pointer;
     transition: transform 0.3s;
-  }
+}
   
-  .nav-actions i:hover {
+.nav-actions i:hover {
     color: #111;
     transform: translateY(-1px);
-  }
+}
   
   /* Dark Mode Overrides for Header */
-  body.dark-mode .header {
+body.dark-mode .header {
     background-color: #222;
-  }
-  
-  body.dark-mode .nav-links a {
-    color: #ccc !important;
-  }
-  
-  body.dark-mode .nav-links a:hover {
-    color: #fff;
-  }
-  
-  body.dark-mode .nav-actions i {
-    color: #fff;
-  }
-
-/* PARALLAX HERO SECTION */
-.parallax-section {
-    position: relative;
-    height: 100vh;
-    background-image: url("./images/charlesdeluvio-ew3sC-F6d_c-unsplash (1).jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
-/* Overlay for text contrast */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
+  
+body.dark-mode .nav-actions i {
+    color: #fff;
 }
 
 /* Container for form in the hero section */
-.parallax-content.form-container {
-    position: relative;
-    z-index: 2;
-    background: linear-gradient(to right, #fff, #ccc);
+.form-container {
+    background: #ccc;
     color: #333;
     width: 50%;
     max-width: 900px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-top: 70px;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Dark Mode for parallax section */
-body.dark-mode .parallax-section {
-    background-color: #1e1e1e; /* fallback if fixed background not supported */
-}
-body.dark-mode .overlay {
-    background: rgba(0, 0, 0, 0.6);
-}
-body.dark-mode .parallax-content.form-container {
+body.dark-mode .form-container {
     background-color: #333;
     color: aliceblue;
 }
@@ -462,65 +383,76 @@ body.dark-mode .modal-content {
     border: 1px solid #444;
 }
 
-/* Footer Section */
+/* FOOTER STYLING */
 .footer-sec {
-    background-color: #333;
+    background-color: #000;
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    bottom: 0;
 }
 
 .footer-div {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .footer-items {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    padding: 0 20px; /* Horizontal padding inside the container */
 }
 
-.footer-links a {
-    display: inline-block;
-    color: aliceblue;
-    margin: 0 10px;
-    font-size: 1.5rem;
-    transition: transform 0.3s ease, color 0.3s ease;
+.footer-links,
+.footer-info,
+.footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between items */
 }
 
-.footer-links a:hover {
-    transform: translateY(-5px);
+.footer-links a,
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.3s;
 }
 
-/* Assign custom colors per link using nth-child() */
-/* Social Links (Twitter, Instagram, Snapchat) */
-.footer-links a:nth-child(1):hover {
-    color: #1DA1F2; /* Twitter Blue */
-}
-.footer-links a:nth-child(2):hover {
-    color: #E1306C; /* Instagram Pink */
-}
-.footer-links a:nth-child(3):hover {
-    color: #FFFC00; /* Snapchat Yellow */
+.footer-links a:hover,
+.footer-nav a:hover {
+    color: #ccc;
+    transform: translateY(-2px);
 }
 
 .footer-info p {
-    margin: 5px 0;
-}
-
-.footer-nav a {
-    color: #fff;
     margin: 0 10px;
-    text-decoration: none;
 }
 
-body.dark-mode .footer-sec{
-    background: #000;
+/* Separator Styles */
+.footer-separator {
+    height: 40px; /* Adjust height as needed */
+    width: 2px;
+    background-color: #fff;
+    margin: 0 20px; /* Space around the separator */
+}
+
+/* Social links custom colors */
+.footer-links a:nth-child(1):hover {
+    color: #1DA1F2;
+}
+.footer-links a:nth-child(2):hover {
+    color: #E1306C;
+}
+.footer-links a:nth-child(3):hover {
+    color: #FFFC00;
+}
+
+/* Dark Mode Overrides for Footer */
+body.dark-mode .footer-sec {
+    background: #111;
 }
 
 /* Loading Spinner Styles */
