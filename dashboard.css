@@ -182,64 +182,74 @@ body.dark-mode .dropdown-menu a:hover {
     transition: background-color 0.3s;
 }
 
-
-/* Footer Section */
+/* FOOTER STYLING */
 .footer-sec {
-    background-color: #333;
+    background-color: #000;
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    bottom: 0;
 }
 
 .footer-div {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .footer-items {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    padding: 0 20px; /* Horizontal padding inside the container */
 }
 
-.footer-links a {
-    display: inline-block;
-    color: aliceblue;
-    margin: 0 10px;
-    font-size: 1.5rem;
-    transition: transform 0.3s ease, color 0.3s ease;
+.footer-links,
+.footer-info,
+.footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between items */
 }
 
-.footer-links a:hover {
-    transform: translateY(-5px);
+.footer-links a,
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.3s;
 }
 
-/* Assign custom colors per link using nth-child() */
-/* Social Links (Twitter, Instagram, Snapchat) */
-.footer-links a:nth-child(1):hover {
-    color: #1DA1F2; /* Twitter Blue */
-}
-.footer-links a:nth-child(2):hover {
-    color: #E1306C; /* Instagram Pink */
-}
-.footer-links a:nth-child(3):hover {
-    color: #FFFC00; /* Snapchat Yellow */
+.footer-links a:hover,
+.footer-nav a:hover {
+    color: #ccc;
+    transform: translateY(-2px);
 }
 
 .footer-info p {
-    margin: 5px 0;
-}
-
-.footer-nav a {
-    color: aliceblue;
     margin: 0 10px;
-    text-decoration: none;
 }
 
-body.dark-mode .footer-sec{
-    background: #000;
+/* Separator Styles */
+.footer-separator {
+    height: 40px; /* Adjust height as needed */
+    width: 2px;
+    background-color: #fff;
+    margin: 0 20px; /* Space around the separator */
+}
+
+/* Social links custom colors */
+.footer-links a:nth-child(1):hover {
+    color: #1DA1F2;
+}
+.footer-links a:nth-child(2):hover {
+    color: #E1306C;
+}
+.footer-links a:nth-child(3):hover {
+    color: #FFFC00;
+}
+
+/* Dark Mode Overrides for Footer */
+body.dark-mode .footer-sec {
+    background: #111;
 }
