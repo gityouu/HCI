@@ -426,10 +426,67 @@ body.dark-mode .modal-content button:hover {
     .intro-div {
         padding-right: 0;
         margin-bottom: 20px;
+        padding-left: 0 !important;
+    }
+
+    .intro-div h1,
+    .intro-div p {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
     .intro-img {
         text-align: center;
+        padding-top: 0;
+    }
+
+    .intro-img img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-bar {
+        padding: 10px;
+    }
+
+    .nav-logo img.logo {
+        height: 30px;
+        width: 60px;
+    }
+
+    .nav-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .footer-items {
+        padding: 10px;
+    }
+
+    .footer-links,
+    .footer-info,
+    .footer-nav {
+        gap: 10px;
+    }
+
+    .footer-links a,
+    .footer-nav a {
+        font-size: 0.9rem;
+    }
+
+    .intro-section {
+        padding: 20px 10px;
+    }
+
+    .intro-div h1 {
+        font-size: 2rem;
+    }
+
+    .intro-div p {
+        font-size: 0.9rem;
     }
 }
 

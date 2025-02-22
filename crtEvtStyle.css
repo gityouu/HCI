@@ -7,6 +7,8 @@
   
 body {
     transition: background-color 0.3s, color 0.3s;
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
 }
   
   /* Dark Mode */
@@ -71,6 +73,7 @@ body.dark-mode .nav-actions i {
 }
 
 .main-content {
+    background-color: #f9f9f9;
     min-height: calc(100vh - 80px); /* fill remaining viewport below header */
     display: flex;
     justify-content: center;
@@ -93,6 +96,10 @@ body.dark-mode .nav-actions i {
 body.dark-mode .form-container {
     background-color: #333;
     color: aliceblue;
+}
+
+body.dark-mode .main-content{
+    background-color: #111;
 }
 
 /* PROGRESS BAR */
@@ -458,7 +465,7 @@ body.dark-mode .modal-content {
 
 /* Dark Mode Overrides for Footer */
 body.dark-mode .footer-sec {
-    background: #111;
+    background: #000;
 }
 
 /* Loading Spinner Styles */
@@ -488,4 +495,98 @@ body.dark-mode .footer-sec {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-logo img.logo {
+        height: 40px;
+        width: 80px;
+    }
+
+    .nav-actions {
+        margin-top: 10px;
+    }
+
+    .form-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .steps {
+        width: 90%;
+    }
+
+    .step {
+        width: 30px;
+        height: 30px;
+    }
+
+    input, textarea {
+        width: 90%;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .footer-items {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-links,
+    .footer-info,
+    .footer-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-separator {
+        display: none;
+    }
+}
+
+/* Additional responsive adjustments for footer and nav bar */
+@media (max-width: 480px) {
+    .nav-bar {
+        padding: 10px;
+    }
+
+    .nav-logo img.logo {
+        height: 30px;
+        width: 60px;
+    }
+
+    .nav-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .footer-items {
+        padding: 10px;
+    }
+
+    .footer-links,
+    .footer-info,
+    .footer-nav {
+        gap: 10px;
+    }
+
+    .footer-links a,
+    .footer-nav a {
+        font-size: 0.9rem;
+    }
 }
