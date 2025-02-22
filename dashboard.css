@@ -29,6 +29,12 @@ body.dark-mode {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
+.header.scrollable {
+    position: relative;
+    overflow-y: auto;
+    max-height: 60px; /* Adjust the max height as needed */
+}
+
 /* NAV BAR */
 .nav-bar {
     display: flex;

@@ -8,7 +8,7 @@
 body {
     transition: background-color 0.3s, color 0.3s;
     height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
   
   /* Dark Mode */
@@ -25,7 +25,13 @@ body.dark-mode {
     transform: translateX(-50%);
     width: 100%;
     z-index: 1000;
-    background: #f1ebeb;
+    background: #f2f2f2;
+}
+
+.header.scrollable {
+    position: relative;
+    overflow-y: auto;
+    max-height: 60px; /* Adjust the max height as needed */
 }
   
   /* NAV BAR */
@@ -47,7 +53,41 @@ body.dark-mode {
   
   /* NAV ACTIONS */
 .nav-actions {
-    display: flex;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 125%; /* Position the tooltip above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%; /* Arrow at the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.nav-actions:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
   
 .nav-actions i {
@@ -72,7 +112,7 @@ body.dark-mode .nav-actions i {
 }
 
 .main-content {
-    background-color: #f9f9f9;
+    background-color: #fff;
     min-height: calc(100vh - 80px); /* fill remaining viewport below header */
     display: flex;
     justify-content: center;
@@ -86,14 +126,16 @@ body.dark-mode .nav-actions i {
     width: 50%;
     max-width: 600px; /* optional max width for smaller screens */
     padding: 20px;
+    border: 1px solid #111;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
     margin: 0 auto; /* center horizontally if smaller than 50% */
 }
 
 body.dark-mode .form-container {
     background-color: #333;
-    color: aliceblue;
+    color: #ccc;
+    border: 1px solid #ccc;
 }
 
 body.dark-mode .main-content{
@@ -229,7 +271,7 @@ input, textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
-    background: #faf8f8;
+    background: #f7f7f7;
 }
 textarea {
     min-height: 80px;
