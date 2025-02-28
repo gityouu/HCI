@@ -121,14 +121,14 @@ body.dark-mode .nav-actions i {
 }
 
 .form-container {
-    background: #ccc;
+    background: #fff;
     color: #333;
     width: 50%;
     max-width: 600px; /* optional max width for smaller screens */
     padding: 20px;
-    border: 1px solid #111;
+    /* border: 1px solid #111; */
     border-radius: 10px;
-    /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
     margin: 0 auto; /* center horizontally if smaller than 50% */
 }
 
@@ -178,12 +178,13 @@ body.dark-mode .progress-bar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #666;
+    background: rgb(141, 141, 255);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     transition: 0.4s;
+    color: #fff;
 }
 
 body.dark-mode .step{
@@ -192,7 +193,7 @@ body.dark-mode .step{
 }
 
 .step.active {
-    background: #222;
+    background: blue;
     color: aliceblue;
 }
 
@@ -332,7 +333,7 @@ button {
     padding: 10px 15px;
     margin: 10px 5px;
     border: none;
-    background: #000;
+    background: green;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -340,7 +341,7 @@ button {
     transition: background 0.3s;
 }
 button:hover {
-    background: #333;
+    background: rgb(0, 182, 0);
 }
 .next-btn {
     margin-left: auto;

@@ -4,89 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard</title>
-  <link rel="stylesheet" href="dashboard.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
-  <!-- Dark Mode & Auth Scripts -->
-  <script type="module" src="./dark-mode.js"></script>
-  <script type="module" src="./auth.js"></script>
-  <script type="module">
-    import { logout } from "./auth.js";
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // Simulate retrieving user email (replace with actual logic)
-      const userEmail = "example@domain.com";
-      const profileButton = document.getElementById("profileButton");
-      if (profileButton) {
-        profileButton.textContent = userEmail.substring(0, 2).toUpperCase();
-      }
-
-      // Toggle dropdown on profile button click
-      profileButton.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const dropdown = document.querySelector(".dropdown-menu");
-        dropdown.classList.toggle("show");
-      });
-
-      // Logout link in the dropdown
-      const logoutLink = document.getElementById("logout");
-      if (logoutLink) {
-        logoutLink.addEventListener("click", () => {
-          logout();
-        });
-      }
-
-      // Hide dropdown if clicking outside
-      window.addEventListener("click", () => {
-        document.querySelector(".dropdown-menu").classList.remove("show");
-      });
-    });
-  </script>
+  <link rel="stylesheet" href="dashboard.css">
+  <script type="module" src="dark-mode.js"></script>
+  <script type="module" src="./dashboardd.js" defer></script>
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="header">
+  <header class="header1">
     <nav class="nav-bar">
-      <div class="nav-links">
-        <a href="./index.html">Home <i class='bx bxs-home-circle'></i></a>
-        <a href="./index.html#About">About Us <i class='bx bxs-user-account'></i></a>
+      <div class="nav-logo">
+        <a href="./index.html">
+          <img src="./images/Adobe Express - file.png" alt="Just Events Logo" class="logo">
+        </a>
       </div>
       <div class="nav-actions">
-        <div class="profile-dropdown">
-            <button id="profileButton" class="profile-btn"></button>
-            <div class="dropdown-menu">
-              <a href="./settings.html">Settings</a>
-              <a href="#" id="logout">Logout</a>
-            </div>
-        </div>
-          <i class='bx bx-moon' id="darkModeToggle"></i>
+        <!-- Profile icon to open settings panel -->
+        <i class='bx bxs-user-circle' id="profileIcon"></i>
+        <i class='bx bx-moon' id="darkModeToggle"></i>
+        <span class="tooltip" id="darkModeTooltip">Switch to dark mode</span>
       </div>
     </nav>
+    <hr>
   </header>
-  <!-- DASHBOARD CONTENT -->
-  <main class="dashboard-content">
-   
-  </main>
-  <!-- FOOTER SECTION -->
-  <section class="footer-sec">
-    <div class="footer-div">
-      <footer class="footer-items">
-        <div class="footer-links">
-          <a href=""><i class='bx bxl-twitter'></i></a>
-          <a href=""><i class='bx bxl-instagram'></i></a>
-          <a href=""><i class='bx bxl-snapchat'></i></a>
-        </div>
-        <div class="footer-info">
-          <p>&copy; 2025 Just Events. All rights reserved.</p>
-          <p><a href="mailto:info@justevents.com">info@justevents.com</a></p>
-          <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
-        </div>
-        <div class="footer-nav">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-        </div>
-      </footer>
-    </div>
+  <section class="banner">
+    <p class="banner-txt">Welcome to your dashboard!</p>
   </section>
+  <!-- Sidebar Panel -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-header">
+      <h3>User Profile</h3>
+      <span id="closeSidebar" class="close-btn" style="color: #fff;">&times;</span>
+    </div>
+    <!--Profile Avatar-->
+    <div class="profile-avatar">
+      <img id="profileAvatar" src="" alt="Profile Avatar">
+    </div>
+    <div class="sidebar-content">
+      <p><strong>Email</strong> <span id="userEmail" style="font-size: small;"></span></p>
+      <!-- You can include additional user settings here -->
+    </div>
+  </div>
+  <div class="sidebar-bottom">
+    <button id="openSettingsModal" class="accSettings-btn">Settings</button>
+    <button id="logoutButton" class="logout-btn">Logout</button>
+  </div>
+  <!-- Account Settings Modal -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <span id="closeSettingsModal" class="close-btn">&times;</span>
+      <h2>Account Settings</h2>
+      <p><strong style="font-size: large; color: #444;">Email</strong> <span id="modalUserEmail" style="font-size: 1rem;">Loading...</span></p>
+
+      <h3>Update Password</h3>
+      <input type="password" id="newPassword" placeholder="New Password">
+      <div>
+        <button id="updatePasswordBtn" class="sidebar-btn">Update Password</button>
+      </div>
+      <!-- <h3>Delete Account</h3> -->
+      <button id="deleteAccountBtn" class="delete-btn">Delete Account</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

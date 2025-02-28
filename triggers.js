@@ -1,22 +1,26 @@
 // -- Login modal trigger --
 document.addEventListener("DOMContentLoaded", () => {
   const loginTriggers = document.querySelectorAll('.login-trigger');
+
   loginTriggers.forEach(trigger => {
     trigger.addEventListener("click", (e) => {
       e.preventDefault();
-      // Get the redirection target from data attribute; default to "./regEvt.html"
-      const redirectTarget = trigger.getAttribute("data-redirect") || "./regEvt.html";
-      // Set expiration time to 15 seconds from now (in milliseconds)
-      const expires = Date.now() + 15 * 1000;
-      // Store as a JSON string
+
+      // Get the redirection target from data attribute; default to "home page"
+      const redirectTarget = trigger.getAttribute("data-redirect") || "./index.html";
+
+      // Set expiration time to 60 seconds from now
+      const expires = Date.now() + 60000;
+
+      // Store the redirection target
       localStorage.setItem("redirectAfterLogin", JSON.stringify({ redirect: redirectTarget, expires }));
-      
+
       // Open the login modal or redirect to login page...
       const loginModal = document.getElementById("loginModal");
       if (loginModal) {
         loginModal.style.display = "block";
       } else {
-        window.location.href = "./login.html";
+        window.location.href = "./index.html";
       }
     });
   });
