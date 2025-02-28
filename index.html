@@ -8,7 +8,7 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css" />
-  <script type="module" src="./authh.js"></script>
+  <script type="module" src="./authh.js" defer></script>
   <script type="module" src="./dark-mode.js"></script>
   <script type="module" src="./triggers.js"></script>
   <!-- <script type="module" src="./dashboardd.js" defer></script> -->
@@ -179,6 +179,7 @@
         <i class='bx bx-hide' id="toggleLoginPassword"></i>
       </div>
       <button id="login">Login</button>
+      <div id="loginMessage" class="form-message"></div>
       <p><a href="#" id="openReset">Forgot Password?</a></p>
       <p>Don't have an account? <a href="#" id="openSignup">Sign up</a></p>
     </div>
@@ -199,6 +200,7 @@
         <i class='bx bx-hide' id="toggleSignupPassword"></i>
       </div>
       <button id="signup">Sign Up</button>
+      <div id="signupMessage" class="form-message"></div>
       <p>Already have an account? <a href="#" id="openLogin">Login</a></p>
     </div>
   </div>
@@ -213,12 +215,9 @@
         <span class="asterisk-inside">*</span>
       </div>
       <button id="resetButton">Reset Password</button>
+      <div id="resetMessage" class="form-message"></div>
       <p>Remembered your password? <a href="#" id="openLoginFromReset">Login</a></p>
     </div>
-  </div>
-  <!-- Loading Spinner -->
-  <div id="loadingSpinner" class="loading-spinner">
-    <div class="spinner"></div>
   </div>
 </body>
 </html>
