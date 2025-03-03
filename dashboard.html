@@ -11,7 +11,7 @@
   <script type="module" src="./dashboardd.js" defer></script>
 </head>
 <body>
-  <header class="header1">
+  <header class="header">
     <nav class="nav-bar">
       <div class="nav-logo">
         <a href="./index.html">
@@ -27,45 +27,132 @@
     </nav>
     <hr>
   </header>
+  <!-- Sidebar Panel -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-header">
+        <h3>User Profile</h3>
+        <span id="closeSidebar" class="close-btn" style="color: #fff;">&times;</span>
+      </div>
+      <!--Profile Avatar-->
+      <div class="profile-avatar">
+        <img id="profileAvatar" src="" alt="Profile Avatar">
+      </div>
+      <div class="sidebar-content">
+        <p><strong>Email</strong> <span id="userEmail" style="font-size: small;"></span></p>
+        <!-- You can include additional user settings here -->
+      </div>
+    </div>
+    <div class="sidebar-bottom">
+      <button id="openSettingsModal" class="accSettings-btn">Settings</button>
+      <button id="logoutButton" class="logout-btn">Logout</button>
+    </div>
+    <!-- Account Settings Modal -->
+    <div id="settingsModal" class="modal">
+      <div class="modal-content">
+        <span id="closeSettingsModal" class="close-btn">&times;</span>
+        <h2>Account Settings</h2>
+        <p><strong style="font-size: large; color: #444;">Email</strong> <span id="modalUserEmail" style="font-size: 1rem;">Loading...</span></p>
+
+        <h3>Update Password</h3>
+        <input type="password" id="newPassword" placeholder="New Password">
+        <div>
+          <button id="updatePasswordBtn" class="sidebar-btn">Update Password</button>
+        </div>
+        <!-- <h3>Delete Account</h3> -->
+        <button id="deleteAccountBtn" class="delete-btn">Delete Account</button>
+      </div>
+    </div>
+  </div>
   <section class="banner">
     <p class="banner-txt">Welcome to your dashboard!</p>
   </section>
-  <!-- Sidebar Panel -->
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-top">
-    <div class="sidebar-header">
-      <h3>User Profile</h3>
-      <span id="closeSidebar" class="close-btn" style="color: #fff;">&times;</span>
-    </div>
-    <!--Profile Avatar-->
-    <div class="profile-avatar">
-      <img id="profileAvatar" src="" alt="Profile Avatar">
-    </div>
-    <div class="sidebar-content">
-      <p><strong>Email</strong> <span id="userEmail" style="font-size: small;"></span></p>
-      <!-- You can include additional user settings here -->
-    </div>
-  </div>
-  <div class="sidebar-bottom">
-    <button id="openSettingsModal" class="accSettings-btn">Settings</button>
-    <button id="logoutButton" class="logout-btn">Logout</button>
-  </div>
-  <!-- Account Settings Modal -->
-  <div id="settingsModal" class="modal">
-    <div class="modal-content">
-      <span id="closeSettingsModal" class="close-btn">&times;</span>
-      <h2>Account Settings</h2>
-      <p><strong style="font-size: large; color: #444;">Email</strong> <span id="modalUserEmail" style="font-size: 1rem;">Loading...</span></p>
-
-      <h3>Update Password</h3>
-      <input type="password" id="newPassword" placeholder="New Password">
-      <div>
-        <button id="updatePasswordBtn" class="sidebar-btn">Update Password</button>
+  <!-- Add after the banner section -->
+  <main class="dashboard-content">
+    <!-- Quick Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class='bx bx-calendar-event'></i>
+        <h3>Total Events</h3>
+        <p id="totalEvents">0</p>
       </div>
-      <!-- <h3>Delete Account</h3> -->
-      <button id="deleteAccountBtn" class="delete-btn">Delete Account</button>
+      <div class="stat-card">
+        <i class='bx bx-group'></i>
+        <h3>Total Registrations</h3>
+        <p id="totalRegistrations">0</p>
+      </div>
+      <div class="stat-card">
+        <i class='bx bx-star'></i>
+        <h3>Upcoming Events</h3>
+        <p id="upcomingCount">0</p>
+      </div>
     </div>
-  </div>
-</div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h2>Quick Actions</h2>
+      <div class="action-buttons">
+        <a href="./crtEvt.html" class="action-btn">
+          <i class='bx bx-plus'></i>
+          Create New Event
+        </a>
+        <a href="./regEvt.html" class="action-btn">
+          <i class='bx bx-list-ul'></i>
+          View All Events
+        </a>
+      </div>
+    </div>
+
+    <!-- Upcoming Events List -->
+    <section class="events-section">
+      <div class="section-header">
+        <h2>Your Upcoming Events</h2>
+        <a href="./regEvt.html" class="view-all">View All →</a>
+      </div>
+      <div class="events-list" id="upcomingEventsList">
+        <!-- Dynamic content will be added here -->
+        <div class="loading-spinner"></div>
+      </div>
+    </section>
+
+    <!-- Recent Registrations -->
+    <section class="registrations-section">
+      <div class="section-header">
+        <h2>Recent Registrations</h2>
+        <a href="#" class="view-all">View All →</a>
+      </div>
+      <div class="registrations-list" id="recentRegistrations">
+        <!-- Dynamic content will be added here -->
+        <div class="loading-spinner"></div>
+      </div>
+    </section>
+
+    <!-- Calendar Widget -->
+    <div class="calendar-widget">
+      <h2>Event Calendar</h2>
+      <div id="calendar"></div>
+    </div>
+  </main>
+  <!--Footer section-->
+  <hr>
+  <footer class="footer-sec">
+    <div class="footer-div footer-items">
+      <div class="footer-links">
+        <a href=""><i class='bx bxl-twitter'></i></a>
+        <a href=""><i class='bx bxl-instagram'></i></a>
+        <a href=""><i class='bx bxl-snapchat'></i></a>
+      </div>
+      <span class="footer-separator"></span>
+      <div class="footer-info">
+        <p><a href="mailto:info@justevents.com">info@justevents.com</a></p>
+        <p>&copy; 2025 Just Events. All rights reserved.</p>
+      </div>
+      <span class="footer-separator"></span>
+      <div class="footer-nav">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
