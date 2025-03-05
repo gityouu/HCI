@@ -256,6 +256,7 @@ body.dark-mode .nav-actions i {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #111;
+  outline: none;
 }
 
 .modal-content .sidebar-btn{
@@ -273,6 +274,24 @@ body.dark-mode .nav-actions i {
   background-color: rgb(1, 173, 1);
 }
 
+body.dark-mode .modal-content{
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-mode .modal-content p,
+body.dark-mode .modal-content h3, 
+body.dark-mode .modal-content h2{
+  color: #ccc;
+}
+
+body.dark-mode .modal-content input {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  outline: none;
+}
+
 .close-btn {
   position: absolute;
   top: 10px;
@@ -280,6 +299,10 @@ body.dark-mode .nav-actions i {
   font-size: 1.5rem;
   cursor: pointer;
   color: #111;
+}
+
+body.dark-mode .close-btn{
+  color: #fff;
 }
 
 /* Delete Account Button */
@@ -541,4 +564,212 @@ color: #ccc;
 
 body.dark-mode .footer-separator{
 background-color: #fff;
+}
+
+/* Existing styles remain, add/modify these responsive rules */
+
+/* General Responsive Adjustments */
+@media (max-width: 1200px) {
+  .dashboard-content {
+    padding: 20px 50px 0 50px;
+  }
+  
+  .nav-bar {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header adjustments */
+  .header {
+    left: 0;
+    transform: none;
+    padding: 0 15px;
+  }
+
+  .nav-bar {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .nav-logo img.logo {
+    height: 40px;
+    width: 80px;
+  }
+
+  /* Dashboard content */
+  .dashboard-content {
+    padding: 20px;
+    margin-top: 80px; /* Add space for fixed header */
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Event items */
+  .event-item, .registration-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .sidebar.open {
+    right: 0;
+  }
+
+  /* Modal adjustments */
+  .modal-content {
+    width: 90%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Header elements */
+  .nav-actions {
+    gap: 15px;
+  }
+
+  .nav-actions i {
+    font-size: 1.2rem;
+  }
+
+  /* Banner text */
+  .banner-txt {
+    font-size: 0.9rem;
+  }
+
+  /* Stats cards */
+  .stat-card {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-card i {
+    font-size: 1.5rem;
+  }
+
+  /* Action buttons */
+  .action-btn {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  /* Footer adjustments */
+  .footer-items {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-separator {
+    display: none;
+  }
+
+  .footer-links, .footer-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Mobile-first additions */
+@media (min-width: 769px) {
+  /* Prevent content overlap with sidebar */
+  .sidebar.open ~ .dashboard-content,
+  .sidebar.open ~ .banner {
+    margin-right: 250px;
+    transition: margin-right 0.3s ease;
+  }
+}
+
+/* Tablet Landscape Optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-content {
+    padding: 20px 30px 0 30px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* High-resolution devices */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+  .nav-logo img.logo {
+    transform: scale(1.1);
+  }
+}
+
+/* Add these adjustments to your existing media queries */
+@media (max-width: 768px) {
+  .banner {
+    margin-top: 70px !important; /* Increase top margin for mobile */
+    padding: 8px;
+    min-height: 40px;
+  }
+
+  .header {
+    height: 60px; /* Set fixed height for header */
+    padding: 0 10px;
+  }
+
+  .nav-bar {
+    height: 100%; /* Ensure nav-bar fills header height */
+  }
+
+  /* Optional: Make logo smaller */
+  .nav-logo img.logo {
+    height: 35px;
+    width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    margin-top: 60px !important;
+    padding: 6px;
+  }
+  
+  .banner-txt {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+
+/* Fluid typography */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Touch target sizing */
+button, .action-btn, .accSettings-btn {
+  min-height: 44px; /* Recommended touch target size */
+}
+
+/* Prevent zoom on mobile inputs */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px; /* Prevent iOS zoom */
+  }
 }

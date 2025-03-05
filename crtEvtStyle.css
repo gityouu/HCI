@@ -18,7 +18,7 @@ body.dark-mode {
 }
   
   /* HEADER */
-.header {
+/* .header {
     position: fixed;
     top: 0;
     left: 50%;
@@ -26,16 +26,16 @@ body.dark-mode {
     width: 100%;
     z-index: 1000;
     background: #f2f2f2;
-}
+} */
 
-.header.scrollable {
+/* .header.scrollable {
     position: relative;
     overflow-y: auto;
-    max-height: 60px; /* Adjust the max height as needed */
-}
+    max-height: 60px; /* Adjust the max height as needed 
+} 
   
   /* NAV BAR */
-.nav-bar {
+/* .nav-bar {
     display: flex;
     align-items: center;
     max-width: 1000px;
@@ -43,20 +43,20 @@ body.dark-mode {
     width: 100%;
     color: #fbfbfb;
     justify-content: space-between;
-}
+} */
   
   /* LOGO */
-.nav-logo img.logo {
-    height: 50px; /* Adjust as needed */
+/* .nav-logo img.logo {
+    height: 50px; /* Adjust as needed 
     width: 100px;
-}
+} */
   
   /* NAV ACTIONS */
-.nav-actions {
+/* .nav-actions {
   position: relative;
   display: flex;
   align-items: center;
-}
+} */
 
 .tooltip {
   visibility: hidden;
@@ -112,12 +112,11 @@ body.dark-mode .nav-actions i {
 }
 
 .main-content {
-    background-color: #fff;
-    min-height: calc(100vh - 80px); /* fill remaining viewport below header */
+    background-image: url(./images/businessman-9205819_1280.png);
+    min-height: calc(100vh - 0px); /* fill remaining viewport below header */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 80px; /* Add padding to avoid hiding under navbar */
 }
 
 .form-container {
@@ -129,6 +128,7 @@ body.dark-mode .nav-actions i {
     /* border: 1px solid #111; */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    opacity: 92%;
     margin: 0 auto; /* center horizontally if smaller than 50% */
 }
 
