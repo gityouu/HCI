@@ -136,16 +136,19 @@ body.dark-mode .nav-actions i {
 }
 
 .events-page h1 {
+  color: rgb(71, 71, 71);
   text-align: center;
   padding: 20px;
+  font-weight: lighter;
+  font-size: 1.5rem;
   padding-bottom: 0 !important;
 }
 
 .events-page hr {
   width: 50%;
   border: 0;
-  height: 2px;
-  background: linear-gradient(to right, #333, #ccc, #333);
+  height: 1px;
+  background: rgb(209, 209, 209);
   margin: 20px auto;
 }
 
@@ -294,6 +297,10 @@ body.dark-mode .details-btn:hover {
 body.dark-mode .event-description {
   background: rgba(255, 255, 255, 0.8);
   color: #000;
+}
+
+body.dark-mode .events-page h1{
+  color: #ccc;
 }
 
 /* FOOTER STYLING */

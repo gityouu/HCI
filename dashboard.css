@@ -413,10 +413,10 @@ body.dark-mode .close-btn{
 
 .events-section, .registrations-section {
   background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+  padding: 1.5rem;
 }
 
 .section-header {
@@ -424,6 +424,59 @@ body.dark-mode .close-btn{
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.event-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: transform 0.2s;
+  border: 1px solid #eee;
+}
+
+body.dark-mode .event-card{
+  background-color: #333;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+}
+
+.registration-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.25rem;
+  position: relative;
+  border-left: 4px solid #007bff;
+}
+
+body.dark-mode .registration-card{
+  background-color: #333;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.unique-number {
+  background: #007bff;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8em;
 }
 
 .view-all {
@@ -770,7 +823,6 @@ button, .action-btn, .accSettings-btn {
   }
 }
 
-
 .event-meta {
   display: flex;
   gap: 15px;
@@ -796,4 +848,164 @@ button, .action-btn, .accSettings-btn {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.event-title {
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  font-size: 1.2em;
+}
+
+body.dark-mode .event-title{
+  color: rgb(101, 101, 252);
+}
+
+.registrant-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  position: absolute;
+}
+
+.registrant-name {
+  position: relative;
+  justify-content: flex-end;
+  display: flex;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  height: 40px;
+  padding: 10px;
+}
+
+body.dark-mode .registrant-name{
+  color: #F2F2F2;
+}
+
+.event-venue {
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+}
+
+.registration-date {
+  color: #3498db;
+  font-size: 0.9em;
+}
+
+.status-free {
+  color: #27ae60;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .events-section {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .event-card, .registration-card {
+    padding: 1rem;
+  }
+}
+
+/* Calendar Container */
+#calendar {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Header (Month/Year and navigation) */
+.fc-header-toolbar {
+  margin-bottom: 1.5rem !important;
+  padding: 10px 0;
+}
+
+.fc-toolbar-title {
+  font-size: 1.4rem !important;
+  color: #2d3748 !important;
+  font-weight: 600;
+}
+
+/* Days of Week Header */
+.fc-col-header-cell {
+  background-color: #f7fafc !important;
+  padding: 12px 0 !important;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Individual Day Cells */
+.fc-daygrid-day {
+  padding: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  transition: background-color 0.2s ease;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #f8fafc !important;
+}
+
+.fc-daygrid-day.fc-day-today {
+  background-color: #ebf8ff !important;
+}
+
+/* Events */
+.fc-event {
+  border-radius: 4px !important;
+  border: none !important;
+  padding: 4px 6px !important;
+  margin: 2px 0 !important;
+  background-color: #4299e1 !important;
+  color: white !important;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fc-event:hover {
+  background-color: #3182ce !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Title */
+.fc-event-title {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+/* Event Location */
+.fc-event-location {
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #calendar {
+    padding: 10px;
+  }
+  
+  .fc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .fc-toolbar-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .fc-button {
+    padding: 6px 12px !important;
+    font-size: 0.9rem !important;
+  }
 }
