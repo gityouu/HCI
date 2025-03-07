@@ -45,8 +45,8 @@ body.dark-mode {
 
 /* LOGO */
 .nav-logo img.logo {
-  height: 50px; /* Adjust as needed */
-  width: 100px;
+  height: 70px; /* Adjust as needed */
+  /* width: 100px; */
 }
 
 /* NAV LINKS */
@@ -509,7 +509,7 @@ body.dark-mode .submit-btn:hover {
   border-radius: 4px 0 0 4px;
   outline: none;
   width: 400px;
-  background-color: #f5f0f0;
+  background-color: #f2f2f2;
 }
 
 .search-button {

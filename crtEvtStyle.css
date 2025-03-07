@@ -113,10 +113,41 @@ body.dark-mode .nav-actions i {
 
 .main-content {
     background-image: url(./images/businessman-9205819_1280.png);
-    min-height: calc(100vh - 0px); /* fill remaining viewport below header */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: calc(100vh - 0px);
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Add these media queries */
+@media (max-width: 1200px) {
+    .main-content {
+        background-position: 65% center;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        background-image: url(./images/businessman-9205819_1280-mobile.png);
+        background-attachment: scroll;
+        background-position: 75% center;
+        min-height: 80vh;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        background-position: 80% center;
+        padding: 1rem;
+        min-height: 70vh;
+    }
 }
 
 .form-container {
@@ -128,7 +159,7 @@ body.dark-mode .nav-actions i {
     /* border: 1px solid #111; */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    opacity: 92%;
+    opacity: 95%;
     margin: 0 auto; /* center horizontally if smaller than 50% */
 }
 
