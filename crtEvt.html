@@ -9,7 +9,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- Main CSS (merged with dark mode) -->
   <link rel="stylesheet" href="./crtEvtStyle.css">
-  <!-- <script type="module" src="./dark-mode.js"></script> -->
+  <script type="module" src="./dark-mode.js"></script>
   <script type="module" src="./crtEvent.js"></script>
   <!-- <script type="module" src="./dashboardd.js"></script> -->
 </head>
@@ -32,6 +32,13 @@
   <!-- MAIN CONTENT -->
   <main class="main-content">
     <div class="form-container">
+      <!-- Dark Mode Toggle at top right -->
+      <div class="form-header">
+        <div class="dark-mode-toggle">
+          <i class='bx bx-moon' id="darkModeToggle"></i>
+          <span class="tooltip" id="darkModeTooltip">Switch to dark mode</span>
+        </div>
+      </div>
       <!-- Progress Bar -->
       <div class="progress-container">
         <div class="progress-bar"></div>
