@@ -7,6 +7,7 @@
   <!-- Boxicons & Fonts & styles & logic-->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"/>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
   <link rel="stylesheet" href="style.css" />
   <script type="module" src="./authh.js" defer></script>
   <script type="module" src="./dark-mode.js"></script>
@@ -46,17 +47,19 @@
         <a href="./index.html#About">About Us <i class='bx bxs-user-account'></i></a>-->
       </div>
       <!-- New CTA Buttons in the Navbar -->
-      <div class="nav-buttons">
-        <a href="#" class="hero-btn login-trigger" data-redirect="./regEvt.html">Register Event</a>
-        <a href="#" class="hero-btn login-trigger" data-redirect="./crtEvt.html">Create Event</a>
-        <a href="#" class="hero-btn login-trigger" data-redirect="./dashboard.html">Log In</a>
-      </div>
-      <div class="nav-actions">
-        <i class='bx bx-moon' id="darkModeToggle"></i>
-        <span class="tooltip" id="darkModeTooltip">Switch to dark mode</span>
-      </div>
+      <div class="nav-right-group">
+        <div class="nav-buttons">
+          <a href="#" class="hero-btn login-trigger" data-redirect="./regEvt.html">Register Event</a>
+          <a href="#" class="hero-btn login-trigger" data-redirect="./crtEvt.html">Create Event</a>
+          <a href="#" class="hero-btn login-trigger" data-redirect="./dashboard.html">Log In</a>
+        </div>
+        <div class="nav-actions">
+          <i class='bx bx-moon' id="darkModeToggle"></i>
+          <span class="tooltip" id="darkModeTooltip">Switch to dark mode</span>
+        </div>
+       </div> 
     </nav>
-    <hr>
+    <!-- <hr> -->
   </header>  
   <section class="intro-section" id="intro">
     <div class="intro-div">
@@ -67,6 +70,26 @@
     </div>
     <div class="intro-img">
       <img src="./images/firmbee-com-SpVHcbuKi6E-unsplash.jpg" alt="">
+    </div>
+  </section>
+  <!-- ABOUT SECTION -->
+  <section class="about-section" id="About">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        At <span class="bold-text">Just Events</span>, we believe that every occasion—big or 
+        small—deserves to be unforgettable. Our mission is to connect people with the perfect venues, 
+        resources, and experiences so they can focus on what truly matters: creating lasting memories. 
+        From intimate workshops to large-scale conferences, we help streamline the planning process 
+        with user-friendly tools and expert guidance every step of the way.
+      </p>
+      <p>
+        With a dedicated team of event enthusiasts, cutting-edge technology, and a commitment to 
+        exceptional service, Just Events aims to make event creation simpler, more accessible, and 
+        undeniably fun. Whether you’re a seasoned organizer or hosting your first gathering, our platform 
+        empowers you to design, promote, and manage your events effortlessly. Join us, and let’s make your 
+        next event a remarkable success!
+      </p>
     </div>
   </section>
   <!-- FEATURES SECTION -->
@@ -122,27 +145,7 @@
       </div>
     </div>
   </div>
-</section>
-  <!-- ABOUT SECTION -->
-  <section class="about-section" id="About">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>
-        At <span class="bold-text">Just Events</span>, we believe that every occasion—big or 
-        small—deserves to be unforgettable. Our mission is to connect people with the perfect venues, 
-        resources, and experiences so they can focus on what truly matters: creating lasting memories. 
-        From intimate workshops to large-scale conferences, we help streamline the planning process 
-        with user-friendly tools and expert guidance every step of the way.
-      </p>
-      <p>
-        With a dedicated team of event enthusiasts, cutting-edge technology, and a commitment to 
-        exceptional service, Just Events aims to make event creation simpler, more accessible, and 
-        undeniably fun. Whether you’re a seasoned organizer or hosting your first gathering, our platform 
-        empowers you to design, promote, and manage your events effortlessly. Join us, and let’s make your 
-        next event a remarkable success!
-      </p>
-    </div>
-  </section>
+  </section>  
   <!-- FOOTER SECTION -->
   <hr>
   <footer class="footer-sec">

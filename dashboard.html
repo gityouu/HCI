@@ -87,7 +87,6 @@
         <p id="upcomingCount">0</p>
       </div>
     </div>
-
     <!-- Quick Actions -->
     <div class="quick-actions">
       <h2>Quick Actions</h2>
@@ -102,7 +101,6 @@
         </a>
       </div>
     </div>
-
     <!-- Upcoming Events List -->
     <section class="events-section">
       <div class="section-header">
@@ -114,7 +112,6 @@
         <div class="loading-spinner"></div>
       </div>
     </section>
-
     <section class="events-section">
       <div class="section-header">
         <h2>My Organized Events</h2>
@@ -125,22 +122,30 @@
         <div class="loading-spinner"></div>
       </div>
     </section>
-
     <!-- Recent Registrations -->
     <section class="events-section">
       <div class="section-header">
         <h2>Recent Registrations</h2>
-        <a href="#" class="view-all">View All →</a>
+        <a href="" class="view-all" id="view">View All →</a>
       </div>
       <div id="recentRegistrations" class="registrations-list">
         <!-- Dynamic content will be added here -->
         <div class="loading-spinner"></div>
       </div>
     </section>
-
+    <!--modal structure for viewing all registrants-->
+    <div id="registrationsModal" class="registrations-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>All Registrations by Event</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div id="groupedRegistrations" class="modal-body"></div>
+      </div>
+    </div>
     <!-- Calendar Widget -->
     <div class="calendar-widget">
-      <h2>Event Calendar</h2>
+      <h2 class="calendar-header">Event Calendar</h2>
       <div id="calendar"></div>
     </div>
   </main>

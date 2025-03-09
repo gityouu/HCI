@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //scrolling the header after some point script
 window.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
-    if (window.scrollY > 200) { // Adjust the scroll position as needed
+    if (window.scrollY > 400) { // Adjust the scroll position as needed
         header.classList.add('scrollable');
     } else {
         header.classList.remove('scrollable');

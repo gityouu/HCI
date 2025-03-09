@@ -23,20 +23,21 @@ body.dark-mode {
   transform: translateX(-50%);
   width: 100%;
   z-index: 1000;
-  background: #f2f2f2;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
 }
 
 .header.scrollable {
   position: relative;
   overflow-y: auto;
-  max-height: 60px; /* Adjust the max height as needed */
+  max-height: 100px; /* Adjust the max height as needed */
 }
 
 /* NAV BAR */
 .nav-bar {
   display: flex;
   align-items: center;
-  max-width: 1000px;
+  max-width: 1300px;
   margin: 0 auto;
   width: 100%;
   color: #fbfbfb;
@@ -132,7 +133,7 @@ body.dark-mode .nav-actions i {
 .events-page {
   padding-top: 70px !important;
   padding: 20px;
-  background-color: rgb(245, 247, 250);
+  background-color: #ebf1f4;
 }
 
 .events-page h1 {
@@ -176,7 +177,7 @@ body.dark-mode .nav-actions i {
   background: white;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
   transition: transform 0.3s;
   width: 90%; /* Reduce the width of the event cards */
   max-width: 300px; /* Set a maximum width for the event cards */
@@ -305,7 +306,7 @@ body.dark-mode .events-page h1{
 
 /* FOOTER STYLING */
 .footer-sec {
-  background-color: #F2F2F2;
+  background-color: #ebf1f4;
   color: #111;
   padding: 20px 0;
   text-align: center;
@@ -339,6 +340,10 @@ body.dark-mode .events-page h1{
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s, transform 0.3s;
+}
+
+.footer-links a{
+  font-size: 1.5rem;
 }
 
 .footer-links a:hover,
@@ -507,44 +512,38 @@ body.dark-mode .submit-btn:hover {
 .search-form {
   display: flex;
   align-items: center;
+  /* gap: 8px; */
 }
 
 .search-input {
   padding: 6px;
   font-size: 16px;
   border: 1px solid #000;
+  border-right: 0 !important;
   border-radius: 4px 0 0 4px;
   outline: none;
   width: 400px;
-  background-color: #f2f2f2;
+  background-color: #fafafa;
 }
 
-.search-button {
-  padding: 6px 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-left: none;
-  background-color: #333;
-  color: #fff;
+.sort-select {
+  padding: 6px;
+  border: 1px solid #000;
   border-radius: 0 4px 4px 0;
-  cursor: pointer;
+  background: #fff;
+  font-size: 14px;
+  background-color: #fafafa;
 }
 
-.search-button i {
-  font-size: 18px;
+body.dark-mode .sort-select {
+  background: #333;
+  color: #fff;
+  border: 1px solid #ccc;
 }
 
 body.dark-mode .search-input {
   background-color: #222;
   color: #fff;
   border: 1px solid #ccc;
-}
-
-body.dark-mode .search-button {
-  background-color: #555;
-  color: #fff;
-}
-
-body.dark-mode .search-button:hover {
-  background-color: #666;
+  border-right: 0 !important;
 }

@@ -23,24 +23,24 @@ body.dark-mode {
     transform: translateX(-50%);
     width: 100%;
     z-index: 1000;
-    background: #f2f2f2;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  */
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
 }
 
 .header.scrollable {
     position: relative;
     overflow-y: auto;
-    max-height: 60px; /* Adjust the max height as needed */
+    max-height: 100px; /* Adjust the max height as needed */
 }
 
 /* NAV BAR */
 .nav-bar {
     display: flex;
     align-items: center;
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
     width: 100%;
-    color: #fbfbfb;
+    /* color: #fbfbfb; */
     justify-content: space-between;
     /* padding: 10px 20px; */
 }
@@ -73,6 +73,7 @@ body.dark-mode {
     position: relative;
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 .tooltip {
@@ -107,10 +108,18 @@ body.dark-mode {
     opacity: 1;
 }
 
+.nav-right-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto; /* Push whole group to right */
+  }
+
 /* NAV BUTTONS in Navbar */
 .nav-buttons {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    margin-right: 20px;
 }
 
 .nav-buttons .hero-btn {
@@ -142,6 +151,44 @@ body.dark-mode {
     transform: translateY(-1px);
 }
 
+/* Custom button styles */
+.nav-buttons .hero-btn[data-redirect="./regEvt.html"] { /* Register Event */
+    background: transparent;
+    border-color: #F24405;
+    color: #F24405;
+}
+  
+.nav-buttons .hero-btn[data-redirect="./crtEvt.html"] { /* Create Event */
+    background: transparent;
+    border-color: #F2274C;
+    color: #F2274C;
+}
+  
+.nav-buttons .hero-btn[data-redirect="./dashboard.html"] { /* Log In */
+    background: transparent;
+    border-color: #5752D9;
+    color: #5752D9;
+}
+  
+.nav-buttons .hero-btn[data-redirect="./regEvt.html"]:hover {
+    background: #fceae3;
+}
+  
+.nav-buttons .hero-btn[data-redirect="./crtEvt.html"]:hover {
+    background: #fce4e9;
+}
+  
+.nav-buttons .hero-btn[data-redirect="./dashboard.html"]:hover {
+    background: #dddcff;
+}
+  
+  /* Active state */
+.nav-buttons .hero-btn:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+  
+
 /* Dark Mode Overrides for Header */
 body.dark-mode .header {
     background-color: #222;
@@ -162,7 +209,7 @@ body.dark-mode .nav-actions i {
 /* ABOUT SECTION */
 .about-section {
     padding: 40px 20px;
-    background-color: #F2F2F2;
+    background-color: #ebf1f4;
     color: #333;
     align-items: center;
     justify-content: center;
@@ -198,7 +245,7 @@ body.dark-mode .about-section {
 
 /* FOOTER STYLING */
 .footer-sec {
-    background-color: #F2F2F2;
+    background-color: #ebf1f4;
     color: #000;
     padding: 20px 0;
     text-align: center;
@@ -232,6 +279,10 @@ body.dark-mode .about-section {
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s, transform 0.3s;
+}
+
+.footer-links a{
+    font-size: 1.5rem;
 }
 
 .footer-links a:hover,
@@ -613,7 +664,7 @@ body.dark-mode .intro-section{
 
 .features-section {
     padding: 40px 20px;
-    background-color: #f9f9f9;
+    background-color: #ebf1f4;
     text-align: center;
 }
 
@@ -691,7 +742,7 @@ body.dark-mode .features-section{
 
 .testimonials-section {
     padding: 40px 20px;
-    background-color: #f9f9f9;
+    background-color: #ebf1f4;
     text-align: center;
 }
 
@@ -788,7 +839,7 @@ body.dark-mode .testimonial-item span{
     flex-direction: column; /* Mobile first */
     align-items: center;
     padding: 2rem 1rem;
-    background-color: #f9f9f9;
+    background-color: #ebf1f4;
     gap: 2rem;
 }
 
