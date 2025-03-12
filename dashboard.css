@@ -24,20 +24,21 @@ body.dark-mode {
   transform: translateX(-50%);
   width: 100%;
   z-index: 1000;
-  background: #f2f2f2;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
 }
 
 .header.scrollable {
   position: relative;
   overflow-y: auto;
-  max-height: 60px; /* Adjust the max height as needed */
+  max-height: 100px; /* Adjust the max height as needed */
 }
 
 /* NAV BAR */
 .nav-bar {
   display: flex;
   align-items: center;
-  max-width: 1000px;
+  max-width: 1300px;
   margin: 0 auto;
   width: 100%;
   color: #fbfbfb;
@@ -229,7 +230,7 @@ body.dark-mode .nav-actions i {
   align-items: center;
 }
 
-.modal-content {
+.settingsmodal-content {
   background: white;
   padding: 50px;
   border-radius: 10px;
@@ -239,21 +240,21 @@ body.dark-mode .nav-actions i {
   color: #111;
 }
 
-.modal-content p{
+.settingsmodal-content p{
   color: #222;
 }
 
-.modal-content h2{
+.settingsmodal-content h2{
   padding: 0 0 10px;
 }
 
-.modal-content h3{
+.settingsmodal-content h3{
   padding: 10px 0 5px;
   color: #666;
   font-size: medium;
 }
 
-.modal-content input{
+.settingsmodal-content input{
   width: 100%;
   padding: 5px;
   border-radius: 5px;
@@ -261,7 +262,7 @@ body.dark-mode .nav-actions i {
   outline: none;
 }
 
-.modal-content .sidebar-btn{
+.settingsmodal-content .sidebar-btn{
   width: 100%;
   padding: 10px;
   margin: 10px 0 0;
@@ -272,22 +273,22 @@ body.dark-mode .nav-actions i {
   cursor: pointer;
 }
 
-.modal-content .sidebar-btn:hover{
+.settingsmodal-content .sidebar-btn:hover{
   background-color: rgb(1, 173, 1);
 }
 
-body.dark-mode .modal-content{
+body.dark-mode .settingsmodal-content{
   background-color: #333;
   color: #fff;
 }
 
-body.dark-mode .modal-content p,
-body.dark-mode .modal-content h3, 
-body.dark-mode .modal-content h2{
+body.dark-mode .settingsmodal-content p,
+body.dark-mode .settingsmodal-content h3, 
+body.dark-mode .settingsmodal-content h2{
   color: #ccc;
 }
 
-body.dark-mode .modal-content input {
+body.dark-mode .settingsmodal-content input {
   background-color: #222;
   color: #fff;
   border: 1px solid #444;
@@ -356,7 +357,12 @@ body.dark-mode .close-btn{
 /* Dashboard Content */
 .dashboard-content {
   padding: 20px 150px 0 150px;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
+  background-color: #ebf1f4;
+}
+
+body.dark-mode .dashboard-content{
+  background-color: #111;
 }
 
 .stats-grid {
@@ -433,14 +439,6 @@ body.dark-mode .close-btn{
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-}
-
-.event-card {
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 1.25rem;
-  transition: transform 0.2s;
-  border: 1px solid #eee;
 }
 
 body.dark-mode .event-card{
@@ -549,15 +547,15 @@ body.dark-mode .registration-item {
 
 /* FOOTER STYLING */
 .footer-sec {
-  background-color: #F2F2F2;
-  color: #000;
+  background-color: #ebf1f4;
+  color: #111;
   padding: 20px 0;
   text-align: center;
   bottom: 0;
 }
 
 .footer-div {
-  max-width: 1000px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -583,6 +581,10 @@ body.dark-mode .registration-item {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s, transform 0.3s;
+}
+
+.footer-links a{
+  font-size: 1.5rem;
 }
 
 .footer-links a:hover,
@@ -865,23 +867,35 @@ body.dark-mode .event-title{
 }
 
 .registrant-avatar {
-  width: 40px;
+  width: 40px !important;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
-  position: absolute;
+  /* margin-right: 10px; */
+  display: block;
+  
+}
+
+.registrant-info {
+  /* width: 100%; */
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark-mode .registrant-item{
+  background-color: #222;
 }
 
 .registrant-name {
   position: relative;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   display: flex;
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 0.5rem;
-  height: 40px;
-  padding: 10px;
+  padding: 5px;
 }
 
 body.dark-mode .registrant-name{
@@ -891,6 +905,7 @@ body.dark-mode .registrant-name{
 .event-venue {
   color: #7f8c8d;
   margin-bottom: 1rem;
+  padding-top: 0.2rem;
 }
 
 .registration-date {
@@ -915,6 +930,10 @@ body.dark-mode .registrant-name{
   z-index: 1000;
 }
 
+body.dark-mode .modal-content{
+  background-color: #111;
+}
+
 .modal-content {
   background: white;
   margin: 2% auto;
@@ -922,7 +941,7 @@ body.dark-mode .registrant-name{
   width: 90%;
   max-width: 800px;
   border-radius: 8px;
-  max-height: 80vh;
+  max-height: 90vh;
   overflow-y: auto;
 }
 
@@ -940,14 +959,16 @@ body.dark-mode .registrant-name{
   width: 100%;
 }
 
-.close-modal {
+.close-modall {
   font-size: 2rem;
   cursor: pointer;
   padding: 0 1rem;
 }
 
 /* Event group grid layout */
-.event-group {
+.event-group,
+.event-section,
+.event-section .past-events {
   margin-bottom: 2rem;
   background: #f8f9fa;
   border-radius: 8px;
@@ -957,11 +978,22 @@ body.dark-mode .registrant-name{
   gap: 1.5rem;
 }
 
-.event-group-header {
+body.dark-mode .event-group{
+  background: #333;
+}
+
+body.dark-mode .event-section{
+  background-color: #333;
+}
+
+.event-group-header,
+.event-section h3,
+.event-section .past-events h3 {
   grid-column: 1 / -1; /* Make header span all columns */
   /* margin-bottom: 1rem; */
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #4299e1;
+  text-align: center;
 }
 
 .registrant-item {
@@ -1036,6 +1068,12 @@ body.dark-mode .registrant-name{
   /* margin-top: 20px; */
 }
 
+body.dark-mode #calendar,
+body.dark-mode .fc-toolbar-title{
+  background-color: #222;
+  color: #fff !important;
+}
+
 /* Header (Month/Year and navigation) */
 .fc-header-toolbar {
   margin-bottom: 1.5rem !important;
@@ -1061,6 +1099,7 @@ body.dark-mode .registrant-name{
   padding: 8px !important;
   border: 1px solid #e2e8f0 !important;
   transition: background-color 0.2s ease;
+  color: #007bff;
 }
 
 .fc-daygrid-day:hover {
@@ -1082,6 +1121,28 @@ body.dark-mode .registrant-name{
   font-size: 0.9em;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+/* Calendar Event Types */
+.fc-event-type {
+  font-size: 0.8em;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .fc-event {
+  color: #fff !important;
+}
+
+body.dark-mode .fc-event.organized {
+  background-color: #2b6cb0 !important;
+  border-color: #2b6cb0 !important;
+}
+
+body.dark-mode .fc-event.attending {
+  background-color: #2f855a !important;
+  border-color: #2f855a !important;
 }
 
 .fc-event:hover {
@@ -1121,4 +1182,280 @@ body.dark-mode .registrant-name{
     padding: 6px 12px !important;
     font-size: 0.9rem !important;
   }
+}
+
+.myevents-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-contentt {
+  background: white;
+  margin: 2% auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 8px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+body.dark-mode .modal-contentt{
+  background-color: #111;
+}
+
+.close-modal {
+  float: right;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+
+#organizedEventsModal .event-card {
+  background: white;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+#organizedEventsModal .event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Dark mode overrides */
+body.dark-mode #organizedEventsModal .event-card {
+  background: #222;
+  border-color: #444;
+  box-shadow: 0 2px 4px rgba(255,255,255,0.05);
+}
+
+/* Metrics Modal Styles */
+#paidEventMetricsModal .modal-content {
+  max-width: 800px;
+  padding: 2rem;
+}
+
+#paidEventMetricsModal .modal-content h2{
+  padding: 1rem;
+}
+
+.metrics-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 2fr 1fr;
+}
+
+.metric-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stats-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.stat-label {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.paid-badge {
+  background: #4CAF50;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+/* Event Card Structure */
+.event-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: transform 0.2s;
+  border: 1px solid #eee;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark-mode .event-card {
+  background: #333;
+  border-color: #444;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Payment Indicators */
+.paid-indicator, .free-indicator {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.paid-indicator {
+  background: rgba(76, 175, 80, 0.15);
+  color: #4CAF50;
+  border: 1px solid #4CAF50;
+}
+
+.free-indicator {
+  background: rgba(33, 150, 243, 0.15);
+  color: #2196F3;
+  border: 1px solid #2196F3;
+}
+
+/* Metrics CTA Button */
+.metrics-cta-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.75rem;
+}
+
+.metrics-cta-btn:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+.metrics-cta-btn i {
+  font-size: 1.1rem;
+}
+
+/* Ensure button is properly positioned */
+.event-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 1rem;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .metrics-cta-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem;
+  }
+  
+  .event-meta {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+}
+
+/* Metrics Modal Dark Mode */
+body.dark-mode #paidEventMetricsModal .modal-content {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+body.dark-mode .metric-card {
+  background: #333 !important;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .stat-item {
+  background: #444 !important;
+  color: #fff;
+}
+
+body.dark-mode .stat-value {
+  color: #4CAF50;
+}
+
+body.dark-mode .stat-label {
+  color: #bdbdbd;
+}
+
+/* Chart text color overrides */
+body.dark-mode #registrationProgressChart,
+body.dark-mode #registrationTimelineChart {
+  filter: invert(90%) hue-rotate(180deg);
+}
+
+/* Form elements in metrics modal */
+body.dark-mode #paidEventMetricsModal input,
+body.dark-mode #paidEventMetricsModal select {
+  background-color: #444;
+  color: #fff;
+  border-color: #555;
+}
+
+/* Dark mode close button */
+body.dark-mode #paidEventMetricsModal .close-modal {
+  color: #fff;
+}
+
+.search-container {
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+#registrationSearch {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#sortRegistrations {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+}
+
+body.dark-mode .search-container {
+  border-color: #444;
+}
+
+body.dark-mode #registrationSearch,
+body.dark-mode #sortRegistrations {
+  background: #333;
+  color: white;
+  border-color: #555;
 }

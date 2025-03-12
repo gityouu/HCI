@@ -253,7 +253,7 @@ body.dark-mode .about-section {
 }
 
 .footer-div {
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -493,7 +493,7 @@ body.dark-mode .modal-content button:hover {
 
 .form-message.success {
     background-color: #d4edda;
-    color: #155724;
+    /* color: #155724; */
     border: 1px solid #c3e6cb;
 }
 

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="dashboard.css">
   <script type="module" src="dark-mode.js"></script>
   <script type="module" src="./dashboardd.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header class="header">
@@ -25,7 +26,7 @@
         <span class="tooltip" id="darkModeTooltip">Switch to dark mode</span>
       </div>
     </nav>
-    <hr>
+    <!-- <hr> -->
   </header>
   <!-- Sidebar Panel -->
   <div class="sidebar" id="sidebar">
@@ -49,7 +50,7 @@
     </div>
     <!-- Account Settings Modal -->
     <div id="settingsModal" class="modal">
-      <div class="modal-content">
+      <div class="settingsmodal-content">
         <span id="closeSettingsModal" class="close-btn">&times;</span>
         <h2>Account Settings</h2>
         <p><strong>Email</strong> <span id="modalUserEmail" style="font-size: 1rem;">Loading...</span></p>
@@ -97,7 +98,7 @@
         </a>
         <a href="./regEvt.html" class="action-btn">
           <i class='bx bx-list-ul'></i>
-          View All Events
+          Register for Events
         </a>
       </div>
     </div>
@@ -105,23 +106,91 @@
     <section class="events-section">
       <div class="section-header">
         <h2>Events I'm Attending</h2>
-        <a href="./attending.html" class="view-all">View All →</a>
+        <a href="" class="view-all" id="viewAttending">View All →</a>
       </div>
       <div id="registeredEventsList" class="events-list">
         <!-- Dynamic content will be added here -->
         <div class="loading-spinner"></div>
       </div>
     </section>
+    <!--organizedEventsModal -->
+    <div id="attendingEventsModal" class="registrations-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Events I'm Attending</h2>
+          <span class="close-modall">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="event-group">
+            <div class="event-group-header">
+              <h3 class="event-group-title">Upcoming Events</h3>
+            </div>
+            <div id="attendingUpcoming" class="card-grid"></div>
+          </div>
+          <div class="event-group">
+            <div class="event-group-header">
+              <h3 class="event-group-title">Past Events</h3>
+            </div>
+            <div id="attendingPast" class="card-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <section class="events-section">
       <div class="section-header">
         <h2>My Organized Events</h2>
-        <a href="./regEvt.html" class="view-all">View All →</a>
+        <a href="" class="view-all" id="alll">View All →</a>
       </div>
       <div id="upcomingEventsList" class="events-list">
         <!-- Dynamic content will be added here -->
         <div class="loading-spinner"></div>
       </div>
     </section>
+    <!--modal for viewing all your events-->
+    <div id="organizedEventsModal" class="myevents-modal">
+      <div class="modal-contentt">
+        <div class="modal-header">
+          <h2>All Organized Events</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div id="organizedEventsList" class="modal-body"></div>
+      </div>
+    </div>
+    <!-- Paid Event Metrics Modal -->
+    <div id="paidEventMetricsModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Event Performance Metrics</h2>
+        <div class="metrics-container">
+          <div class="metric-card">
+            <h3>Registration Progress</h3>
+            <div class="progress-chart">
+              <canvas id="registrationProgressChart"></canvas>
+            </div>
+          </div>
+          <div class="metric-card">
+            <h3>Registration Timeline</h3>
+            <div class="timeline-chart">
+              <canvas id="registrationTimelineChart"></canvas>
+            </div>
+          </div>
+          <div class="stats-overview">
+            <div class="stat-item">
+              <span class="stat-value" id="actualRegistrations">0</span>
+              <span class="stat-label">Current Registrations</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="expectedRegistrations">0</span>
+              <span class="stat-label">Expected Registrations</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="conversionRate">0%</span>
+              <span class="stat-label">Conversion Rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Recent Registrations -->
     <section class="events-section">
       <div class="section-header">
@@ -138,7 +207,16 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2>All Registrations by Event</h2>
-          <span class="close-modal">&times;</span>
+          <span class="close-modall">&times;</span>
+        </div>
+        <div class="search-container">
+          <input type="text" id="registrationSearch" placeholder="Search by name, email,unique numberor event...">
+          <select id="sortRegistrations">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="name_asc">Name (A-Z)</option>
+            <option value="name_desc">Name (Z-A)</option>
+          </select>
         </div>
         <div id="groupedRegistrations" class="modal-body"></div>
       </div>
