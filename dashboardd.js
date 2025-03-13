@@ -458,13 +458,16 @@ async function initializeCalendar(userId) {
     // Get unique event IDs from registrations
     const attendedEventIds = [...new Set(
       registrationsSnap.docs.map(doc => doc.data().eventId)
-    )];
-    
-    // Fetch attended events details
-    const attendedEventsSnap = await getDocs(
-      query(collection(db, "events"), 
-      where("__name__", "in", attendedEventIds))
-    );
+    )].filter(id => id); // Remove any undefined/null IDs
+
+    let attendedEventsSnap = { docs: [] };
+    if (attendedEventIds.length > 0) {
+      // Only query if we have valid IDs
+      attendedEventsSnap = await getDocs(
+        query(collection(db, "events"), 
+        where("__name__", "in", attendedEventIds))
+      );
+    }
 
     // Combine all events
     const calendarEvents = [
@@ -473,18 +476,19 @@ async function initializeCalendar(userId) {
         ...doc.data(),
         type: 'organized',
       })),
-      ...attendedEventsSnap.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        type: 'attending',
-      }))
+      ...(attendedEventIds.length > 0 
+        ? attendedEventsSnap.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+            type: 'attending',
+          }))
+        : [])
     ].map(event => {
       const eventDate = event.eventDate?.toDate?.() || new Date(event.eventDate);
-      // Modify the event object in the calendarEvents map:
       return {
         title: event.eventName,
         start: eventDate.toISOString(),
-        className: `calendar-event ${event.type}`, // Add this line
+        className: `calendar-event ${event.type}`,
         extendedProps: {
           type: event.type === 'organized' ? 'My Event' : "I'm Attending",
           venue: event.venue,
@@ -492,8 +496,8 @@ async function initializeCalendar(userId) {
         },
         backgroundColor: event.type === 'organized' ? '#4299e1' : '#48bb78',
         borderColor: event.type === 'organized' ? '#3182ce' : '#38a169'
-        }
-      });
+      };
+    });
 
     const calendarEl = document.getElementById('calendar');
     const calendar = new Calendar(calendarEl, {
