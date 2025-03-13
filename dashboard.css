@@ -666,7 +666,6 @@ background-color: #fff;
   /* Dashboard content */
   .dashboard-content {
     padding: 20px;
-    margin-top: 80px; /* Add space for fixed header */
   }
 
   /* Stats grid */
