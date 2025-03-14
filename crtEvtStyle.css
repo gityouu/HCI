@@ -490,14 +490,14 @@ body.dark-mode .modal-content {
 }
 
 /* Remove default datetime-local styling */
-input[type="datetime-local"] {
+/* input[type="datetime-local"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     color: #333 !important; /* Force dark text in light mode */
-    background: #f7f7f7 !important;
-    -webkit-text-fill-color: #333; /* For iOS Safari */
-}
+    /* background: #f7f7f7 !important; */
+    /* -webkit-text-fill-color: #333; For iOS Safari
+} */
   
   /* Mobile-first datetime input styling */
 .input-container input[type="datetime-local"] {
@@ -533,7 +533,7 @@ input[type="datetime-local"] {
 }
   
   /* Dark mode fixes */
-body.dark-mode .input-container input[type="datetime-local"] {
+/* body.dark-mode .input-container input[type="datetime-local"] {
     color: #fff !important;
     background: #222 !important;
     -webkit-text-fill-color: #fff;
@@ -541,4 +541,63 @@ body.dark-mode .input-container input[type="datetime-local"] {
   
 body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
-}
+} */
+
+/* Core datetime-local fixes */
+input[type="datetime-local"] {
+    -webkit-appearance: none;
+    appearance: none;
+    color: #333 !important;
+    background: #f7f7f7 !important;
+    font-size: 16px;
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  /* iOS-specific text visibility fixes */
+  @supports (-webkit-overflow-scrolling: touch) {
+    input[type="datetime-local"] {
+      -webkit-text-fill-color: #333 !important;
+      opacity: 1 !important;
+    }
+    
+    input[type="datetime-local"]::-webkit-datetime-edit {
+      opacity: 1 !important;
+      color: #333 !important;
+    }
+    
+    input[type="datetime-local"]::-webkit-date-and-time-value {
+      -webkit-text-fill-color: #333 !important;
+    }
+  }
+  
+  /* Dark mode adjustments */
+  @media (prefers-color-scheme: dark) {
+    input[type="datetime-local"] {
+      color: #fff !important;
+      background: #333 !important;
+      border-color: #666;
+    }
+    
+    body.dark-mode input[type="datetime-local"] {
+      -webkit-text-fill-color: #fff !important;
+    }
+    
+    input[type="datetime-local"]::-webkit-datetime-edit {
+      color: #fff !important;
+    }
+  }
+  
+  /* Placeholder visibility */
+  input[type="datetime-local"]:not(:focus):placeholder-shown {
+    -webkit-text-fill-color: #666 !important;
+  }
+  
+  /* Animation for better iOS interaction */
+  input[type="datetime-local"] {
+    transition: all 0.3s ease;
+    transform: translateZ(0);
+  }
