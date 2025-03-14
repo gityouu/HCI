@@ -494,6 +494,9 @@ input[type="datetime-local"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    color: #333 !important; /* Force dark text in light mode */
+    background: #f7f7f7 !important;
+    -webkit-text-fill-color: #333; /* For iOS Safari */
 }
   
   /* Mobile-first datetime input styling */
@@ -512,16 +515,25 @@ input[type="datetime-local"] {
     }
   
     .input-container input[type="datetime-local"] {
-      min-width: 90% !important;
-      color: #ccc;
+        min-width: 90% !important;
+        font-size: 16px !important; /* Prevent iOS zoom */
+        min-height: 44px !important; /* Better touch target */
+        padding: 12px !important;
+        color: #333 !important;
+    }
+
+    /* Show value before interaction */
+    input[type="datetime-local"]:not(:focus):not(:active) {
+        -webkit-text-fill-color: #333;
+        opacity: 1 !important;
     }
 }
   
   /* Dark mode fixes */
 body.dark-mode .input-container input[type="datetime-local"] {
-    background: #333;
-    border-color: #555;
-    color: #ccc;
+    color: #fff !important;
+    background: #222 !important;
+    -webkit-text-fill-color: #fff;
 }
   
 body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
