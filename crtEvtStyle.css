@@ -287,7 +287,7 @@ body.dark-mode .input-container label .paid-instruction{
 }
 
 /* Checkbox Styles */
-input[type="checkbox"] {
+.input-container input[type="checkbox"] {
     accent-color: #333; /* Default color for light mode */
 }
 
@@ -486,50 +486,44 @@ body.dark-mode .modal-content {
 
     button {
         min-width: 100%;
-        /* margin: 10px 0; */
     }
 }
 
-/* Fix for datetime-local inputs on mobile */
-.input-container input[type="datetime-local"] {
-    min-width: 90%; /* Minimum width for better mobile display */
-    flex-shrink: 0; /* Prevent shrinking in flex containers */
-    padding: 10px; /* Larger touch target */
-    font-size: 16px; /* Prevent iOS zoom */
-    color: #ccc;
-
-    @media (max-width: 480px) {
-        width: 100%; /* Full width on mobile */
-        min-width: unset; /* Remove fixed min-width */
-        max-width: 100%; /* Prevent overflow */   
-    }
-  }
+/* Remove default datetime-local styling */
+input[type="datetime-local"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
   
-  @media (max-width: 768px) {
+  /* Mobile-first datetime input styling */
+.input-container input[type="datetime-local"] {
+    width: 90%;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+  /* Mobile optimization */
+@media (max-width: 480px) {
     .input-container {
-      flex-direction: column; /* Stack inputs vertically */
-      width: 100%;
+      width: 100% !important;
+      padding: 0 5px;
     }
   
     .input-container input[type="datetime-local"] {
-      width: 100%; /* Full width on mobile */
-      min-width: unset; /* Remove fixed min-width */
-      max-width: 100%; /* Prevent overflow */
+      min-width: 90% !important;
+      color: #ccc;
     }
-  }
+}
   
-  /* Dark mode adjustments */
-  body.dark-mode .input-container input[type="datetime-local"] {
-    background-color: #222;
-    color: #fff;
-    border: 1px solid #555;
-  }
+  /* Dark mode fixes */
+body.dark-mode .input-container input[type="datetime-local"] {
+    background: #333;
+    border-color: #555;
+    color: #ccc;
+}
   
-  /* Remove calendar icon in Edge */
-  .input-container input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.8);
-  }
-  
-  body.dark-mode .input-container input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
-  }
+}

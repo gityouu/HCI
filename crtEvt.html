@@ -54,6 +54,7 @@
         <!-- Step 1: Basic Info -->
         <div class="form-step active">
           <h2>Step 1: Basic Information</h2>
+          <p style="color: #999;">All fields are required</p>
           <div class="input-container">
             <input type="text" name="eventName" placeholder="Event Name" required>
           </div>
@@ -72,7 +73,7 @@
           </div>
           <!-- Expected Number of Attendees (Initially Hidden) -->
           <div class="paid-container" id="attendeesContainer">
-            <input type="number" id="expectedAttendees" name="expectedAttendees" min="1" placeholder="Expected Registrants"required>
+            <input type="number" id="expectedAttendees" name="expectedAttendees" min="1" placeholder="Expected Registrants">
           </div>
           <div class="button-container">
             <button type="button" class="next-btn">Next</button>
@@ -82,6 +83,7 @@
         <!-- Step 2: Date & Location -->
         <div class="form-step">
           <h2>Step 2: Date & Location</h2>
+          <p style="color: #999;">All fields are required</p>
           <div class="input-container">
             <input type="datetime-local" id="eventDate" name="eventDateFrom" required>
           </div>
@@ -100,6 +102,7 @@
         <!-- Step 3: Additional Details -->
         <div class="form-step">
           <h2>Step 3: Additional Details</h2>
+          <p style="color: #999;">All fields are required</p>
           <div class="input-container">
             <textarea placeholder="Description" required></textarea>
           </div>
