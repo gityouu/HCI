@@ -523,11 +523,11 @@ body.dark-mode .form-message.success {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    /* .nav-bar {
+    .nav-bar {
         flex-direction: column;
         overflow: inherit;
         white-space: nowrap;
-    } */
+    }
 
     .nav-links {
         flex-direction: row;
@@ -629,49 +629,6 @@ body.dark-mode .form-message.success {
         font-size: 0.9rem;
     }
 }
-
-/* .intro-section {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px 20px;
-    background-color: #f9f9f9;
-    height: 100%;
-}
-
-.intro-div {
-    flex: 1;
-    padding-right: 20px;
-}
-
-.intro-div h1{
-    line-height: 1.1;
-    font-size: 3rem;
-    padding: 35px 35px 0;
-    padding-left: 140px !important;
-}
-
-.intro-div p{
-    line-height: 1.5;
-    font-size: 1rem;
-    padding: 0 35px 35px;
-    padding-left: 140px !important;
-}
-
-.intro-img {
-    flex: 1;
-    text-align: right;
-    padding-top: 70px;
-}
-
-.intro-img img {
-    max-width: 100%;
-    width: 500px;
-    height: auto;
-    border-radius: 10px;
-    height: 100%;
-} */
 
 body.dark-mode .intro-section{
     background: #333;
@@ -1014,4 +971,3 @@ body.dark-mode .testimonial-item span{
         border-radius: 12px;
     }
 }
-

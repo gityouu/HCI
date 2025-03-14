@@ -23,7 +23,7 @@ body.dark-mode {
   transform: translateX(-50%);
   width: 100%;
   z-index: 1000;
-  background: #fff;
+  background: #ebf1f4;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
 }
 
@@ -152,8 +152,18 @@ body.dark-mode .nav-actions i {
 }
 
 @media (max-width: 480px) {
-  .nav-links {
-    display: none; /* Consider adding hamburger menu functionality */
+  .search-form {
+    width: 90%;
+  }
+  
+  .search-input {
+    border-radius: 4px;
+    border-right: 1px solid #000 !important;
+  }
+  
+  .sort-select {
+    width: 100%;
+    border-radius: 4px;
   }
   
   .nav-actions i {
@@ -165,7 +175,10 @@ body.dark-mode .nav-actions i {
 .events-page {
   padding-top: 70px !important;
   padding: 20px;
-  background-color: #ebf1f4;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, transparent 60%);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
 .events-page h1 {
@@ -187,28 +200,12 @@ body.dark-mode .nav-actions i {
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Three columns per row */
-  row-gap: 30px;
-  justify-content: center; /* Center the grid container */
-}
-
-@media (max-width: 768px) {
-  .events-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 0 15px;
-  }
-
-  .event-card {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .events-grid {
-    grid-template-columns: 1fr; /* One column per row on very small screens */
-  }
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .event-card {
@@ -217,14 +214,52 @@ body.dark-mode .nav-actions i {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-  width: 90%; /* Reduce the width of the event cards */
-  max-width: 300px; /* Set a maximum width for the event cards */
-  margin: 0 auto; /* Center the event cards */
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .events-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-page h1{
+    padding-top: 70px !important;
+  }
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 15px;
+  }
+  
+  .event-card {
+    height: auto;
+    min-height: 350px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  .event-card {
+    min-height: 300px;
+  }
 }
 
 .event-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .event-card img {
@@ -311,7 +346,7 @@ body.dark-mode .nav-actions i {
 
 /* Dark Mode Overrides for Events Page */
 body.dark-mode .events-page {
-  background-color: #121212;
+  background: #121212;
   color: aliceblue;
 }
 
@@ -605,27 +640,10 @@ body.dark-mode .search-input {
   border-right: 0 !important;
 }
 
-@media (max-width: 768px) {
-  .search-form {
-    flex-direction: column;
-    gap: 10px;
-    width: 90%;
-    margin: 0 auto;
-  }
-  
-  .search-input {
-    width: 100%;
-    border-radius: 4px;
-    border-right: 1px solid #000 !important;
-  }
-  
-  .sort-select {
-    width: 100%;
-    border-radius: 4px;
-  }
-}
-
 @media (max-width: 480px) {
+  .events-page h1{
+    padding-top: 70px !important;
+  }
   .events-page {
     padding-top: 60px !important;
   }
