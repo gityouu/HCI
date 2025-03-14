@@ -104,7 +104,7 @@ function updateFormSteps() {
         step.classList.toggle("active", index <= currentStep);
     });
 
-    progressBar.style.width = `${(currentStep / (steps.length - 1)) * 50}%`;
+    progressBar.style.width = `${(currentStep / (steps.length - 1)) * 90}%`;
 }
 
 // Function to check if all required fields in a step are filled
@@ -235,46 +235,78 @@ closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
+function parseCustomDate(dateStr) {
+    // Expected format: "DD/MM/YYYY HH:MM"
+    const [datePart, timePart] = dateStr.trim().split(' ');
+    if (!datePart) return null;
+    
+    const [day, month, year] = datePart.split('/').map(Number);
+    let hours = 0, minutes = 0;
+    
+    if (timePart) {
+        [hours, minutes] = timePart.split(':').map(Number);
+    }
+
+    // Validate date components
+    if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1000) {
+        return null;
+    }
+
+    // Create Date in local timezone then convert to UTC
+    const localDate = new Date(year, month - 1, day, hours, minutes);
+    return new Date(localDate.getTime() - (localDate.getTimezoneOffset() * 60000));
+} 
+
+// Modified modalOkBtn handler
 modalOkBtn.addEventListener('click', async () => {
-    // Get current user first
     const user = auth.currentUser;
     if (!user) {
         alert("You must be logged in to create events");
-        window.href.location = "./index.html";
+        window.location.href = "./index.html";
         return;
     }
 
-    // Convert dates to Firestore Timestamps
+    // Parse and validate dates
+    const startDate = parseCustomDate(eventDate.value);
+    const endDate = parseCustomDate(eventEndDate.value);
+
+    // Validate dates
+    if (!startDate || !endDate) {
+        alert("Invalid date format! Please use DD/MM/YYYY HH:MM format\nExample: 03/05/2026 14:30");
+        return;
+    }
+
+    if (startDate >= endDate) {
+        alert("End date must be after start date");
+        return;
+    }
+
     const eventData = {
         userId: user.uid,
         eventName: eventNameInput.value,
         organizer: document.querySelector('input[placeholder="Organizer Name"]').value,
-        eventDate: Timestamp.fromDate(new Date(eventDate.value)),
-        eventEndDate: Timestamp.fromDate(new Date(eventEndDate.value)),
+        eventDate: Timestamp.fromDate(startDate),
+        eventEndDate: Timestamp.fromDate(endDate),
         venue: venueInput.value,
         description: descriptionInput.value,
         price: paidEventCheckbox.checked ? priceInput.value : "Free",
-        expectedRegistrants: paidEventCheckbox.checked ? parseInt(attendeesInput.value) : null, // Changed field name and added parsing
+        expectedRegistrants: paidEventCheckbox.checked ? parseInt(attendeesInput.value) : null,
         createdAt: Timestamp.now(),
         imageDataUrl: imageDataUrl
     };
 
-    showLoadingSpinner(); // Show loading spinner
+    showLoadingSpinner();
 
     try {
-        // Save the event data to Firestore in the "events" collection
         const docRef = await addDoc(collection(db, "events"), eventData);
-        alert("Event created successfully! Document ID: " + docRef.id);
-        window.location.href = "./dashboard.html"
+        alert("Event created successfully!");
+        window.location.href = "./dashboard.html";
     } catch (e) {
         alert("Error creating event: " + e.message);
-        return;
     } finally {
-        hideLoadingSpinner(); // Hide loading spinner
+        hideLoadingSpinner();
+        modal.style.display = 'none';
     }
-    
-    // Close the modal after saving the event
-    modal.style.display = 'none';
 });
 
 // Initial form state
