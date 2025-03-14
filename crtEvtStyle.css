@@ -516,10 +516,13 @@ input[type="datetime-local"] {
   
     .input-container input[type="datetime-local"] {
         min-width: 90% !important;
-        font-size: 16px !important; /* Prevent iOS zoom */
-        min-height: 44px !important; /* Better touch target */
-        padding: 12px !important;
+        font-size: 0.9rem !important; /* Prevent iOS zoom */
         color: #333 !important;
+    }
+
+    input[type="datetime-local"]::placeholder {
+        color: #000 !important;
+        -webkit-text-fill-color: #000 !important;
     }
 
     /* Show value before interaction */
@@ -538,8 +541,4 @@ body.dark-mode .input-container input[type="datetime-local"] {
   
 body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
-}
-
-input[type="datetime-local"]::placeholder {
-    color: #000;
 }
