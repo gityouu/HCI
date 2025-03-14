@@ -578,7 +578,7 @@ input[type="datetime-local"] {
   @media (prefers-color-scheme: dark) {
     input[type="datetime-local"] {
       color: #fff !important;
-      background: #333 !important;
+      /* background: #333 !important; */
       border-color: #666;
     }
     
