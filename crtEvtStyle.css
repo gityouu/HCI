@@ -539,3 +539,7 @@ body.dark-mode .input-container input[type="datetime-local"] {
 body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+input[type="datetime-local"]::placeholder {
+    color: #000;
+}
