@@ -489,3 +489,40 @@ body.dark-mode .modal-content {
         /* margin: 10px 0; */
     }
 }
+
+/* Fix for datetime-local inputs on mobile */
+input[type="datetime-local"] {
+    min-width: 280px; /* Minimum width for better mobile display */
+    flex-shrink: 0; /* Prevent shrinking in flex containers */
+    padding: 10px; /* Larger touch target */
+    font-size: 16px; /* Prevent iOS zoom */
+  }
+  
+  @media (max-width: 768px) {
+    .input-container {
+      flex-direction: column; /* Stack inputs vertically */
+      width: 100%;
+    }
+  
+    input[type="datetime-local"] {
+      width: 100%; /* Full width on mobile */
+      min-width: unset; /* Remove fixed min-width */
+      max-width: 100%; /* Prevent overflow */
+    }
+  }
+  
+  /* Dark mode adjustments */
+  body.dark-mode input[type="datetime-local"] {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #555;
+  }
+  
+  /* Remove calendar icon in Edge */
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+  }
+  
+  body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
