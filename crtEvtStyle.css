@@ -492,10 +492,17 @@ body.dark-mode .modal-content {
 
 /* Fix for datetime-local inputs on mobile */
 input[type="datetime-local"] {
-    min-width: 280px; /* Minimum width for better mobile display */
+    min-width: 90%; /* Minimum width for better mobile display */
     flex-shrink: 0; /* Prevent shrinking in flex containers */
     padding: 10px; /* Larger touch target */
     font-size: 16px; /* Prevent iOS zoom */
+    color: #ccc;
+
+    @media (max-width: 480px) {
+        width: 100%; /* Full width on mobile */
+        min-width: unset; /* Remove fixed min-width */
+        max-width: 100%; /* Prevent overflow */   
+    }
   }
   
   @media (max-width: 768px) {
