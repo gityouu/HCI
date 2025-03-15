@@ -93,6 +93,13 @@ body.dark-mode .main-content{
 }
 
 @media (max-width: 768px) {
+    .tooltip {
+        display: none !important;
+    }
+      
+      .nav-actions:hover .tooltip {
+        visibility: hidden;
+    }
     .main-content {
         background-image: url(./images/businessman-9205819_1280-mobile.png);
         background-attachment: scroll;
@@ -103,6 +110,13 @@ body.dark-mode .main-content{
 }
 
 @media (max-width: 480px) {
+    .tooltip {
+        display: none !important;
+    }
+      
+      .nav-actions:hover .tooltip {
+        visibility: hidden;
+    }
     .main-content {
         background-position: 80% center;
         padding: 1rem;

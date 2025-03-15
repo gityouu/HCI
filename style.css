@@ -523,6 +523,14 @@ body.dark-mode .form-message.success {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    .tooltip {
+        display: none !important;
+    }
+      
+      .nav-actions:hover .tooltip {
+        visibility: hidden;
+    }
+
     .nav-bar {
         flex-direction: column;
         overflow: inherit;
@@ -587,6 +595,14 @@ body.dark-mode .form-message.success {
 }
 
 @media (max-width: 480px) {
+    .tooltip {
+        display: none !important;
+    }
+      
+      .nav-actions:hover .tooltip {
+        visibility: hidden;
+    }
+
     .nav-bar {
         padding: 10px;
     }

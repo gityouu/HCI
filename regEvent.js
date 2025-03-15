@@ -437,3 +437,25 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelAnimationFrame(animationFrameId);
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const eventCards = document.querySelectorAll(".event-card");
+
+  eventCards.forEach(card => {
+      card.addEventListener("click", function (e) {
+          // Check if the device supports touch events (Mobile)
+          if ("ontouchstart" in document.documentElement) {
+              e.stopPropagation(); // Prevents accidental closure when tapping inside
+              eventCards.forEach(c => c.classList.remove("show-description"));
+              this.classList.add("show-description");
+          }
+      });
+  });
+
+  // Close when tapping outside
+  document.addEventListener("click", function (e) {
+      if (!e.target.closest(".event-card")) {
+          eventCards.forEach(c => c.classList.remove("show-description"));
+      }
+  });
+});

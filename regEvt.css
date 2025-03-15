@@ -130,6 +130,12 @@ body.dark-mode .nav-actions i {
 }
 
 @media (max-width: 768px) {
+  .sort-select{
+    width: 100%;
+    border-radius: 4px;
+    padding: 6px;
+  }
+
   .tooltip {
     display: none !important;
   }
@@ -445,9 +451,10 @@ body.dark-mode .nav-actions i {
   transition: opacity 0.3s;
   padding: 20px;
   text-align: center;
-  z-index: 1; /* Ensure overlay stays below the button */
+  z-index: 1;
 }
 
+/* Hover effect for desktops */
 .event-card:hover .event-description {
   opacity: 1;
 }
@@ -455,6 +462,20 @@ body.dark-mode .nav-actions i {
 .event-card:hover .event-info .text-content {
   opacity: 0;
 }
+
+/* Tap-to-show for mobile devices */
+.event-card.show-description .event-description {
+  opacity: 1;
+}
+
+.event-card.show-description .event-info .text-content {
+  opacity: 0;
+}
+
+/* Ensure the event info remains visible on tap when description is hidden */
+/* .event-card:not(.show-description) .event-info .text-content {
+  opacity: 1;
+} */
 
 .event-description h3 {
   padding-bottom: 15px;

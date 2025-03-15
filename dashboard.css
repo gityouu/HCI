@@ -526,6 +526,13 @@ body.dark-mode .registration-item {
 }
 
 @media (max-width: 768px) {
+  .tooltip {
+    display: none !important;
+  }
+  
+  .nav-actions:hover .tooltip {
+    visibility: hidden;
+  }
   .sidebar {
     width: 100%;
     right: -100%;
@@ -650,6 +657,14 @@ background-color: #fff;
     left: 0;
     transform: none;
     padding: 0 15px;
+  }
+
+  .nav-actions{
+    gap: 10px;
+  }
+
+  .nav-actions i{
+    font-size: 1.2rem;
   }
 
   .nav-bar {
