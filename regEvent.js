@@ -321,3 +321,119 @@ function createEventCard(event) {
     </div>
   `;
 }
+
+//background particles srcipt
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animationFrameId;
+
+  // Set canvas size
+  function resizeCanvas() {
+    const eventsPage = document.querySelector('.events-page');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  // Particle class
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      const colors = [
+        { name: 'orange', value: 'rgba(255, 165, 0, 0.2)' },    // Orange
+        { name: 'red', value: 'rgba(255, 0, 0, 0.2)' },         // Red
+        { name: 'blue', value: 'rgba(0, 0, 255, 0.2)' }         // Blue
+      ];
+      
+      // Randomly select a color with varying opacity
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const alphaVariance = Math.random() * 0.15;
+      
+      this.color = color.value.replace(/0\.2\)$/, `${0.15 + alphaVariance})`);
+      
+      // Position and speed adjustments for color
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 4 + 1;
+      
+      // Different movement patterns per color
+      switch(color.name) {
+        case 'orange':
+          this.speedX = Math.random() * 0.8 - 0.4;
+          this.speedY = Math.random() * 0.8 - 0.4;
+          break;
+        case 'red':
+          this.speedX = Math.random() * 1.2 - 0.6;
+          this.speedY = Math.random() * 0.5 - 0.25;
+          break;
+        case 'blue':
+          this.speedX = Math.random() * 0.5 - 0.25;
+          this.speedY = Math.random() * 1.2 - 0.6;
+          break;
+      }
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.x > canvas.width + 5 || this.x < -5) this.reset();
+      if (this.y > canvas.height + 5 || this.y < -5) this.reset();
+    }
+
+    draw() {
+      ctx.beginPath();
+      const gradient = ctx.createRadialGradient(
+        this.x, this.y, 0, 
+        this.x, this.y, this.size
+      );
+      
+      gradient.addColorStop(0, this.color);
+      gradient.addColorStop(1, 'transparent');
+      
+      ctx.fillStyle = gradient;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Create particles
+  function init() {
+    particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  // Animation loop
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  // Handle resize
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    init();
+  });
+
+  // Start animation
+  resizeCanvas();
+  init();
+  animate();
+
+  // Cleanup
+  window.addEventListener('beforeunload', () => {
+    cancelAnimationFrame(animationFrameId);
+  });
+});

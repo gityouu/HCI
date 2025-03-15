@@ -130,6 +130,14 @@ body.dark-mode .nav-actions i {
 }
 
 @media (max-width: 768px) {
+  .tooltip {
+    display: none !important;
+  }
+  
+  .nav-actions:hover .tooltip {
+    visibility: hidden;
+  }
+
   .nav-bar {
     padding: 10px 20px;
     flex-wrap: wrap;
@@ -149,9 +157,73 @@ body.dark-mode .nav-actions i {
   .nav-links a {
     font-size: 1rem;
   }
+
+  .event-card {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .event-card:active {
+    transform: scale(0.98);
+  }
+
+  .details-btn:active {
+    transform: scale(0.95);
+  }
+
+  .nav-actions i:active {
+    transform: scale(0.9);
+  }
+
+  /* Remove hover effects on mobile */
+  .nav-links a:hover {
+    color: #555;
+    transform: none;
+  }
+
+  .footer-links a:hover,
+  .footer-nav a:hover {
+    color: inherit;
+    transform: none;
+  }
+
+  body.dark-mode .event-card:active {
+    transform: scale(0.98) translateZ(0);
+  }
+  
+  body.dark-mode .nav-actions i:active {
+    color: #ccc;
+  }
+}
+
+/*effects for only desktop */
+@media (hover: hover) and (pointer: fine) {
+  .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .event-card:hover .event-description {
+    opacity: 1;
+  }
+
+  .event-card:hover .event-info .text-content {
+    opacity: 0;
+  }
+
+  .nav-actions i:hover {
+    transform: translateY(-1px);
+  }
 }
 
 @media (max-width: 480px) {
+  .tooltip {
+    display: none !important;
+  }
+  
+  .nav-actions:hover .tooltip {
+    visibility: hidden;
+  }
+
   .search-form {
     width: 90%;
   }
@@ -164,10 +236,47 @@ body.dark-mode .nav-actions i {
   .sort-select {
     width: 100%;
     border-radius: 4px;
+    padding: 6px;
   }
   
   .nav-actions i {
     font-size: 1.2rem;
+  }
+
+  .event-card {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .event-card:active {
+    transform: scale(0.98);
+  }
+
+  .details-btn:active {
+    transform: scale(0.95);
+  }
+
+  .nav-actions i:active {
+    transform: scale(0.9);
+  }
+
+  /* Remove hover effects on mobile */
+  .nav-links a:hover {
+    color: #555;
+    transform: none;
+  }
+
+  .footer-links a:hover,
+  .footer-nav a:hover {
+    color: inherit;
+    transform: none;
+  }
+
+  body.dark-mode .event-card:active {
+    transform: scale(0.98) translateZ(0);
+  }
+  
+  body.dark-mode .nav-actions i:active {
+    color: #ccc;
   }
 }
 
@@ -175,7 +284,7 @@ body.dark-mode .nav-actions i {
 .events-page {
   padding-top: 70px !important;
   padding: 20px;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, transparent 60%);
+  background: none;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
@@ -188,6 +297,8 @@ body.dark-mode .nav-actions i {
   font-weight: lighter;
   font-size: 1.5rem;
   padding-bottom: 0 !important;
+  position: relative;
+  z-index: 1;
 }
 
 .events-page hr {
@@ -206,6 +317,8 @@ body.dark-mode .nav-actions i {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .event-card {
@@ -219,10 +332,19 @@ body.dark-mode .nav-actions i {
   max-width: 300px;
   display: flex;
   flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
+  .tooltip {
+    display: none !important;
+  }
+  
+  .nav-actions:hover .tooltip {
+    visibility: hidden;
+  }
+
   .events-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
     justify-content: center;
@@ -344,9 +466,18 @@ body.dark-mode .nav-actions i {
   font-size: 1.1rem;
 }
 
+#particleCanvas {
+  position: fixed; /* Change from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
 /* Dark Mode Overrides for Events Page */
 body.dark-mode .events-page {
-  background: #121212;
+  background: none;
   color: aliceblue;
 }
 
