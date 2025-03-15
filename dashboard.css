@@ -426,6 +426,7 @@ body.dark-mode .dashboard-content{
 }
 
 .section-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -433,6 +434,12 @@ body.dark-mode .dashboard-content{
   border-bottom: 2px solid #eee;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
+  gap: 2px;
+}
+
+.section-header h2{
+  width: 100%;
+  text-align: center;
 }
 
 .card-grid {
@@ -478,9 +485,12 @@ body.dark-mode .registration-card{
 }
 
 .view-all {
+  position: static !important;
   color: #007bff;
   text-decoration: none;
   font-weight: 500;
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 .events-list, .registrations-list {
@@ -495,16 +505,6 @@ body.dark-mode .registration-card{
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.loading-spinner {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #007bff;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
-  margin: 20px auto;
 }
 
 .calendar-widget .calendar-header{
@@ -649,6 +649,10 @@ background-color: #fff;
   .nav-bar {
     padding: 0 20px;
   }
+
+  .nav-actions i{
+    font-size: 1.7rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -664,7 +668,7 @@ background-color: #fff;
   }
 
   .nav-actions i{
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   }
 
   .nav-bar {
@@ -719,7 +723,7 @@ background-color: #fff;
   }
 
   .nav-actions i {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
   }
 
   /* Banner text */
@@ -920,6 +924,12 @@ body.dark-mode .registrant-name{
   color: #7f8c8d;
   margin-bottom: 1rem;
   padding-top: 0.2rem;
+}
+
+.event-unique-number{
+  font-size: 0.9rem;
+  color: rgb(0, 235, 0);
+  margin-top: 10px;
 }
 
 .registration-date {
@@ -1155,6 +1165,11 @@ body.dark-mode .fc-event.organized {
 }
 
 body.dark-mode .fc-event.attending {
+  background-color: #2f855a !important;
+  border-color: #2f855a !important;
+}
+
+.fc-event.attending {
   background-color: #2f855a !important;
   border-color: #2f855a !important;
 }
@@ -1472,4 +1487,89 @@ body.dark-mode #sortRegistrations {
   background: #333;
   color: white;
   border-color: #555;
+}
+
+/* Add modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  color: #111;
+}
+
+body.dark-mode .modal-content {
+  color: #fff;
+}
+
+.modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.danger-btn {
+  background: #dc3545;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: #6c757d;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.auth-required {
+  margin: 1.5rem 0;
+}
+
+#currentPassword {
+  width: 50%;
+  padding: 0.4rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+
+.error-message {
+  color: #dc3545;
+  margin: 0.5rem 0;
+  min-height: 1.5rem;
 }

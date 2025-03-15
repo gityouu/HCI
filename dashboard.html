@@ -54,7 +54,6 @@
         <span id="closeSettingsModal" class="close-btn">&times;</span>
         <h2>Account Settings</h2>
         <p><strong>Email</strong> <span id="modalUserEmail" style="font-size: 1rem;">Loading...</span></p>
-
         <h3>Update Password</h3>
         <input type="password" id="newPassword" placeholder="New Password">
         <div>
@@ -62,6 +61,23 @@
         </div>
         <!-- <h3>Delete Account</h3> -->
         <button id="deleteAccountBtn" class="delete-btn">Delete Account</button>
+      </div>
+      <!-- account deletion modal -->
+      <div id="deleteAccountModal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h3>Confirm Account Deletion</h3>
+          <div class="auth-required">
+            <p>For security, please confirm your password:</p>
+            <input type="password" id="currentPassword" placeholder="Current Password">
+            <p class="error-message" id="deleteError"></p>
+          </div>
+          <div class="modal-actions">
+            <button id="confirmDeleteBtn" class="danger-btn">Delete Account</button>
+            <button id="cancelDeleteBtn" class="secondary-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -106,36 +122,12 @@
     <section class="events-section">
       <div class="section-header">
         <h2>Events I'm Attending</h2>
-        <a href="" class="view-all" id="viewAttending">View All →</a>
       </div>
       <div id="registeredEventsList" class="events-list">
         <!-- Dynamic content will be added here -->
         <div class="loading-spinner"></div>
       </div>
     </section>
-    <!--organizedEventsModal -->
-    <div id="attendingEventsModal" class="registrations-modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Events I'm Attending</h2>
-          <span class="close-modall">&times;</span>
-        </div>
-        <div class="modal-body">
-          <div class="event-group">
-            <div class="event-group-header">
-              <h3 class="event-group-title">Upcoming Events</h3>
-            </div>
-            <div id="attendingUpcoming" class="card-grid"></div>
-          </div>
-          <div class="event-group">
-            <div class="event-group-header">
-              <h3 class="event-group-title">Past Events</h3>
-            </div>
-            <div id="attendingPast" class="card-grid"></div>
-          </div>
-        </div>
-      </div>
-    </div>
     <section class="events-section">
       <div class="section-header">
         <h2>My Organized Events</h2>
@@ -207,7 +199,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2>All Registrations by Event</h2>
-          <span class="close-modall">&times;</span>
+          <span class="close-modall" id="close-modall">&times;</span>
         </div>
         <div class="search-container">
           <input type="text" id="registrationSearch" placeholder="Search by name, email,unique numberor event...">

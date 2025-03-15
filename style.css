@@ -443,6 +443,11 @@ body.dark-mode .required-info{
     color: blue;
 }
 
+body.dark-mode .modal-content a{
+    text-decoration: none;
+    color: rgb(141, 141, 255);
+}
+
 .modal-content button:hover {
     background-color: #444;
 }
@@ -870,16 +875,16 @@ body.dark-mode .testimonial-item span{
     line-height: 1.2;
     font-size: 2rem;
     padding: 1rem 0 !important;
-    margin: 0 auto;
     margin-top: 10px;
+    text-align: center;
 }
 
 .intro-div p {
     line-height: 1.6;
-    font-size: 1rem;
-    padding: 0 0 2rem !important;
-    margin: 0 auto;
-    max-width: 600px;
+    font-size: 1.1rem;
+    padding: 0 0 2rem;
+    text-align: center;
+    max-width: 100%;
 }
 
 .intro-img {

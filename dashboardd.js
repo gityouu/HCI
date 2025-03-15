@@ -1,5 +1,6 @@
-import { getAuth, onAuthStateChanged, signOut, updatePassword, deleteUser } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, collection, query, where, orderBy, limit, getDocs, getCountFromServer, onSnapshot, Timestamp  } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signOut, updatePassword, deleteUser, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, collection, query, where, orderBy, limit, getDocs,
+          getCountFromServer, onSnapshot, Timestamp, deleteDoc, writeBatch  } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
 import { Calendar } from 'https://cdn.skypack.dev/@fullcalendar/core@6.1.8';
 import dayGridPlugin from 'https://cdn.skypack.dev/@fullcalendar/daygrid@6.1.8';
@@ -241,7 +242,10 @@ function loadRegisteredEvents(userId) {
     // Merge registration data with event data
     const enhancedEvents = fullRegistrations.map(reg => {
       const event = events.find(e => e.id === reg.eventId);
-      return event ? { ...event, registrationDate: reg.registeredAt } : null;
+      return event ? { ...event,
+         registrationDate: reg.registeredAt,
+         uniqueNumber: reg.uniqueNumber
+        } : null;
     }).filter(Boolean);
 
     if (enhancedEvents.length === 0) {
@@ -330,6 +334,9 @@ function createEventElement(event, isPast = false, showMetrics = true) {
       <div class="event-details">
         <p class="event-venue">📍 ${event.venue}</p>
         <p class="event-price">💰 ${event.price}</p>
+        ${event.uniqueNumber && event.price !== "Free" ? 
+          `<p class="event-unique-number">🔢 ${event.uniqueNumber}</p>` : 
+          ''}
         <div class="event-meta">
           <span class="event-date">📅 ${eventDate.toLocaleDateString('en-GB')}</span>
           ${metricsButtonHTML}
@@ -402,9 +409,15 @@ updatePasswordBtn.addEventListener("click", async () => {
   const user = auth.currentUser;
   if (user) {
     try {
+      updatePasswordBtn.innerHTML = '<div class="spinner"></div> Updating...';
       await updatePassword(user, newPassword);
       alert("Password updated successfully!");
       newPasswordInput.value = ""; // Clear input field
+      setTimeout(() => {
+        updatePasswordBtn.innerHTML = 'Update Password';
+      }, 3000);
+      updatePasswordBtn.innerHTML = 'Updated';
+      updatePasswordBtn.disabled = false;
     } catch (error) {
       console.error("Error updating password:", error);
       alert("Failed to update password. Try again.");
@@ -423,23 +436,111 @@ logoutButton.addEventListener("click", async () => {
   }
 });
 
-// Delete Account Functionality
-deleteAccountBtn.addEventListener("click", async () => {
-  const confirmation = confirm("Are you sure you want to delete your account? This action is irreversible.");
-  if (!confirmation) return;
+// delete account functionality
+const deleteAccountModal = document.getElementById("deleteAccountModal");
+const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
 
+// Show delete confirmation modal
+deleteAccountBtn.addEventListener("click", () => {
+  deleteAccountModal.style.display = "block";
+});
+
+// Close modal handlers
+const closeDeleteModal = () => deleteAccountModal.style.display = "none";
+cancelDeleteBtn.addEventListener("click", closeDeleteModal);
+document.querySelectorAll('.close-modal').forEach(btn => {
+  btn.addEventListener('click', closeDeleteModal);
+});
+
+// Handle account deletion
+confirmDeleteBtn.addEventListener("click", async () => {
   const user = auth.currentUser;
-  if (user) {
-    try {
-      await deleteUser(user);
-      alert("Account deleted successfully.");
-      window.location.href = "./index.html";
-    } catch (error) {
-      console.error("Error deleting account:", error);
-      alert("Failed to delete account. Try logging in again.");
-    }
+  const password = document.getElementById('currentPassword').value.trim();
+  const errorElement = document.getElementById('deleteError');
+
+  if (!user || !password) {
+    errorElement.textContent = 'Please enter your current password';
+    return;
+  }
+
+  try {
+    // Show loading state
+    confirmDeleteBtn.disabled = true;
+    confirmDeleteBtn.innerHTML = '<div class="spinner"></div> Verifying...';
+
+    // Reauthenticate user
+    const credential = EmailAuthProvider.credential(user.email, password);
+    await reauthenticateWithCredential(user, credential);
+
+    // Proceed with deletion if reauthentication succeeds
+    confirmDeleteBtn.innerHTML = '<div class="spinner"></div> Deleting...';
+    
+    // Delete user data first
+    await deleteUserData(user.uid);
+    
+    // Delete auth account
+    await deleteUser(user);
+
+    // Redirect with success state
+    setTimeout(() => {
+      window.location.href = './index.html'; 
+    }, 3000); 
+    errorElement.textContent = 'Account deleted successfully';
+  } catch (error) {
+    console.error("Account deletion failed:", error);
+    errorElement.textContent = error.message.includes('wrong-password') 
+      ? 'Incorrect password. Please try again.'
+      : `Deletion failed. Try again`;
+  } finally {
+    confirmDeleteBtn.disabled = false;
+    confirmDeleteBtn.textContent = 'Delete Account';
+    document.getElementById('currentPassword').value = '';
   }
 });
+
+// Function to delete all user-related data
+async function deleteUserData(userId) {
+  const batchSize = 500;
+  
+  // Delete user's events
+  const eventsQuery = query(
+    collection(db, "events"), 
+    where("userId", "==", userId)
+  );
+  await deleteQueryBatch(eventsQuery, batchSize);
+
+  // Delete user's registrations
+  const registrationsQuery = query(
+    collection(db, "registrations"),
+    where("organizerUserId", "==", userId)
+  );
+  await deleteQueryBatch(registrationsQuery, batchSize);
+
+  // Delete user document
+  const userRef = doc(db, "users", userId);
+  await deleteDoc(userRef);
+}
+
+// Update the helper function
+async function deleteQueryBatch(query, batchSize) {
+  const snapshot = await getDocs(query);
+
+  if (snapshot.empty) return;
+
+  let deleted = 0;
+  while (deleted < snapshot.docs.length) {
+    const batch = writeBatch(db); // Use existing db reference
+    const docs = snapshot.docs.slice(deleted, deleted + batchSize);
+    
+    docs.forEach(doc => {
+      batch.delete(doc.ref);
+    });
+
+    await batch.commit();
+    deleted += docs.length;
+  }
+}
 
 // Calendar initialization
 async function initializeCalendar(userId) {
@@ -531,119 +632,10 @@ function adjustBannerMargin() {
 window.addEventListener('load', adjustBannerMargin);
 window.addEventListener('resize', adjustBannerMargin);
 
-// Add to the top with other DOM references
-const viewAttendingLink = document.getElementById('viewAttending');
-const attendingEventsModal = document.getElementById('attendingEventsModal');
-const attendingUpcoming = document.getElementById('attendingUpcoming');
-const attendingPast = document.getElementById('attendingPast');
-
-// Add event listener for the view all link
-viewAttendingLink.addEventListener('click', async (e) => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return;
-  
-  attendingEventsModal.style.display = 'block';
-  await showAllAttendingEvents(user.uid);
-});
-
-// Add close handler
-attendingEventsModal.querySelector('.close-modall').addEventListener('click', () => {
-  attendingEventsModal.style.display = 'none';
-});
-
-//showAllAttendingEvents function
-async function showAllAttendingEvents(userId) {
-  try {
-    // Clear previous content
-    attendingUpcoming.innerHTML = '<div class="loading-spinner"></div>';
-    attendingPast.innerHTML = '<div class="loading-spinner"></div>';
-
-    //Get all registrations with validation
-    const registrationsSnap = await getDocs(
-      query(collection(db, "registrations"),
-      where("attendeeUserId", "==", userId))
-    );
-
-    // Validate and extract event IDs
-    const eventIds = registrationsSnap.docs
-      .map(doc => doc.data().eventId)
-      .filter(id => id && typeof id === 'string' && id.length > 0);
-
-    if (eventIds.length === 0) {
-      attendingUpcoming.innerHTML = '<p class="no-events">No events found</p>';
-      return;
-    }
-
-    //Batch fetch events with error handling
-    const events = [];
-    const batchSize = 10;
-    
-    for (let i = 0; i < eventIds.length; i += batchSize) {
-      const batch = eventIds.slice(i, i + batchSize);
-      try {
-        const q = query(collection(db, "events"), where("__name__", "in", batch));
-        const snapshot = await getDocs(q);
-        snapshot.forEach(doc => {
-          const eventData = doc.data();
-          // Validate and convert date
-          const eventDate = eventData.eventDate?.toDate 
-            ? eventData.eventDate.toDate()
-            : new Date(eventData.eventDate);
-          
-          if (isNaN(eventDate)) {
-            console.warn('Invalid date for event:', doc.id);
-            return;
-          }
-          
-          events.push({
-            id: doc.id,
-            ...eventData,
-            eventDate: eventDate
-          });
-        });
-      } catch (error) {
-        console.error("Error fetching batch:", batch, error);
-      }
-    }
-
-    //Sort and categorize events
-    const now = new Date();
-    const upcoming = [];
-    const past = [];
-    
-    // Sort events chronologically
-    events.sort((a, b) => a.eventDate - b.eventDate);
-    
-    events.forEach(event => {
-      if (event.eventDate >= now) {
-        upcoming.push(event);
-      } else {
-        past.push(event);
-      }
-    });
-
-    //Render events
-    attendingUpcoming.innerHTML = upcoming.length > 0 
-      ? upcoming.map(event => createEventElement(event, false, false).outerHTML).join('')
-      : '<p class="no-events">No upcoming events</p>';
-      
-    attendingPast.innerHTML = past.length > 0 
-      ? past.map(event => createEventElement(event, true).outerHTML).join('')
-      : '<p class="no-events">No past events</p>';
-
-      // attendingUpcoming.in
-
-  } catch (error) {
-    console.error("Error loading attending events:", error);
-    attendingUpcoming.innerHTML = '<p class="error">Error loading events</p>';
-  }
-}
-
 const registrantsViewAllLink = document.getElementById('view');
 const registrationsModal = document.getElementById('registrationsModal');
 const groupedRegistrations = document.getElementById('groupedRegistrations');
-const closeModal = document.querySelector('.close-modall');
+const closeModal = document.getElementById('close-modall');
 
 // View All functionality
 registrantsViewAllLink.addEventListener('click', async (e) => {
@@ -680,6 +672,16 @@ async function showGroupedRegistrations(userId) {
     );
     
     const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+      groupedRegistrations.innerHTML = `
+        <div class="no-registrations">
+          <p>No registrations found</p>
+        </div>
+      `;
+      return;
+    }
+
     const registrations = await Promise.all(
       snapshot.docs.map(async (registrationDoc) => {
         const data = registrationDoc.data();
