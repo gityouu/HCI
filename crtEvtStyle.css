@@ -179,7 +179,7 @@ body.dark-mode .progress-bar {
 .steps {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 50%;
     margin-top: 10px;
 }
 
@@ -275,7 +275,7 @@ body.dark-mode .input-container .terms span{
 }
 
 input, textarea {
-    width: 90%;
+    width: 50%;
     padding: 8px;
     margin: 10px 0;
     border: 1px solid #ccc;
